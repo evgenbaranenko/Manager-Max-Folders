@@ -39,9 +39,11 @@ partial class Form1
         bindingSource2 = new System.Windows.Forms.BindingSource(components);
         fontDialog1 = new System.Windows.Forms.FontDialog();
         fontDialog2 = new System.Windows.Forms.FontDialog();
-        buttonFullStructureFolders = new System.Windows.Forms.Button();
+        buttonCreateFullProject = new System.Windows.Forms.Button();
         checkBoxAddDate = new System.Windows.Forms.CheckBox();
         textBoxClient = new System.Windows.Forms.TextBox();
+        checkBoxArchitecture = new System.Windows.Forms.CheckBox();
+        checkBoxDesign = new System.Windows.Forms.CheckBox();
         ((System.ComponentModel.ISupportInitialize)bindingSource1).BeginInit();
         ((System.ComponentModel.ISupportInitialize)bindingSource2).BeginInit();
         SuspendLayout();
@@ -90,15 +92,16 @@ partial class Form1
         textBoxProjectName.Text = "Project name";
         textBoxProjectName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
         // 
-        // buttonFullStructureFolders
+        // buttonCreateFullProject
         // 
-        buttonFullStructureFolders.BackColor = System.Drawing.Color.LightSteelBlue;
-        buttonFullStructureFolders.Location = new System.Drawing.Point(159, 102);
-        buttonFullStructureFolders.Name = "buttonFullStructureFolders";
-        buttonFullStructureFolders.Size = new System.Drawing.Size(143, 43);
-        buttonFullStructureFolders.TabIndex = 4;
-        buttonFullStructureFolders.Text = "button1";
-        buttonFullStructureFolders.UseVisualStyleBackColor = false;
+        buttonCreateFullProject.BackColor = System.Drawing.Color.LightSteelBlue;
+        buttonCreateFullProject.Location = new System.Drawing.Point(159, 102);
+        buttonCreateFullProject.Name = "buttonCreateFullProject";
+        buttonCreateFullProject.Size = new System.Drawing.Size(143, 43);
+        buttonCreateFullProject.TabIndex = 4;
+        buttonCreateFullProject.Text = "Create ARCH\\INT structure folders";
+        buttonCreateFullProject.UseVisualStyleBackColor = false;
+        buttonCreateFullProject.Click += buttonCreateFullProject_Click;
         // 
         // checkBoxAddDate
         // 
@@ -123,6 +126,24 @@ partial class Form1
         textBoxClient.Text = "Customer";
         textBoxClient.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
         // 
+        // checkBoxArchitecture
+        // 
+        checkBoxArchitecture.Location = new System.Drawing.Point(308, 103);
+        checkBoxArchitecture.Name = "checkBoxArchitecture";
+        checkBoxArchitecture.Size = new System.Drawing.Size(104, 24);
+        checkBoxArchitecture.TabIndex = 7;
+        checkBoxArchitecture.Text = "ARCH";
+        checkBoxArchitecture.UseVisualStyleBackColor = true;
+        // 
+        // checkBoxDesign
+        // 
+        checkBoxDesign.Location = new System.Drawing.Point(308, 122);
+        checkBoxDesign.Name = "checkBoxDesign";
+        checkBoxDesign.Size = new System.Drawing.Size(104, 24);
+        checkBoxDesign.TabIndex = 8;
+        checkBoxDesign.Text = "INT";
+        checkBoxDesign.UseVisualStyleBackColor = true;
+        // 
         // Form1
         // 
         AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -130,9 +151,11 @@ partial class Form1
         BackColor = System.Drawing.Color.DarkSalmon;
         BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
         ClientSize = new System.Drawing.Size(615, 361);
+        Controls.Add(checkBoxDesign);
+        Controls.Add(checkBoxArchitecture);
         Controls.Add(textBoxClient);
         Controls.Add(checkBoxAddDate);
-        Controls.Add(buttonFullStructureFolders);
+        Controls.Add(buttonCreateFullProject);
         Controls.Add(textBoxProjectName);
         Controls.Add(buttonChoosePath);
         Controls.Add(textBoxPath);
@@ -146,11 +169,14 @@ partial class Form1
         PerformLayout();
     }
 
+    private System.Windows.Forms.CheckBox checkBoxArchitecture;
+    private System.Windows.Forms.CheckBox checkBoxDesign;
+
     private System.Windows.Forms.TextBox textBoxClient;
 
     private System.Windows.Forms.CheckBox checkBoxAddDate;
 
-    private System.Windows.Forms.Button buttonFullStructureFolders;
+    private System.Windows.Forms.Button buttonCreateFullProject;
 
     private System.Windows.Forms.FontDialog fontDialog1;
     private System.Windows.Forms.FontDialog fontDialog2;
