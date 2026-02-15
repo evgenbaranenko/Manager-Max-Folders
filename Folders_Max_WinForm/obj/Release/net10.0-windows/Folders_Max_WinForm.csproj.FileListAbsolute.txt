@@ -13,3 +13,9 @@ C:\Users\evgen\RiderProjects\Folders_Max_WinForm\Folders_Max_WinForm\obj\Release
 C:\Users\evgen\RiderProjects\Folders_Max_WinForm\Folders_Max_WinForm\obj\Release\net10.0-windows\Folders_Max_WinForm.pdb
 C:\Users\evgen\RiderProjects\Folders_Max_WinForm\Folders_Max_WinForm\obj\Release\net10.0-windows\Folders_Max_WinForm.genruntimeconfig.cache
 C:\Users\evgen\RiderProjects\Folders_Max_WinForm\Folders_Max_WinForm\obj\Release\net10.0-windows\ref\Folders_Max_WinForm.dll
+<<<<<<< HEAD
+=======
+C:\Users\evgen\RiderProjects\Folders_Max_WinForm\Folders_Max_WinForm\bin\Release\net10.0-windows\04.ico
+C:\Users\evgen\RiderProjects\Folders_Max_WinForm\Folders_Max_WinForm\obj\Release\net10.0-windows\Folders_Max_WinForm.Form1.resources
+C:\Users\evgen\RiderProjects\Folders_Max_WinForm\Folders_Max_WinForm\obj\Release\net10.0-windows\Folders_Max_WinForm.csproj.GenerateResource.cache
+>>>>>>> e9c1cf9a9b9cc7e991a0fc89d0039106f8560d16

@@ -6,16 +6,54 @@ namespace Folders_Max_WinForm
         {
             InitializeComponent();
         }
+        private void buttonChoosePath_Click(object sender, EventArgs e)
+        {
+            using (FolderBrowserDialog dialog = new FolderBrowserDialog())
+            {
+                dialog.Description = "Выберите папку, где создать структуру";
+                dialog.ShowNewFolderButton = true;
 
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    textBoxPath.Text = dialog.SelectedPath;
+                }
+            }
+        }
         private void ButtonCreateMaxFolders(object sender, EventArgs e)
         {
             if (InputPath(out var basePath)) return;
-
-            Create3dsMaxStructureFolders(basePath);
+            if (InputProjectName(out var projectName)) return;
+            
+            // Создаем папку проекта
+            string projectFolder = Path.Combine(basePath, projectName);
+            CreateDirectory(projectFolder);
+            
+            Create3dsMaxStructureFolders(projectFolder);
             
             MessageBox.Show("Папки созданы успешно!");
         }
+        private bool InputProjectName(out string projectName)
+        {
+            projectName = textBoxProjectName.Text.Trim();
 
+            if (string.IsNullOrWhiteSpace(projectName))
+            {
+                MessageBox.Show("Введите название проекта!", "Ошибка");
+                return true;
+            }
+
+            // Запрещённые символы Windows
+            foreach (char c in Path.GetInvalidFileNameChars())
+            {
+                if (projectName.Contains(c))
+                {
+                    MessageBox.Show("Название проекта содержит недопустимые символы!", "Ошибка");
+                    return true;
+                }
+            }
+
+            return false;
+        }
         private void Create3dsMaxStructureFolders(string basePath)
         {
             Create3dsMaxFolders(basePath);
@@ -62,7 +100,9 @@ namespace Folders_Max_WinForm
             return true;
         }
         
-        private void TextBoxPathTextChanged(object sender, EventArgs e) => 
-            throw new System.NotImplementedException();
+        private void TextBoxPathTextChanged(object sender, EventArgs e)
+        { 
+            // throw new System.NotImplementedException();
+        }
     }
 }
