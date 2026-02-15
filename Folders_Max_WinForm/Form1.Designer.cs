@@ -29,20 +29,21 @@ partial class Form1
     /// </summary>
     private void InitializeComponent()
     {
-        btnMaxStrFldr = new System.Windows.Forms.Button();
+        System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+        button3dsMaxStructureFolders = new System.Windows.Forms.Button();
         textBoxPath = new System.Windows.Forms.TextBox();
-        button1 = new System.Windows.Forms.Button();
+        buttonChoosePath = new System.Windows.Forms.Button();
         SuspendLayout();
         // 
-        // btnMaxStrFldr
+        // button3dsMaxStructureFolders
         // 
-        btnMaxStrFldr.Location = new System.Drawing.Point(335, 217);
-        btnMaxStrFldr.Name = "btnMaxStrFldr";
-        btnMaxStrFldr.Size = new System.Drawing.Size(166, 44);
-        btnMaxStrFldr.TabIndex = 0;
-        btnMaxStrFldr.Text = "Create Max structure folders";
-        btnMaxStrFldr.UseVisualStyleBackColor = true;
-        btnMaxStrFldr.Click += ButtonCreateMaxFolders;
+        button3dsMaxStructureFolders.Location = new System.Drawing.Point(335, 217);
+        button3dsMaxStructureFolders.Name = "button3dsMaxStructureFolders";
+        button3dsMaxStructureFolders.Size = new System.Drawing.Size(166, 44);
+        button3dsMaxStructureFolders.TabIndex = 0;
+        button3dsMaxStructureFolders.Text = "Create 3dsMax structure folders";
+        button3dsMaxStructureFolders.UseVisualStyleBackColor = true;
+        button3dsMaxStructureFolders.Click += ButtonCreateMaxFolders;
         // 
         // textBoxPath
         // 
@@ -52,14 +53,15 @@ partial class Form1
         textBoxPath.TabIndex = 1;
         textBoxPath.TextChanged += TextBoxPathTextChanged;
         // 
-        // button1
+        // buttonChoosePath
         // 
-        button1.Location = new System.Drawing.Point(335, 178);
-        button1.Name = "button1";
-        button1.Size = new System.Drawing.Size(165, 39);
-        button1.TabIndex = 2;
-        button1.Text = "buttonChoosePath";
-        button1.UseVisualStyleBackColor = true;
+        buttonChoosePath.Location = new System.Drawing.Point(335, 178);
+        buttonChoosePath.Name = "buttonChoosePath";
+        buttonChoosePath.Size = new System.Drawing.Size(165, 39);
+        buttonChoosePath.TabIndex = 2;
+        buttonChoosePath.Text = "Choose path";
+        buttonChoosePath.UseVisualStyleBackColor = true;
+        buttonChoosePath.Click += buttonChoosePath_Click;
         // 
         // Form1
         // 
@@ -68,20 +70,21 @@ partial class Form1
         BackColor = System.Drawing.Color.DarkSalmon;
         BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
         ClientSize = new System.Drawing.Size(784, 361);
-        Controls.Add(button1);
+        Controls.Add(buttonChoosePath);
         Controls.Add(textBoxPath);
-        Controls.Add(btnMaxStrFldr);
+        Controls.Add(button3dsMaxStructureFolders);
+        Icon = ((System.Drawing.Icon)resources.GetObject("$this.Icon"));
         StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
         Text = "Form1";
         ResumeLayout(false);
         PerformLayout();
     }
 
-    private System.Windows.Forms.Button button1;
+    private System.Windows.Forms.Button buttonChoosePath;
 
     private System.Windows.Forms.TextBox textBoxPath;
 
-    private System.Windows.Forms.Button btnMaxStrFldr;
+    private System.Windows.Forms.Button button3dsMaxStructureFolders;
 
     #endregion
 }

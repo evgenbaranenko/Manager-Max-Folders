@@ -7,12 +7,26 @@ namespace Folders_Max_WinForm
             InitializeComponent();
         }
 
+        private void buttonChoosePath_Click(object sender, EventArgs e)
+        {
+            using (FolderBrowserDialog dialog = new FolderBrowserDialog())
+            {
+                dialog.Description = "Выберите папку, где создать структуру";
+                dialog.ShowNewFolderButton = true;
+
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    textBoxPath.Text = dialog.SelectedPath;
+                }
+            }
+        }
+
         private void ButtonCreateMaxFolders(object sender, EventArgs e)
         {
             if (InputPath(out var basePath)) return;
 
             Create3dsMaxStructureFolders(basePath);
-            
+
             MessageBox.Show("Папки созданы успешно!");
         }
 
@@ -22,13 +36,14 @@ namespace Folders_Max_WinForm
             CreateDirectory(Path.Combine(basePath, "_IN"));
             CreateDirectory(Path.Combine(basePath, "_OUT"));
         }
-        
+
         private void Create3dsMaxFolders(string basePath)
         {
             string mainFolder = Path.Combine(basePath, "03_3dsMax");
             CreateDirectory(mainFolder);
 
-            string[] subFolders = {
+            string[] subFolders =
+            {
                 "00_Temp",
                 "01_Max",
                 "02_Texture",
@@ -44,7 +59,8 @@ namespace Folders_Max_WinForm
                 CreateDirectory(Path.Combine(mainFolder, sub));
             }
         }
-        private void CreateDirectory( string folder ) => Directory.CreateDirectory(folder);
+
+        private void CreateDirectory(string folder) => Directory.CreateDirectory(folder);
 
         private bool InputPath(out string basePath)
         {
@@ -57,12 +73,14 @@ namespace Folders_Max_WinForm
             }
 
             if (Directory.Exists(basePath)) return false;
-            
+
             MessageBox.Show("Такого пути не существует!", "Ошибка");
             return true;
         }
-        
-        private void TextBoxPathTextChanged(object sender, EventArgs e) => 
-            throw new System.NotImplementedException();
+
+        private void TextBoxPathTextChanged(object sender, EventArgs e)
+        {
+            // throw new System.NotImplementedException();
+        }
     }
 }
