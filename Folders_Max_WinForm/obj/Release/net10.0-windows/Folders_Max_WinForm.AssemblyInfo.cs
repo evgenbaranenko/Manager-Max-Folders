@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Folders_Max_WinForm")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0f7dbb1e8ac7a6576d1c90ed9c8e1c07efe6a400")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2cbf95e06ee5b001c93d58d56c9e2f530407115a")]
 [assembly: System.Reflection.AssemblyProductAttribute("Folders_Max_WinForm")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Folders_Max_WinForm")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
