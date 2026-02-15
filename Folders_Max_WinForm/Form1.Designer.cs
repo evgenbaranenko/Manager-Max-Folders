@@ -44,6 +44,7 @@ partial class Form1
         textBoxClient = new System.Windows.Forms.TextBox();
         checkBoxArchitecture = new System.Windows.Forms.CheckBox();
         checkBoxDesign = new System.Windows.Forms.CheckBox();
+        checkBoxCreateShortcut = new System.Windows.Forms.CheckBox();
         ((System.ComponentModel.ISupportInitialize)bindingSource1).BeginInit();
         ((System.ComponentModel.ISupportInitialize)bindingSource2).BeginInit();
         SuspendLayout();
@@ -80,7 +81,7 @@ partial class Form1
         buttonChoosePath.TabIndex = 2;
         buttonChoosePath.Text = "Choose path";
         buttonChoosePath.UseVisualStyleBackColor = false;
-        buttonChoosePath.Click += buttonChoosePath_Click;
+        buttonChoosePath.Click += ButtonChoosePath_Click;
         // 
         // textBoxProjectName
         // 
@@ -101,20 +102,21 @@ partial class Form1
         buttonCreateFullProject.TabIndex = 4;
         buttonCreateFullProject.Text = "Create ARCH\\INT structure folders";
         buttonCreateFullProject.UseVisualStyleBackColor = false;
-        buttonCreateFullProject.Click += buttonCreateFullProject_Click;
+        buttonCreateFullProject.Click += ButtonCreateFullProject_Click;
         // 
         // checkBoxAddDate
         // 
         checkBoxAddDate.BackColor = System.Drawing.Color.DarkSalmon;
         checkBoxAddDate.Checked = true;
         checkBoxAddDate.CheckState = System.Windows.Forms.CheckState.Checked;
-        checkBoxAddDate.Location = new System.Drawing.Point(308, 73);
+        checkBoxAddDate.Location = new System.Drawing.Point(308, 72);
         checkBoxAddDate.Name = "checkBoxAddDate";
         checkBoxAddDate.Size = new System.Drawing.Size(52, 24);
         checkBoxAddDate.TabIndex = 5;
         checkBoxAddDate.Text = "Date";
         checkBoxAddDate.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
         checkBoxAddDate.UseVisualStyleBackColor = false;
+        checkBoxAddDate.CheckedChanged += checkBoxAddDate_CheckedChanged;
         // 
         // textBoxClient
         // 
@@ -130,7 +132,7 @@ partial class Form1
         // 
         checkBoxArchitecture.Location = new System.Drawing.Point(308, 103);
         checkBoxArchitecture.Name = "checkBoxArchitecture";
-        checkBoxArchitecture.Size = new System.Drawing.Size(104, 24);
+        checkBoxArchitecture.Size = new System.Drawing.Size(63, 24);
         checkBoxArchitecture.TabIndex = 7;
         checkBoxArchitecture.Text = "ARCH";
         checkBoxArchitecture.UseVisualStyleBackColor = true;
@@ -139,10 +141,21 @@ partial class Form1
         // 
         checkBoxDesign.Location = new System.Drawing.Point(308, 122);
         checkBoxDesign.Name = "checkBoxDesign";
-        checkBoxDesign.Size = new System.Drawing.Size(104, 24);
+        checkBoxDesign.Size = new System.Drawing.Size(52, 24);
         checkBoxDesign.TabIndex = 8;
         checkBoxDesign.Text = "INT";
         checkBoxDesign.UseVisualStyleBackColor = true;
+        // 
+        // checkBoxCreateShortcut
+        // 
+        checkBoxCreateShortcut.Location = new System.Drawing.Point(366, 72);
+        checkBoxCreateShortcut.Name = "checkBoxCreateShortcut";
+        checkBoxCreateShortcut.Size = new System.Drawing.Size(100, 24);
+        checkBoxCreateShortcut.TabIndex = 9;
+        checkBoxCreateShortcut.Text = "Link desktop";
+        checkBoxCreateShortcut.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+        checkBoxCreateShortcut.UseVisualStyleBackColor = true;
+        checkBoxCreateShortcut.CheckedChanged += checkBoxCreateShortcut_CheckedChanged;
         // 
         // Form1
         // 
@@ -151,6 +164,7 @@ partial class Form1
         BackColor = System.Drawing.Color.DarkSalmon;
         BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
         ClientSize = new System.Drawing.Size(615, 361);
+        Controls.Add(checkBoxCreateShortcut);
         Controls.Add(checkBoxDesign);
         Controls.Add(checkBoxArchitecture);
         Controls.Add(textBoxClient);
@@ -168,6 +182,8 @@ partial class Form1
         ResumeLayout(false);
         PerformLayout();
     }
+
+    private System.Windows.Forms.CheckBox checkBoxCreateShortcut;
 
     private System.Windows.Forms.CheckBox checkBoxArchitecture;
     private System.Windows.Forms.CheckBox checkBoxDesign;
