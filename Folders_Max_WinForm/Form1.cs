@@ -23,14 +23,70 @@ namespace Folders_Max_WinForm
         {
             if (InputPath(out var basePath)) return;
             if (InputProjectName(out var projectName)) return;
-            
-            // Создаем папку проекта
-            string projectFolder = Path.Combine(basePath, projectName);
+            if (InputClient(out var clientName)) return;
+
+            int nextNumber = GetNextProjectNumber(basePath);
+
+            // Приводим всё к ВЕРХНЕМУ РЕГИСТРУ
+            clientName = clientName.ToUpper();
+            projectName = projectName.ToUpper();
+
+            string finalName = $"{nextNumber:D2}_{clientName}__{projectName}";
+
+            if (checkBoxAddDate.Checked)
+            {
+                string date = DateTime.Now.ToString("dd-MM-yy");
+                finalName += $"__({date})";
+            }
+
+            string projectFolder = Path.Combine(basePath, finalName);
             CreateDirectory(projectFolder);
-            
+
             Create3dsMaxStructureFolders(projectFolder);
-            
-            MessageBox.Show("Папки созданы успешно!");
+
+            MessageBox.Show($"Проект создан:\n{finalName}");
+        }
+        private bool InputClient(out string clientName)
+        {
+            clientName = textBoxClient.Text.Trim();
+
+            if (string.IsNullOrWhiteSpace(clientName))
+            {
+                MessageBox.Show("Введите заказчика!", "Ошибка");
+                return true;
+            }
+
+            foreach (char c in Path.GetInvalidFileNameChars())
+            {
+                if (clientName.Contains(c))
+                {
+                    MessageBox.Show("Название заказчика содержит недопустимые символы!", "Ошибка");
+                    return true;
+                }
+            }
+
+            return false;
+        }
+        private int GetNextProjectNumber(string basePath)
+        {
+            var directories = Directory.GetDirectories(basePath);
+
+            int maxNumber = 0;
+
+            foreach (var dir in directories)
+            {
+                string folderName = Path.GetFileName(dir);
+
+                var parts = folderName.Split('_');
+
+                if (parts.Length > 0 && int.TryParse(parts[0], out int number))
+                {
+                    if (number > maxNumber)
+                        maxNumber = number;
+                }
+            }
+
+            return maxNumber + 1;
         }
         private bool InputProjectName(out string projectName)
         {
@@ -54,13 +110,17 @@ namespace Folders_Max_WinForm
 
             return false;
         }
+
         private void Create3dsMaxStructureFolders(string basePath)
         {
+           
+            CreateDirectory(Path.Combine(basePath, "01_Contract"));
+            CreateDirectory(Path.Combine(basePath, "02_IN"));
             Create3dsMaxFolders(basePath);
-            CreateDirectory(Path.Combine(basePath, "_IN"));
-            CreateDirectory(Path.Combine(basePath, "_OUT"));
+            CreateDirectory(Path.Combine(basePath, "04_OUT"));
+           
         }
-        
+
         private void Create3dsMaxFolders(string basePath)
         {
             string mainFolder = Path.Combine(basePath, "03_3dsMax");
@@ -82,6 +142,7 @@ namespace Folders_Max_WinForm
                 CreateDirectory(Path.Combine(mainFolder, sub));
             }
         }
+
         private void CreateDirectory( string folder ) => Directory.CreateDirectory(folder);
 
         private bool InputPath(out string basePath)

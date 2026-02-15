@@ -40,24 +40,27 @@ partial class Form1
         fontDialog1 = new System.Windows.Forms.FontDialog();
         fontDialog2 = new System.Windows.Forms.FontDialog();
         buttonFullStructureFolders = new System.Windows.Forms.Button();
+        checkBoxAddDate = new System.Windows.Forms.CheckBox();
+        textBoxClient = new System.Windows.Forms.TextBox();
         ((System.ComponentModel.ISupportInitialize)bindingSource1).BeginInit();
         ((System.ComponentModel.ISupportInitialize)bindingSource2).BeginInit();
         SuspendLayout();
         // 
         // button3dsMaxStructureFolders
         // 
+        button3dsMaxStructureFolders.BackColor = System.Drawing.Color.LightSteelBlue;
         button3dsMaxStructureFolders.Location = new System.Drawing.Point(12, 102);
         button3dsMaxStructureFolders.Name = "button3dsMaxStructureFolders";
         button3dsMaxStructureFolders.Size = new System.Drawing.Size(141, 44);
         button3dsMaxStructureFolders.TabIndex = 0;
         button3dsMaxStructureFolders.Text = "Create 3dsMax structure folders";
-        button3dsMaxStructureFolders.UseVisualStyleBackColor = true;
+        button3dsMaxStructureFolders.UseVisualStyleBackColor = false;
         button3dsMaxStructureFolders.Click += ButtonCreateMaxFolders;
         // 
         // textBoxPath
         // 
-        textBoxPath.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-        textBoxPath.Location = new System.Drawing.Point(12, 12);
+        textBoxPath.BackColor = System.Drawing.SystemColors.ButtonFace;
+        textBoxPath.Location = new System.Drawing.Point(12, 44);
         textBoxPath.Name = "textBoxPath";
         textBoxPath.Size = new System.Drawing.Size(290, 23);
         textBoxPath.TabIndex = 1;
@@ -67,32 +70,58 @@ partial class Form1
         // 
         // buttonChoosePath
         // 
-        buttonChoosePath.Location = new System.Drawing.Point(12, 41);
+        buttonChoosePath.BackColor = System.Drawing.Color.LightSteelBlue;
+        buttonChoosePath.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+        buttonChoosePath.Location = new System.Drawing.Point(12, 12);
         buttonChoosePath.Name = "buttonChoosePath";
         buttonChoosePath.Size = new System.Drawing.Size(290, 26);
         buttonChoosePath.TabIndex = 2;
         buttonChoosePath.Text = "Choose path";
-        buttonChoosePath.UseVisualStyleBackColor = true;
+        buttonChoosePath.UseVisualStyleBackColor = false;
         buttonChoosePath.Click += buttonChoosePath_Click;
         // 
         // textBoxProjectName
         // 
-        textBoxProjectName.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-        textBoxProjectName.Location = new System.Drawing.Point(12, 73);
+        textBoxProjectName.BackColor = System.Drawing.SystemColors.ButtonFace;
+        textBoxProjectName.Location = new System.Drawing.Point(159, 73);
         textBoxProjectName.Name = "textBoxProjectName";
-        textBoxProjectName.Size = new System.Drawing.Size(290, 23);
+        textBoxProjectName.Size = new System.Drawing.Size(143, 23);
         textBoxProjectName.TabIndex = 3;
         textBoxProjectName.Text = "Project name";
         textBoxProjectName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
         // 
-        // button1
+        // buttonFullStructureFolders
         // 
+        buttonFullStructureFolders.BackColor = System.Drawing.Color.LightSteelBlue;
         buttonFullStructureFolders.Location = new System.Drawing.Point(159, 102);
         buttonFullStructureFolders.Name = "buttonFullStructureFolders";
-        buttonFullStructureFolders.Size = new System.Drawing.Size(142, 43);
+        buttonFullStructureFolders.Size = new System.Drawing.Size(143, 43);
         buttonFullStructureFolders.TabIndex = 4;
         buttonFullStructureFolders.Text = "button1";
-        buttonFullStructureFolders.UseVisualStyleBackColor = true;
+        buttonFullStructureFolders.UseVisualStyleBackColor = false;
+        // 
+        // checkBoxAddDate
+        // 
+        checkBoxAddDate.BackColor = System.Drawing.Color.DarkSalmon;
+        checkBoxAddDate.Checked = true;
+        checkBoxAddDate.CheckState = System.Windows.Forms.CheckState.Checked;
+        checkBoxAddDate.Location = new System.Drawing.Point(308, 73);
+        checkBoxAddDate.Name = "checkBoxAddDate";
+        checkBoxAddDate.Size = new System.Drawing.Size(52, 24);
+        checkBoxAddDate.TabIndex = 5;
+        checkBoxAddDate.Text = "Date";
+        checkBoxAddDate.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+        checkBoxAddDate.UseVisualStyleBackColor = false;
+        // 
+        // textBoxClient
+        // 
+        textBoxClient.BackColor = System.Drawing.SystemColors.ButtonFace;
+        textBoxClient.Location = new System.Drawing.Point(12, 73);
+        textBoxClient.Name = "textBoxClient";
+        textBoxClient.Size = new System.Drawing.Size(141, 23);
+        textBoxClient.TabIndex = 6;
+        textBoxClient.Text = "Customer";
+        textBoxClient.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
         // 
         // Form1
         // 
@@ -100,7 +129,9 @@ partial class Form1
         AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
         BackColor = System.Drawing.Color.DarkSalmon;
         BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-        ClientSize = new System.Drawing.Size(784, 361);
+        ClientSize = new System.Drawing.Size(615, 361);
+        Controls.Add(textBoxClient);
+        Controls.Add(checkBoxAddDate);
         Controls.Add(buttonFullStructureFolders);
         Controls.Add(textBoxProjectName);
         Controls.Add(buttonChoosePath);
@@ -108,12 +139,16 @@ partial class Form1
         Controls.Add(button3dsMaxStructureFolders);
         Icon = ((System.Drawing.Icon)resources.GetObject("$this.Icon"));
         StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-        Text = "Form1";
+        Text = "Project folder creator 1.0";
         ((System.ComponentModel.ISupportInitialize)bindingSource1).EndInit();
         ((System.ComponentModel.ISupportInitialize)bindingSource2).EndInit();
         ResumeLayout(false);
         PerformLayout();
     }
+
+    private System.Windows.Forms.TextBox textBoxClient;
+
+    private System.Windows.Forms.CheckBox checkBoxAddDate;
 
     private System.Windows.Forms.Button buttonFullStructureFolders;
 
