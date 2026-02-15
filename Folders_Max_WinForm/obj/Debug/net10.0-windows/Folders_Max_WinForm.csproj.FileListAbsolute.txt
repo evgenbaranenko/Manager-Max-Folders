@@ -1,0 +1,14 @@
+C:\Users\evgen\RiderProjects\Folders_Max_WinForm\Folders_Max_WinForm\bin\Debug\net10.0-windows\Folders_Max_WinForm.exe
+C:\Users\evgen\RiderProjects\Folders_Max_WinForm\Folders_Max_WinForm\bin\Debug\net10.0-windows\Folders_Max_WinForm.deps.json
+C:\Users\evgen\RiderProjects\Folders_Max_WinForm\Folders_Max_WinForm\bin\Debug\net10.0-windows\Folders_Max_WinForm.runtimeconfig.json
+C:\Users\evgen\RiderProjects\Folders_Max_WinForm\Folders_Max_WinForm\bin\Debug\net10.0-windows\Folders_Max_WinForm.dll
+C:\Users\evgen\RiderProjects\Folders_Max_WinForm\Folders_Max_WinForm\bin\Debug\net10.0-windows\Folders_Max_WinForm.pdb
+C:\Users\evgen\RiderProjects\Folders_Max_WinForm\Folders_Max_WinForm\obj\Debug\net10.0-windows\Folders_Max_WinForm.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\evgen\RiderProjects\Folders_Max_WinForm\Folders_Max_WinForm\obj\Debug\net10.0-windows\Folders_Max_WinForm.AssemblyInfoInputs.cache
+C:\Users\evgen\RiderProjects\Folders_Max_WinForm\Folders_Max_WinForm\obj\Debug\net10.0-windows\Folders_Max_WinForm.AssemblyInfo.cs
+C:\Users\evgen\RiderProjects\Folders_Max_WinForm\Folders_Max_WinForm\obj\Debug\net10.0-windows\Folders_Max_WinForm.csproj.CoreCompileInputs.cache
+C:\Users\evgen\RiderProjects\Folders_Max_WinForm\Folders_Max_WinForm\obj\Debug\net10.0-windows\Folders_Max_WinForm.dll
+C:\Users\evgen\RiderProjects\Folders_Max_WinForm\Folders_Max_WinForm\obj\Debug\net10.0-windows\refint\Folders_Max_WinForm.dll
+C:\Users\evgen\RiderProjects\Folders_Max_WinForm\Folders_Max_WinForm\obj\Debug\net10.0-windows\Folders_Max_WinForm.pdb
+C:\Users\evgen\RiderProjects\Folders_Max_WinForm\Folders_Max_WinForm\obj\Debug\net10.0-windows\Folders_Max_WinForm.genruntimeconfig.cache
+C:\Users\evgen\RiderProjects\Folders_Max_WinForm\Folders_Max_WinForm\obj\Debug\net10.0-windows\ref\Folders_Max_WinForm.dll

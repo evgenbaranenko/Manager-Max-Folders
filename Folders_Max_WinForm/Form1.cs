@@ -1,0 +1,68 @@
+namespace Folders_Max_WinForm
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void ButtonCreateMaxFolders(object sender, EventArgs e)
+        {
+            if (InputPath(out var basePath)) return;
+
+            Create3dsMaxStructureFolders(basePath);
+            
+            MessageBox.Show("Папки созданы успешно!");
+        }
+
+        private void Create3dsMaxStructureFolders(string basePath)
+        {
+            Create3dsMaxFolders(basePath);
+            CreateDirectory(Path.Combine(basePath, "_IN"));
+            CreateDirectory(Path.Combine(basePath, "_OUT"));
+        }
+        
+        private void Create3dsMaxFolders(string basePath)
+        {
+            string mainFolder = Path.Combine(basePath, "03_3dsMax");
+            CreateDirectory(mainFolder);
+
+            string[] subFolders = {
+                "00_Temp",
+                "01_Max",
+                "02_Texture",
+                "03_Render",
+                "04_Import",
+                "05_Export",
+                "06_Proxy",
+                "07_Models"
+            };
+
+            foreach (string sub in subFolders)
+            {
+                CreateDirectory(Path.Combine(mainFolder, sub));
+            }
+        }
+        private void CreateDirectory( string folder ) => Directory.CreateDirectory(folder);
+
+        private bool InputPath(out string basePath)
+        {
+            basePath = textBoxPath.Text.Trim();
+
+            if (string.IsNullOrWhiteSpace(basePath))
+            {
+                MessageBox.Show("Укажите путь для создания папок!", "Ошибка");
+                return true;
+            }
+
+            if (Directory.Exists(basePath)) return false;
+            
+            MessageBox.Show("Такого пути не существует!", "Ошибка");
+            return true;
+        }
+        
+        private void TextBoxPathTextChanged(object sender, EventArgs e) => 
+            throw new System.NotImplementedException();
+    }
+}
