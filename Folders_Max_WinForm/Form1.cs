@@ -19,6 +19,7 @@ namespace Folders_Max_WinForm
                 }
             }
         }
+        
         private void ButtonCreateMaxFolders(object sender, EventArgs e)
         {
             if (InputPath(out var basePath)) return;
@@ -69,6 +70,7 @@ namespace Folders_Max_WinForm
                 CreateDesktopShortcut(projectFolder);
             }
         }
+        
         private void ButtonCreateFullProject_Click(object sender, EventArgs e)
         {
             if (InputPath(out var basePath)) return;
