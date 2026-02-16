@@ -131,8 +131,16 @@ namespace Folders_Max_WinForm
 
             try
             {
-                CoronaBatchOrganizerMapsByCamera.Organize(path);
-                MessageBox.Show("Batch Render успешно организован!");
+                string createdFolder =
+                    CoronaBatchOrganizerMapsByCamera.Organize(
+                        path,
+                        checkBoxAddDate.Checked
+                    );
+
+                if (checkBoxCreateShortcut.Checked)
+                    CreateDesktopShortcut(createdFolder);
+
+                MessageBox.Show("Сортировка выполнена!");
             }
             catch (Exception ex)
             {
@@ -145,8 +153,16 @@ namespace Folders_Max_WinForm
 
             try
             {
-                CoronaBatchOrganizerMapsByMaps.Organize(path);
-                MessageBox.Show("Расширенная сортировка выполнена!");
+                string createdFolder =
+                    CoronaBatchOrganizerMapsByMaps.Organize(
+                        path,
+                        checkBoxAddDate.Checked
+                    );
+
+                if (checkBoxCreateShortcut.Checked)
+                    CreateDesktopShortcut(createdFolder);
+
+                MessageBox.Show("Сортировка выполнена!");
             }
             catch (Exception ex)
             {

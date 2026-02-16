@@ -7,7 +7,7 @@ namespace Folders_Max_WinForm
 {
     public class CoronaBatchOrganizerMapsByMaps
     {
-        public static void Organize(string sourceFolder)
+        public static string Organize(string sourceFolder, bool addDate)
         {
             if (!Directory.Exists(sourceFolder))
                 throw new Exception("Папка не существует");
@@ -29,7 +29,7 @@ namespace Folders_Max_WinForm
             if (parentFolder == null)
                 throw new Exception("Невозможно определить родительскую папку.");
 
-            string rootFolder = CreateRootFolder(parentFolder);
+            string rootFolder = CreateRootFolder(parentFolder, addDate);
 
             foreach (var file in validFiles)
             {
@@ -48,6 +48,7 @@ namespace Folders_Max_WinForm
                 if (!File.Exists(targetPath))
                     File.Move(file, targetPath);
             }
+            return rootFolder;
         }
 
         private static bool TryGetFolderName(string fileName, out string folderName)
@@ -89,9 +90,7 @@ namespace Folders_Max_WinForm
             return true;
         }
 
-
-
-        private static string CreateRootFolder(string parentFolder)
+        private static string CreateRootFolder(string parentFolder, bool addDate)
         {
             var existing = Directory.GetDirectories(parentFolder)
                 .Select(Path.GetFileName)
@@ -111,14 +110,20 @@ namespace Folders_Max_WinForm
 
             int nextNumber = max + 1;
 
-            string date = DateTime.Now.ToString("dd-MM-yy");
-            string newFolderName = $"{nextNumber:D2}_{date}";
+            string folderName = $"{nextNumber:D2}";
 
-            string fullPath = Path.Combine(parentFolder, newFolderName);
+            if (addDate)
+            {
+                string date = DateTime.Now.ToString("dd-MM-yy");
+                folderName += $"_{date}";
+            }
+
+            string fullPath = Path.Combine(parentFolder, folderName);
 
             Directory.CreateDirectory(fullPath);
 
             return fullPath;
         }
+
     }
 }
