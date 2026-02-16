@@ -54,6 +54,16 @@ namespace Folders_Max_WinForm
         {
             folderName = null;
 
+            string nameWithoutExt = Path.GetFileNameWithoutExtension(fileName);
+
+            // 1️⃣ Если имя состоит только из цифр → кладём в папку 000000
+            if (Regex.IsMatch(nameWithoutExt, @"^\d+$"))
+            {
+                folderName = "000000";
+                return true;
+            }
+
+            // 2️⃣ Если формат 05_Name0000
             if (fileName.Length < 4)
                 return false;
 
@@ -64,10 +74,12 @@ namespace Folders_Max_WinForm
                 return false;
 
             string withoutPrefix = fileName.Substring(3);
-            string nameWithoutExt = Path.GetFileNameWithoutExtension(withoutPrefix);
 
-            // убираем хвостовые цифры
-            string cleaned = Regex.Replace(nameWithoutExt, @"\d+$", "");
+            string cleaned = Regex.Replace(
+                Path.GetFileNameWithoutExtension(withoutPrefix),
+                @"\d+$",
+                ""
+            );
 
             if (string.IsNullOrWhiteSpace(cleaned))
                 return false;
@@ -76,6 +88,8 @@ namespace Folders_Max_WinForm
 
             return true;
         }
+
+
 
         private static string CreateRootFolder(string parentFolder)
         {
