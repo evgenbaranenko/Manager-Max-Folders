@@ -169,14 +169,12 @@ namespace Folders_Max_WinForm
                 MessageBox.Show(ex.Message);
             }
         }
-        private void buttonUndoSort_Click(object sender, EventArgs e)
+        private void buttonUndoLast_Click(object sender, EventArgs e)
         {
-            if (InputPath(out var path)) return;
-
             try
             {
-                CoronaBatchUndoManager.Undo(path);
-                MessageBox.Show("Сортировка отменена!");
+                BatchHistoryManager.UndoLast();
+                MessageBox.Show("Последняя операция отменена!");
             }
             catch (Exception ex)
             {

@@ -1,12 +1,12 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
-
+using System.Text.Json;
 namespace Folders_Max_WinForm
 {
     public class CoronaBatchOrganizerMapsByCamera
     {
-    public static string Organize(string sourceFolder, bool addDate)
+   public static string Organize(string sourceFolder, bool addDate)
 {
     if (!Directory.Exists(sourceFolder))
         throw new Exception("Папка не существует");
@@ -23,7 +23,7 @@ namespace Folders_Max_WinForm
     if (!hasValidFiles)
         throw new Exception("Нет файлов подходящих для сортировки.");
 
-    // 🔥 Теперь создаём папку НА УРОВЕНЬ ВЫШЕ
+    // Создаём корневую папку НА УРОВЕНЬ ВЫШЕ
     string parentFolder = Directory.GetParent(sourceFolder)?.FullName;
 
     if (parentFolder == null)
@@ -31,36 +31,65 @@ namespace Folders_Max_WinForm
 
     string rootFolder = CreateRootFolder(parentFolder, addDate);
 
+    // 🔥 Создаём лог операции
+    var log = new BatchOperationLog
+    {
+        OriginalFolder = sourceFolder
+    };
+
     foreach (var file in files)
     {
         string fileName = Path.GetFileName(file);
 
-        // LightMix остаётся в корне
+        string targetPath = null;
+
+        // 1️⃣ LightMix остаётся в корне
         if (fileName.Contains("Interactive LightMix"))
         {
-            File.Move(file, Path.Combine(rootFolder, fileName));
-            continue;
+            targetPath = Path.Combine(rootFolder, fileName);
+        }
+        else
+        {
+            string prefix = GetPrefixNumber(fileName);
+
+            if (prefix != null)
+            {
+                string targetFolder = Path.Combine(rootFolder, prefix);
+
+                if (!Directory.Exists(targetFolder))
+                    Directory.CreateDirectory(targetFolder);
+
+                targetPath = Path.Combine(targetFolder, fileName);
+            }
         }
 
-        string prefix = GetPrefixNumber(fileName);
+        if (targetPath == null)
+            continue;
 
-        if (prefix != null)
+        if (!File.Exists(targetPath))
         {
-            string targetFolder = Path.Combine(rootFolder, prefix);
+            File.Move(file, targetPath);
 
-            if (!Directory.Exists(targetFolder))
-                Directory.CreateDirectory(targetFolder);
-
-            string targetPath = Path.Combine(targetFolder, fileName);
-
-            if (!File.Exists(targetPath))
-                File.Move(file, targetPath);
+            // 🔥 Логируем перемещение
+            log.Files.Add(new FileMoveInfo
+            {
+                Source = file,
+                Destination = targetPath
+            });
         }
     }
 
+    // 🔥 Сохраняем лог в .undo.json
+    // string logPath = Path.Combine(rootFolder, ".undo.json");
+    // var json = System.Text.Json.JsonSerializer.Serialize(log);
+
+    BatchHistoryManager.SaveOperation(log, rootFolder);
+
+    // File.WriteAllText(logPath, json);
+
     return rootFolder;
 }
-
+   
 private static string CreateRootFolder(string parentFolder, bool addDate)
 {
     var existing = Directory.GetDirectories(parentFolder)

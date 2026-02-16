@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using System.Text.Json;
 using System.Text.RegularExpressions;
 
 namespace Folders_Max_WinForm
@@ -31,6 +32,12 @@ namespace Folders_Max_WinForm
 
             string rootFolder = CreateRootFolder(parentFolder, addDate);
 
+            // 🔥 Создаём лог операции
+            var log = new BatchOperationLog
+            {
+                OriginalFolder = sourceFolder
+            };
+
             foreach (var file in validFiles)
             {
                 string fileName = Path.GetFileName(file);
@@ -46,11 +53,30 @@ namespace Folders_Max_WinForm
                 string targetPath = Path.Combine(targetFolder, fileName);
 
                 if (!File.Exists(targetPath))
+                {
                     File.Move(file, targetPath);
+
+                    // 🔥 Логируем перемещение
+                    log.Files.Add(new FileMoveInfo
+                    {
+                        Source = file,
+                        Destination = targetPath
+                    });
+                }
             }
+
+            // 🔥 Сохраняем лог
+            
+            BatchHistoryManager.SaveOperation(log, rootFolder);
+           // string logPath = Path.Combine(rootFolder, ".undo.json");
+          
+           // var json = System.Text.Json.JsonSerializer.Serialize(log);
+
+           // File.WriteAllText(logPath, json);
+
             return rootFolder;
         }
-
+        
         private static bool TryGetFolderName(string fileName, out string folderName)
         {
             folderName = null;
