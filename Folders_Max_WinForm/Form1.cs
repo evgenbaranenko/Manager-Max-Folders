@@ -125,6 +125,20 @@ namespace Folders_Max_WinForm
                 CreateDesktopShortcut(projectFolder);
             }
         }
+        private void buttonOrganizeBatch_Click(object sender, EventArgs e)
+        {
+            if (InputPath(out var path)) return;
+
+            try
+            {
+                CoronaBatchOrganizer.Organize(path);
+                MessageBox.Show("Batch Render успешно организован!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
         private string GetProjectTypeTag(bool isVizButton = false)
         {
             if (isVizButton)

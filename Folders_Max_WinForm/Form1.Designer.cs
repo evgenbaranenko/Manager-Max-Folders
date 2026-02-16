@@ -45,6 +45,7 @@ partial class Form1
         checkBoxArchitecture = new System.Windows.Forms.CheckBox();
         checkBoxDesign = new System.Windows.Forms.CheckBox();
         checkBoxCreateShortcut = new System.Windows.Forms.CheckBox();
+        buttonOrganizeBatch = new System.Windows.Forms.Button();
         ((System.ComponentModel.ISupportInitialize)bindingSource1).BeginInit();
         ((System.ComponentModel.ISupportInitialize)bindingSource2).BeginInit();
         SuspendLayout();
@@ -157,6 +158,17 @@ partial class Form1
         checkBoxCreateShortcut.UseVisualStyleBackColor = true;
         checkBoxCreateShortcut.CheckedChanged += CheckBoxCreateShortcut_CheckedChanged;
         // 
+        // buttonOrganizeBatch
+        // 
+        buttonOrganizeBatch.BackColor = System.Drawing.Color.LightSteelBlue;
+        buttonOrganizeBatch.Location = new System.Drawing.Point(14, 157);
+        buttonOrganizeBatch.Name = "buttonOrganizeBatch";
+        buttonOrganizeBatch.Size = new System.Drawing.Size(138, 45);
+        buttonOrganizeBatch.TabIndex = 10;
+        buttonOrganizeBatch.Text = "Organize render maps";
+        buttonOrganizeBatch.UseVisualStyleBackColor = false;
+        buttonOrganizeBatch.Click += buttonOrganizeBatch_Click;
+        // 
         // Form1
         // 
         AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -164,6 +176,7 @@ partial class Form1
         BackColor = System.Drawing.Color.DarkSalmon;
         BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
         ClientSize = new System.Drawing.Size(615, 361);
+        Controls.Add(buttonOrganizeBatch);
         Controls.Add(checkBoxCreateShortcut);
         Controls.Add(checkBoxDesign);
         Controls.Add(checkBoxArchitecture);
@@ -182,6 +195,8 @@ partial class Form1
         ResumeLayout(false);
         PerformLayout();
     }
+
+    private System.Windows.Forms.Button buttonOrganizeBatch;
 
     private System.Windows.Forms.CheckBox checkBoxCreateShortcut;
 
