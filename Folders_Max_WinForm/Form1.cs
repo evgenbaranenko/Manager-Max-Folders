@@ -169,6 +169,20 @@ namespace Folders_Max_WinForm
                 MessageBox.Show(ex.Message);
             }
         }
+        private void buttonUndoSort_Click(object sender, EventArgs e)
+        {
+            if (InputPath(out var path)) return;
+
+            try
+            {
+                CoronaBatchUndoManager.Undo(path);
+                MessageBox.Show("Сортировка отменена!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
         private string GetProjectTypeTag(bool isVizButton = false)
         {
             if (isVizButton)

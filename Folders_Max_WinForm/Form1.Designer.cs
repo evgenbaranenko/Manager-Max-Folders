@@ -47,6 +47,7 @@ partial class Form1
         checkBoxCreateShortcut = new System.Windows.Forms.CheckBox();
         buttonCoronaBatchOrganizerMapsByCamera = new System.Windows.Forms.Button();
         button1 = new System.Windows.Forms.Button();
+        buttonUndoSort = new System.Windows.Forms.Button();
         ((System.ComponentModel.ISupportInitialize)bindingSource1).BeginInit();
         ((System.ComponentModel.ISupportInitialize)bindingSource2).BeginInit();
         SuspendLayout();
@@ -181,6 +182,17 @@ partial class Form1
         button1.UseVisualStyleBackColor = false;
         button1.Click += buttonCoronaBatchOrganizerMapsByMaps_Click;
         // 
+        // buttonUndoSort
+        // 
+        buttonUndoSort.BackColor = System.Drawing.Color.LightCoral;
+        buttonUndoSort.Location = new System.Drawing.Point(14, 202);
+        buttonUndoSort.Name = "buttonUndoSort";
+        buttonUndoSort.Size = new System.Drawing.Size(288, 31);
+        buttonUndoSort.TabIndex = 12;
+        buttonUndoSort.Text = "Undo sort";
+        buttonUndoSort.UseVisualStyleBackColor = false;
+        buttonUndoSort.Click += buttonUndoSort_Click;
+        // 
         // Form1
         // 
         AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -188,6 +200,7 @@ partial class Form1
         BackColor = System.Drawing.Color.DarkSalmon;
         BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
         ClientSize = new System.Drawing.Size(615, 361);
+        Controls.Add(buttonUndoSort);
         Controls.Add(button1);
         Controls.Add(buttonCoronaBatchOrganizerMapsByCamera);
         Controls.Add(checkBoxCreateShortcut);
@@ -208,6 +221,8 @@ partial class Form1
         ResumeLayout(false);
         PerformLayout();
     }
+
+    private System.Windows.Forms.Button buttonUndoSort;
 
     private System.Windows.Forms.Button button1;
 
