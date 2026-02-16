@@ -45,7 +45,8 @@ partial class Form1
         checkBoxArchitecture = new System.Windows.Forms.CheckBox();
         checkBoxDesign = new System.Windows.Forms.CheckBox();
         checkBoxCreateShortcut = new System.Windows.Forms.CheckBox();
-        buttonOrganizeBatch = new System.Windows.Forms.Button();
+        buttonCoronaBatchOrganizerMapsByCamera = new System.Windows.Forms.Button();
+        button1 = new System.Windows.Forms.Button();
         ((System.ComponentModel.ISupportInitialize)bindingSource1).BeginInit();
         ((System.ComponentModel.ISupportInitialize)bindingSource2).BeginInit();
         SuspendLayout();
@@ -158,16 +159,27 @@ partial class Form1
         checkBoxCreateShortcut.UseVisualStyleBackColor = true;
         checkBoxCreateShortcut.CheckedChanged += CheckBoxCreateShortcut_CheckedChanged;
         // 
-        // buttonOrganizeBatch
+        // buttonCoronaBatchOrganizerMapsByCamera
         // 
-        buttonOrganizeBatch.BackColor = System.Drawing.Color.LightSteelBlue;
-        buttonOrganizeBatch.Location = new System.Drawing.Point(14, 157);
-        buttonOrganizeBatch.Name = "buttonOrganizeBatch";
-        buttonOrganizeBatch.Size = new System.Drawing.Size(138, 45);
-        buttonOrganizeBatch.TabIndex = 10;
-        buttonOrganizeBatch.Text = "Organize render maps";
-        buttonOrganizeBatch.UseVisualStyleBackColor = false;
-        buttonOrganizeBatch.Click += buttonOrganizeBatch_Click;
+        buttonCoronaBatchOrganizerMapsByCamera.BackColor = System.Drawing.Color.LightSteelBlue;
+        buttonCoronaBatchOrganizerMapsByCamera.Location = new System.Drawing.Point(12, 152);
+        buttonCoronaBatchOrganizerMapsByCamera.Name = "buttonCoronaBatchOrganizerMapsByCamera";
+        buttonCoronaBatchOrganizerMapsByCamera.Size = new System.Drawing.Size(141, 45);
+        buttonCoronaBatchOrganizerMapsByCamera.TabIndex = 10;
+        buttonCoronaBatchOrganizerMapsByCamera.Text = "Organize render maps by camera";
+        buttonCoronaBatchOrganizerMapsByCamera.UseVisualStyleBackColor = false;
+        buttonCoronaBatchOrganizerMapsByCamera.Click += buttonCoronaBatchOrganizerMapsByCamera_Click;
+        // 
+        // button1
+        // 
+        button1.BackColor = System.Drawing.Color.LightSteelBlue;
+        button1.Location = new System.Drawing.Point(159, 152);
+        button1.Name = "button1";
+        button1.Size = new System.Drawing.Size(143, 44);
+        button1.TabIndex = 11;
+        button1.Text = "Organize render maps by maps";
+        button1.UseVisualStyleBackColor = false;
+        button1.Click += buttonCoronaBatchOrganizerMapsByMaps_Click;
         // 
         // Form1
         // 
@@ -176,7 +188,8 @@ partial class Form1
         BackColor = System.Drawing.Color.DarkSalmon;
         BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
         ClientSize = new System.Drawing.Size(615, 361);
-        Controls.Add(buttonOrganizeBatch);
+        Controls.Add(button1);
+        Controls.Add(buttonCoronaBatchOrganizerMapsByCamera);
         Controls.Add(checkBoxCreateShortcut);
         Controls.Add(checkBoxDesign);
         Controls.Add(checkBoxArchitecture);
@@ -196,7 +209,9 @@ partial class Form1
         PerformLayout();
     }
 
-    private System.Windows.Forms.Button buttonOrganizeBatch;
+    private System.Windows.Forms.Button button1;
+
+    private System.Windows.Forms.Button buttonCoronaBatchOrganizerMapsByCamera;
 
     private System.Windows.Forms.CheckBox checkBoxCreateShortcut;
 

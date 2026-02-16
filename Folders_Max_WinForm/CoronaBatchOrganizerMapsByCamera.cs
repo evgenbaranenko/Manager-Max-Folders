@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Folders_Max_WinForm
 {
-    public class CoronaBatchOrganizer
+    public class CoronaBatchOrganizerMapsByCamera
     {
         public static void Organize(string sourceFolder)
         {
