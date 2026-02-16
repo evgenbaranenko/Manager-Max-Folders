@@ -11,24 +11,35 @@ namespace Folders_Max_WinForm
             if (!Directory.Exists(sourceFolder))
                 throw new Exception("Папка не существует");
 
+            var files = Directory.GetFiles(sourceFolder);
+
+            if (files.Length == 0)
+                throw new Exception("В папке нет файлов для обработки.");
+
+            // Проверяем есть ли файлы, которые реально будем переносить
+            bool hasValidFiles = files.Any(f =>
+                Path.GetFileName(f).Contains("Interactive LightMix") ||
+                GetPrefixNumber(Path.GetFileName(f)) != null);
+
+            if (!hasValidFiles)
+                throw new Exception("Нет файлов, подходящих для сортировки.");
+
             string parentFolder = Path.GetDirectoryName(sourceFolder);
 
+            // 🔥 Создаём корневую папку ТОЛЬКО если есть что переносить
             string rootFolder = CreateRootFolder(parentFolder);
-
-            var files = Directory.GetFiles(sourceFolder);
 
             foreach (var file in files)
             {
                 string fileName = Path.GetFileName(file);
 
-                // 1️⃣ LightMix оставляем в корне
+                // LightMix остаётся в корне
                 if (fileName.Contains("Interactive LightMix"))
                 {
                     File.Move(file, Path.Combine(rootFolder, fileName));
                     continue;
                 }
 
-                // 2️⃣ Остальные распределяем по номеру
                 string prefix = GetPrefixNumber(fileName);
 
                 if (prefix != null)
@@ -36,10 +47,14 @@ namespace Folders_Max_WinForm
                     string targetFolder = Path.Combine(rootFolder, prefix);
                     Directory.CreateDirectory(targetFolder);
 
-                    File.Move(file, Path.Combine(targetFolder, fileName));
+                    if (!File.Exists(Path.Combine(targetFolder, fileName)))
+                    {
+                        File.Move(file, Path.Combine(targetFolder, fileName));
+                    }
                 }
             }
         }
+
 
         private static string CreateRootFolder(string parentFolder)
         {
