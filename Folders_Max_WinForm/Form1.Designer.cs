@@ -116,7 +116,7 @@ partial class Form1
         checkBoxAddDate.Text = "Date";
         checkBoxAddDate.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
         checkBoxAddDate.UseVisualStyleBackColor = false;
-        checkBoxAddDate.CheckedChanged += checkBoxAddDate_CheckedChanged;
+        checkBoxAddDate.CheckedChanged += CheckBoxAddDate_CheckedChanged;
         // 
         // textBoxClient
         // 
@@ -155,7 +155,7 @@ partial class Form1
         checkBoxCreateShortcut.Text = "Link desktop";
         checkBoxCreateShortcut.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
         checkBoxCreateShortcut.UseVisualStyleBackColor = true;
-        checkBoxCreateShortcut.CheckedChanged += checkBoxCreateShortcut_CheckedChanged;
+        checkBoxCreateShortcut.CheckedChanged += CheckBoxCreateShortcut_CheckedChanged;
         // 
         // Form1
         // 

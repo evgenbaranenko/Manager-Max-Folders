@@ -307,27 +307,6 @@ namespace Folders_Max_WinForm
 
             return createdSomething;
         }
-        // private void Create3dsMaxFolders(string basePath)
-        // {
-        //     string mainFolder = Path.Combine(basePath, "03_3dsMax");
-        //     CreateDirectory(mainFolder);
-        //
-        //     string[] subFolders = {
-        //         "00_Temp",
-        //         "01_Max",
-        //         "02_Texture",
-        //         "03_Render",
-        //         "04_Import",
-        //         "05_Export",
-        //         "06_Proxy",
-        //         "07_Models"
-        //     };
-        //
-        //     foreach (string sub in subFolders)
-        //     {
-        //         CreateDirectory(Path.Combine(mainFolder, sub));
-        //     }
-        // }
         private void CreateDirectory( string folder ) => Directory.CreateDirectory(folder);
         private bool InputPath(out string basePath)
         {
@@ -348,11 +327,11 @@ namespace Folders_Max_WinForm
         { 
             // throw new System.NotImplementedException();
         }
-        private void checkBoxAddDate_CheckedChanged(object sender, EventArgs e)
+        private void CheckBoxAddDate_CheckedChanged(object sender, EventArgs e)
         {
             // throw new System.NotImplementedException();
         }
-        private void checkBoxCreateShortcut_CheckedChanged(object sender, EventArgs e)
+        private void CheckBoxCreateShortcut_CheckedChanged(object sender, EventArgs e)
         {
             //throw new System.NotImplementedException();
         }
