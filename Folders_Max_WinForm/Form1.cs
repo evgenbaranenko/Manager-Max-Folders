@@ -6,7 +6,7 @@ namespace Folders_Max_WinForm
         {
             InitializeComponent();
         }
-        private void buttonChoosePath_Click(object sender, EventArgs e)
+        private void ButtonChoosePath_Click(object sender, EventArgs e)
         {
             using (FolderBrowserDialog dialog = new FolderBrowserDialog())
             {
@@ -36,17 +36,40 @@ namespace Folders_Max_WinForm
 
             string nameWithoutNumber = $"{clientName}__{projectName}__{typeTag}{datePart}";
 
-            int nextNumber = GetNextProjectNumber(basePath);
-            string finalName = $"{nextNumber:D2}_{nameWithoutNumber}";
+            string existingProject = FindExistingProject(basePath, nameWithoutNumber);
 
-            string projectFolder = Path.Combine(basePath, finalName);
-            CreateDirectory(projectFolder);
+            string projectFolder;
+            bool isNewProject = false;
 
-            Create3dsMaxStructureFolders(projectFolder);
+            if (existingProject != null)
+            {
+                projectFolder = existingProject;
+            }
+            else
+            {
+                int nextNumber = GetNextProjectNumber(basePath);
+                string finalName = $"{nextNumber:D2}_{nameWithoutNumber}";
+                projectFolder = Path.Combine(basePath, finalName);
+                CreateDirectory(projectFolder);
+                isNewProject = true;
+            }
 
-            MessageBox.Show($"Создан VIZ проект:\n{finalName}");
+            bool wasUpdated = Create3dsMaxStructureFolders(projectFolder);
+
+            if (!isNewProject && !wasUpdated)
+            {
+                MessageBox.Show("VIZ структура уже полностью создана.");
+                return;
+            }
+
+            MessageBox.Show("VIZ структура создана / обновлена успешно!");
+            
+            if (checkBoxCreateShortcut.Checked)
+            {
+                CreateDesktopShortcut(projectFolder);
+            }
         }
-        private void buttonCreateFullProject_Click(object sender, EventArgs e)
+        private void ButtonCreateFullProject_Click(object sender, EventArgs e)
         {
             if (InputPath(out var basePath)) return;
             if (InputProjectName(out var projectName)) return;
@@ -69,10 +92,10 @@ namespace Folders_Max_WinForm
 
             string nameWithoutNumber = $"{clientName}__{projectName}__{typeTag}{datePart}";
 
-            // 🔍 Ищем существующий проект
             string existingProject = FindExistingProject(basePath, nameWithoutNumber);
 
             string projectFolder;
+            bool isNewProject = false;
 
             if (existingProject != null)
             {
@@ -84,12 +107,23 @@ namespace Folders_Max_WinForm
                 string finalName = $"{nextNumber:D2}_{nameWithoutNumber}";
                 projectFolder = Path.Combine(basePath, finalName);
                 CreateDirectory(projectFolder);
+                isNewProject = true;
             }
 
-            // Добавляем недостающие разделы
-            CreateFullProjectStructure(projectFolder);
+            bool wasUpdated = CreateFullProjectStructure(projectFolder);
 
-            MessageBox.Show("Структура обновлена / создана успешно!");
+            if (!isNewProject && !wasUpdated)
+            {
+                MessageBox.Show("Этот проект уже существует и структура полностью создана.");
+                return;
+            }
+
+            MessageBox.Show("Структура проекта обновлена / создана успешно!");
+            
+            if (checkBoxCreateShortcut.Checked)
+            {
+                CreateDesktopShortcut(projectFolder);
+            }
         }
         private string GetProjectTypeTag(bool isVizButton = false)
         {
@@ -123,30 +157,28 @@ namespace Folders_Max_WinForm
 
             return null;
         }
-        private void CreateFullProjectStructure(string basePath)
+        private bool CreateFullProjectStructure(string basePath)
         {
-            // --- Общие папки ---
-            CreateDirectory(Path.Combine(basePath, "00_Договор"));
-            CreateDirectory(Path.Combine(basePath, "01_Референсы"));
+            bool createdSomething = false;
+
+            createdSomething |= SafeCreate(Path.Combine(basePath, "00_Договор"));
+            createdSomething |= SafeCreate(Path.Combine(basePath, "01_Референсы"));
 
             string sourceInfo = Path.Combine(basePath, "02_Исходная_информация");
-            CreateDirectory(sourceInfo);
-            CreateDirectory(Path.Combine(sourceInfo, "01_Исходные_данные_(тех.документация)"));
-            CreateDirectory(Path.Combine(sourceInfo, "02_Пожелания_заказчика"));
-            CreateDirectory(Path.Combine(sourceInfo, "03_Доп.информация"));
-            CreateDirectory(Path.Combine(sourceInfo, "04_Фото"));
+            createdSomething |= SafeCreate(sourceInfo);
+            createdSomething |= SafeCreate(Path.Combine(sourceInfo, "01_Исходные_данные_(тех.документация)"));
+            createdSomething |= SafeCreate(Path.Combine(sourceInfo, "02_Пожелания_заказчика"));
+            createdSomething |= SafeCreate(Path.Combine(sourceInfo, "03_Доп.информация"));
+            createdSomething |= SafeCreate(Path.Combine(sourceInfo, "04_Фото"));
 
-            // --- Основные рабочие папки ---
             string projectFolder = Path.Combine(basePath, "03_Проектирование");
             string issueFolder = Path.Combine(basePath, "04_Выдача");
 
-            CreateDirectory(projectFolder);
-            CreateDirectory(issueFolder);
+            createdSomething |= SafeCreate(projectFolder);
+            createdSomething |= SafeCreate(issueFolder);
 
-            // --- Определяем какие разделы нужны ---
             var sections = new List<string>();
 
-            // ОБ создаётся если выбран хоть один тип
             if (checkBoxArchitecture.Checked || checkBoxDesign.Checked)
                 sections.Add("01_ОБ");
 
@@ -161,17 +193,25 @@ namespace Folders_Max_WinForm
                 sections.Add("04_Дизайн-проект");
             }
 
-            // --- Создание разделов ---
             foreach (var section in sections)
             {
-                CreateDirectory(Path.Combine(projectFolder, section));
-                CreateDirectory(Path.Combine(issueFolder, section));
+                createdSomething |= SafeCreate(Path.Combine(projectFolder, section));
+                createdSomething |= SafeCreate(Path.Combine(issueFolder, section));
             }
 
-            // --- Авторский надзор ---
             string supervision = Path.Combine(basePath, "05_Авторский_надзор");
-            CreateDirectory(supervision);
-            CreateDirectory(Path.Combine(supervision, "01_Фото"));
+            createdSomething |= SafeCreate(supervision);
+            createdSomething |= SafeCreate(Path.Combine(supervision, "01_Фото"));
+
+            return createdSomething;
+        }
+        private bool SafeCreate(string path)
+        {
+            if (Directory.Exists(path))
+                return false;
+
+            Directory.CreateDirectory(path);
+            return true;
         }
         private bool InputClient(out string clientName)
         {
@@ -237,21 +277,15 @@ namespace Folders_Max_WinForm
 
             return false;
         }
-        private void Create3dsMaxStructureFolders(string basePath)
+        private bool Create3dsMaxStructureFolders(string basePath)
         {
-           
-            CreateDirectory(Path.Combine(basePath, "01_Contract"));
-            CreateDirectory(Path.Combine(basePath, "02_IN"));
-            Create3dsMaxFolders(basePath);
-            CreateDirectory(Path.Combine(basePath, "04_OUT"));
-           
-        }
-        private void Create3dsMaxFolders(string basePath)
-        {
-            string mainFolder = Path.Combine(basePath, "03_3dsMax");
-            CreateDirectory(mainFolder);
+            bool createdSomething = false;
 
-            string[] subFolders = {
+            string mainFolder = Path.Combine(basePath, "03_3dsMax");
+            createdSomething |= SafeCreate(mainFolder);
+
+            string[] subFolders =
+            {
                 "00_Temp",
                 "01_Max",
                 "02_Texture",
@@ -262,10 +296,16 @@ namespace Folders_Max_WinForm
                 "07_Models"
             };
 
-            foreach (string sub in subFolders)
+            foreach (var sub in subFolders)
             {
-                CreateDirectory(Path.Combine(mainFolder, sub));
+                createdSomething |= SafeCreate(Path.Combine(mainFolder, sub));
             }
+
+            createdSomething |= SafeCreate(Path.Combine(basePath, "02_IN"));
+            createdSomething |= SafeCreate(Path.Combine(basePath, "04_OUT"));
+            createdSomething |= SafeCreate(Path.Combine(basePath, "01_Contract"));
+
+            return createdSomething;
         }
         private void CreateDirectory( string folder ) => Directory.CreateDirectory(folder);
         private bool InputPath(out string basePath)
@@ -286,6 +326,32 @@ namespace Folders_Max_WinForm
         private void TextBoxPathTextChanged(object sender, EventArgs e)
         { 
             // throw new System.NotImplementedException();
+        }
+        private void CheckBoxAddDate_CheckedChanged(object sender, EventArgs e)
+        {
+            // throw new System.NotImplementedException();
+        }
+        private void CheckBoxCreateShortcut_CheckedChanged(object sender, EventArgs e)
+        {
+            //throw new System.NotImplementedException();
+        }
+        private void CreateDesktopShortcut(string projectFolder)
+        {
+            string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+
+            string projectName = Path.GetFileName(projectFolder);
+            string shortcutLocation = Path.Combine(desktopPath, projectName + ".lnk");
+
+            if (File.Exists(shortcutLocation))
+                return; // защита от повторного создания
+
+            Type shellType = Type.GetTypeFromProgID("WScript.Shell");
+            dynamic shell = Activator.CreateInstance(shellType);
+
+            var shortcut = shell.CreateShortcut(shortcutLocation);
+            shortcut.TargetPath = projectFolder;
+            shortcut.WorkingDirectory = projectFolder;
+            shortcut.Save();
         }
     }
 }
