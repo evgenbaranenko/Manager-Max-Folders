@@ -6,7 +6,7 @@ namespace Folders_Max_WinForm
 {
     public class CoronaBatchOrganizerMapsByCamera
     {
-   public static string Organize(string sourceFolder, bool addDate)
+        public static string Organize(string sourceFolder, bool addDate, bool addNumber)
 {
     if (!Directory.Exists(sourceFolder))
         throw new Exception("Папка не существует");
@@ -29,7 +29,11 @@ namespace Folders_Max_WinForm
     if (parentFolder == null)
         throw new Exception("Невозможно определить родительскую папку.");
 
-    string rootFolder = CreateRootFolder(parentFolder, addDate);
+    string rootFolder = CreateRootFolder(
+        parentFolder,
+        addDate,
+        addNumber
+    );
 
     // 🔥 Создаём лог операции
     var log = new BatchOperationLog
@@ -78,6 +82,9 @@ namespace Folders_Max_WinForm
             });
         }
     }
+    
+    
+    
 
     // 🔥 Сохраняем лог в .undo.json
     // string logPath = Path.Combine(rootFolder, ".undo.json");
@@ -90,40 +97,28 @@ namespace Folders_Max_WinForm
     return rootFolder;
 }
    
-private static string CreateRootFolder(string parentFolder, bool addDate)
-{
-    var existing = Directory.GetDirectories(parentFolder)
-        .Select(Path.GetFileName)
-        .Where(name =>
-            name.Length >= 2 &&
-            int.TryParse(name.Substring(0, 2), out _))
-        .ToList();
+        private static string CreateRootFolder(
+            string parentFolder,
+            bool addDate,
+            bool addNumber)
+        {
+            string folderName = NameGenerator.GenerateFinalName(
+                parentFolder,
+                "",
+                addNumber,
+                addDate
+            );
 
-    int max = 0;
+            string fullPath = Path.Combine(parentFolder, folderName);
 
-    foreach (var folder in existing)
-    {
-        if (int.TryParse(folder.Substring(0, 2), out int number))
-            if (number > max)
-                max = number;
-    }
+            Directory.CreateDirectory(fullPath);
 
-    int nextNumber = max + 1;
+            return fullPath;
+        }
 
-    string folderName = $"{nextNumber:D2}";
 
-    if (addDate)
-    {
-        string date = DateTime.Now.ToString("dd-MM-yy");
-        folderName += $"_{date}";
-    }
 
-    string fullPath = Path.Combine(parentFolder, folderName);
 
-    Directory.CreateDirectory(fullPath);
-
-    return fullPath;
-}
 
         private static string GetPrefixNumber(string fileName)
         {

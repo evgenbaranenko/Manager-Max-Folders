@@ -55,6 +55,7 @@ partial class Form1
         buttonChooseDestination = new System.Windows.Forms.Button();
         buttonCopyTemplate = new System.Windows.Forms.Button();
         textBoxNewProjectName = new System.Windows.Forms.TextBox();
+        checkBoxAddNumber = new System.Windows.Forms.CheckBox();
         ((System.ComponentModel.ISupportInitialize)bindingSource1).BeginInit();
         ((System.ComponentModel.ISupportInitialize)bindingSource2).BeginInit();
         SuspendLayout();
@@ -63,7 +64,7 @@ partial class Form1
         // 
         button3dsMaxStructureFolders.BackColor = System.Drawing.Color.DarkGray;
         button3dsMaxStructureFolders.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-        button3dsMaxStructureFolders.Location = new System.Drawing.Point(12, 151);
+        button3dsMaxStructureFolders.Location = new System.Drawing.Point(12, 149);
         button3dsMaxStructureFolders.Name = "button3dsMaxStructureFolders";
         button3dsMaxStructureFolders.Size = new System.Drawing.Size(142, 45);
         button3dsMaxStructureFolders.TabIndex = 0;
@@ -74,10 +75,10 @@ partial class Form1
         // textBoxPath
         // 
         textBoxPath.BackColor = System.Drawing.SystemColors.ButtonFace;
-        textBoxPath.Location = new System.Drawing.Point(11, 51);
+        textBoxPath.Location = new System.Drawing.Point(11, 49);
         textBoxPath.Name = "textBoxPath";
         textBoxPath.PlaceholderText = "Path";
-        textBoxPath.Size = new System.Drawing.Size(290, 23);
+        textBoxPath.Size = new System.Drawing.Size(595, 23);
         textBoxPath.TabIndex = 1;
         textBoxPath.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
         textBoxPath.TextChanged += TextBoxPathTextChanged;
@@ -87,10 +88,10 @@ partial class Form1
         buttonChoosePath.BackColor = System.Drawing.Color.DarkGray;
         buttonChoosePath.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
         buttonChoosePath.ForeColor = System.Drawing.SystemColors.ControlText;
-        buttonChoosePath.Location = new System.Drawing.Point(12, 22);
+        buttonChoosePath.Location = new System.Drawing.Point(11, 20);
         buttonChoosePath.Margin = new System.Windows.Forms.Padding(0);
         buttonChoosePath.Name = "buttonChoosePath";
-        buttonChoosePath.Size = new System.Drawing.Size(290, 26);
+        buttonChoosePath.Size = new System.Drawing.Size(596, 26);
         buttonChoosePath.TabIndex = 2;
         buttonChoosePath.Text = "Choose path";
         buttonChoosePath.UseVisualStyleBackColor = false;
@@ -99,7 +100,7 @@ partial class Form1
         // textBoxProjectName
         // 
         textBoxProjectName.BackColor = System.Drawing.SystemColors.ButtonFace;
-        textBoxProjectName.Location = new System.Drawing.Point(159, 122);
+        textBoxProjectName.Location = new System.Drawing.Point(159, 120);
         textBoxProjectName.Name = "textBoxProjectName";
         textBoxProjectName.PlaceholderText = "Project name";
         textBoxProjectName.Size = new System.Drawing.Size(143, 23);
@@ -110,7 +111,7 @@ partial class Form1
         // 
         buttonCreateFullProject.BackColor = System.Drawing.Color.DarkGray;
         buttonCreateFullProject.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-        buttonCreateFullProject.Location = new System.Drawing.Point(159, 151);
+        buttonCreateFullProject.Location = new System.Drawing.Point(159, 149);
         buttonCreateFullProject.Name = "buttonCreateFullProject";
         buttonCreateFullProject.Size = new System.Drawing.Size(142, 45);
         buttonCreateFullProject.TabIndex = 4;
@@ -121,22 +122,20 @@ partial class Form1
         // checkBoxAddDate
         // 
         checkBoxAddDate.BackColor = System.Drawing.Color.DarkGray;
-        checkBoxAddDate.Checked = true;
-        checkBoxAddDate.CheckState = System.Windows.Forms.CheckState.Checked;
         checkBoxAddDate.ForeColor = System.Drawing.SystemColors.ControlText;
-        checkBoxAddDate.Location = new System.Drawing.Point(12, 427);
+        checkBoxAddDate.Location = new System.Drawing.Point(126, 427);
         checkBoxAddDate.Name = "checkBoxAddDate";
         checkBoxAddDate.Size = new System.Drawing.Size(52, 20);
         checkBoxAddDate.TabIndex = 5;
         checkBoxAddDate.Text = "Date";
         checkBoxAddDate.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-        checkBoxAddDate.UseVisualStyleBackColor = false;
+        checkBoxAddDate.UseVisualStyleBackColor = true;
         checkBoxAddDate.CheckedChanged += CheckBoxAddDate_CheckedChanged;
         // 
         // textBoxClient
         // 
         textBoxClient.BackColor = System.Drawing.SystemColors.ButtonFace;
-        textBoxClient.Location = new System.Drawing.Point(12, 122);
+        textBoxClient.Location = new System.Drawing.Point(12, 120);
         textBoxClient.Name = "textBoxClient";
         textBoxClient.PlaceholderText = "Customer";
         textBoxClient.Size = new System.Drawing.Size(141, 23);
@@ -145,7 +144,7 @@ partial class Form1
         // 
         // checkBoxArchitecture
         // 
-        checkBoxArchitecture.Location = new System.Drawing.Point(161, 195);
+        checkBoxArchitecture.Location = new System.Drawing.Point(161, 196);
         checkBoxArchitecture.Name = "checkBoxArchitecture";
         checkBoxArchitecture.Size = new System.Drawing.Size(63, 20);
         checkBoxArchitecture.TabIndex = 7;
@@ -154,7 +153,7 @@ partial class Form1
         // 
         // checkBoxDesign
         // 
-        checkBoxDesign.Location = new System.Drawing.Point(230, 195);
+        checkBoxDesign.Location = new System.Drawing.Point(230, 196);
         checkBoxDesign.Name = "checkBoxDesign";
         checkBoxDesign.Size = new System.Drawing.Size(52, 20);
         checkBoxDesign.TabIndex = 8;
@@ -164,7 +163,7 @@ partial class Form1
         // checkBoxCreateShortcut
         // 
         checkBoxCreateShortcut.ForeColor = System.Drawing.SystemColors.ControlText;
-        checkBoxCreateShortcut.Location = new System.Drawing.Point(79, 427);
+        checkBoxCreateShortcut.Location = new System.Drawing.Point(201, 427);
         checkBoxCreateShortcut.Name = "checkBoxCreateShortcut";
         checkBoxCreateShortcut.Size = new System.Drawing.Size(100, 20);
         checkBoxCreateShortcut.TabIndex = 9;
@@ -176,7 +175,7 @@ partial class Form1
         // buttonCoronaBatchOrganizerMapsByCamera
         // 
         buttonCoronaBatchOrganizerMapsByCamera.BackColor = System.Drawing.Color.DarkGray;
-        buttonCoronaBatchOrganizerMapsByCamera.Location = new System.Drawing.Point(317, 122);
+        buttonCoronaBatchOrganizerMapsByCamera.Location = new System.Drawing.Point(317, 120);
         buttonCoronaBatchOrganizerMapsByCamera.Name = "buttonCoronaBatchOrganizerMapsByCamera";
         buttonCoronaBatchOrganizerMapsByCamera.Size = new System.Drawing.Size(142, 45);
         buttonCoronaBatchOrganizerMapsByCamera.TabIndex = 10;
@@ -187,7 +186,7 @@ partial class Form1
         // button1
         // 
         button1.BackColor = System.Drawing.Color.DarkGray;
-        button1.Location = new System.Drawing.Point(464, 122);
+        button1.Location = new System.Drawing.Point(465, 119);
         button1.Name = "button1";
         button1.Size = new System.Drawing.Size(142, 45);
         button1.TabIndex = 11;
@@ -198,7 +197,7 @@ partial class Form1
         // buttonUndoLast
         // 
         buttonUndoLast.BackColor = System.Drawing.Color.DarkGray;
-        buttonUndoLast.Location = new System.Drawing.Point(317, 172);
+        buttonUndoLast.Location = new System.Drawing.Point(317, 170);
         buttonUndoLast.Name = "buttonUndoLast";
         buttonUndoLast.Size = new System.Drawing.Size(290, 25);
         buttonUndoLast.TabIndex = 13;
@@ -212,7 +211,7 @@ partial class Form1
         label1.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)204));
         label1.ForeColor = System.Drawing.SystemColors.Desktop;
         label1.ImageAlign = System.Drawing.ContentAlignment.TopRight;
-        label1.Location = new System.Drawing.Point(12, 95);
+        label1.Location = new System.Drawing.Point(12, 93);
         label1.Name = "label1";
         label1.Size = new System.Drawing.Size(290, 24);
         label1.TabIndex = 14;
@@ -224,7 +223,7 @@ partial class Form1
         label2.BackColor = System.Drawing.Color.Transparent;
         label2.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)204));
         label2.ImageAlign = System.Drawing.ContentAlignment.TopRight;
-        label2.Location = new System.Drawing.Point(317, 95);
+        label2.Location = new System.Drawing.Point(317, 93);
         label2.Name = "label2";
         label2.Size = new System.Drawing.Size(289, 24);
         label2.TabIndex = 15;
@@ -264,7 +263,7 @@ partial class Form1
         // buttonCopyTemplate
         // 
         buttonCopyTemplate.BackColor = System.Drawing.Color.DarkGray;
-        buttonCopyTemplate.Location = new System.Drawing.Point(11, 363);
+        buttonCopyTemplate.Location = new System.Drawing.Point(11, 349);
         buttonCopyTemplate.Name = "buttonCopyTemplate";
         buttonCopyTemplate.Size = new System.Drawing.Size(290, 45);
         buttonCopyTemplate.TabIndex = 19;
@@ -277,9 +276,18 @@ partial class Form1
         textBoxNewProjectName.Location = new System.Drawing.Point(11, 320);
         textBoxNewProjectName.Name = "textBoxNewProjectName";
         textBoxNewProjectName.PlaceholderText = "Enter the name of the new project";
-        textBoxNewProjectName.Size = new System.Drawing.Size(291, 23);
+        textBoxNewProjectName.Size = new System.Drawing.Size(290, 23);
         textBoxNewProjectName.TabIndex = 20;
         textBoxNewProjectName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+        // 
+        // checkBoxAddNumber
+        // 
+        checkBoxAddNumber.Location = new System.Drawing.Point(12, 429);
+        checkBoxAddNumber.Name = "checkBoxAddNumber";
+        checkBoxAddNumber.Size = new System.Drawing.Size(97, 16);
+        checkBoxAddNumber.TabIndex = 21;
+        checkBoxAddNumber.Text = " Add number";
+        checkBoxAddNumber.UseVisualStyleBackColor = true;
         // 
         // Form1
         // 
@@ -288,6 +296,7 @@ partial class Form1
         BackColor = System.Drawing.Color.DarkGray;
         BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
         ClientSize = new System.Drawing.Size(614, 459);
+        Controls.Add(checkBoxAddNumber);
         Controls.Add(textBoxNewProjectName);
         Controls.Add(buttonCopyTemplate);
         Controls.Add(buttonChooseDestination);
@@ -316,6 +325,8 @@ partial class Form1
         ResumeLayout(false);
         PerformLayout();
     }
+
+    private System.Windows.Forms.CheckBox checkBoxAddNumber;
 
     private System.Windows.Forms.TextBox textBoxNewProjectName;
 
