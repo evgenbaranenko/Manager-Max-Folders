@@ -532,5 +532,10 @@ namespace Folders_Max_WinForm
         {
             // throw new System.NotImplementedException();
         }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

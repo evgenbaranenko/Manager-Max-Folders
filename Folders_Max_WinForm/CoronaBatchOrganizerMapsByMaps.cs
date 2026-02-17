@@ -121,9 +121,11 @@ namespace Folders_Max_WinForm
             bool addDate,
             bool addNumber)
         {
+            string baseName = "Maps By Maps";
+
             string folderName = NameGenerator.GenerateFinalName(
                 parentFolder,
-                "",
+                baseName,
                 addNumber,
                 addDate
             );

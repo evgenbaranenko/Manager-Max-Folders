@@ -46,7 +46,7 @@ partial class Form1
         checkBoxDesign = new System.Windows.Forms.CheckBox();
         checkBoxCreateShortcut = new System.Windows.Forms.CheckBox();
         buttonCoronaBatchOrganizerMapsByCamera = new System.Windows.Forms.Button();
-        buttonCoronaBatchOrganizerMapsByMaps = new System.Windows.Forms.Button();
+        button1 = new System.Windows.Forms.Button();
         buttonUndoLast = new System.Windows.Forms.Button();
         label1 = new System.Windows.Forms.Label();
         label2 = new System.Windows.Forms.Label();
@@ -71,6 +71,7 @@ partial class Form1
         button3dsMaxStructureFolders.TabIndex = 0;
         button3dsMaxStructureFolders.Text = "Create 3dsMax structure folders";
         button3dsMaxStructureFolders.UseVisualStyleBackColor = false;
+        button3dsMaxStructureFolders.Visible = false;
         button3dsMaxStructureFolders.Click += ButtonCreateMaxFolders;
         // 
         // textBoxPath
@@ -82,6 +83,7 @@ partial class Form1
         textBoxPath.Size = new System.Drawing.Size(565, 23);
         textBoxPath.TabIndex = 1;
         textBoxPath.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+        textBoxPath.Visible = false;
         textBoxPath.TextChanged += TextBoxPathTextChanged;
         // 
         // buttonChoosePath
@@ -96,7 +98,12 @@ partial class Form1
         buttonChoosePath.TabIndex = 2;
         buttonChoosePath.Text = "...";
         buttonChoosePath.UseVisualStyleBackColor = false;
+        buttonChoosePath.Visible = false;
         buttonChoosePath.Click += ButtonChoosePath_Click;
+        // 
+        // bindingSource1
+        // 
+        bindingSource1.RaiseListChangedEvents = false;
         // 
         // textBoxProjectName
         // 
@@ -107,6 +114,11 @@ partial class Form1
         textBoxProjectName.Size = new System.Drawing.Size(143, 23);
         textBoxProjectName.TabIndex = 3;
         textBoxProjectName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+        textBoxProjectName.Visible = false;
+        // 
+        // bindingSource2
+        // 
+        bindingSource2.RaiseListChangedEvents = false;
         // 
         // buttonCreateFullProject
         // 
@@ -118,6 +130,7 @@ partial class Form1
         buttonCreateFullProject.TabIndex = 4;
         buttonCreateFullProject.Text = "Create ARCH\\INT structure folders";
         buttonCreateFullProject.UseVisualStyleBackColor = false;
+        buttonCreateFullProject.Visible = false;
         buttonCreateFullProject.Click += ButtonCreateFullProject_Click;
         // 
         // checkBoxAddDate
@@ -131,6 +144,7 @@ partial class Form1
         checkBoxAddDate.Text = "Date";
         checkBoxAddDate.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
         checkBoxAddDate.UseVisualStyleBackColor = true;
+        checkBoxAddDate.Visible = false;
         checkBoxAddDate.CheckedChanged += CheckBoxAddDate_CheckedChanged;
         // 
         // textBoxClient
@@ -142,6 +156,7 @@ partial class Form1
         textBoxClient.Size = new System.Drawing.Size(141, 23);
         textBoxClient.TabIndex = 6;
         textBoxClient.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+        textBoxClient.Visible = false;
         // 
         // checkBoxArchitecture
         // 
@@ -151,6 +166,7 @@ partial class Form1
         checkBoxArchitecture.TabIndex = 7;
         checkBoxArchitecture.Text = "ARCH";
         checkBoxArchitecture.UseVisualStyleBackColor = true;
+        checkBoxArchitecture.Visible = false;
         // 
         // checkBoxDesign
         // 
@@ -160,6 +176,7 @@ partial class Form1
         checkBoxDesign.TabIndex = 8;
         checkBoxDesign.Text = "INT";
         checkBoxDesign.UseVisualStyleBackColor = true;
+        checkBoxDesign.Visible = false;
         // 
         // checkBoxCreateShortcut
         // 
@@ -171,6 +188,7 @@ partial class Form1
         checkBoxCreateShortcut.Text = "Link desktop";
         checkBoxCreateShortcut.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
         checkBoxCreateShortcut.UseVisualStyleBackColor = true;
+        checkBoxCreateShortcut.Visible = false;
         checkBoxCreateShortcut.CheckedChanged += CheckBoxCreateShortcut_CheckedChanged;
         // 
         // buttonCoronaBatchOrganizerMapsByCamera
@@ -182,18 +200,19 @@ partial class Form1
         buttonCoronaBatchOrganizerMapsByCamera.TabIndex = 10;
         buttonCoronaBatchOrganizerMapsByCamera.Text = "Organize render maps by camera";
         buttonCoronaBatchOrganizerMapsByCamera.UseVisualStyleBackColor = false;
+        buttonCoronaBatchOrganizerMapsByCamera.Visible = false;
         buttonCoronaBatchOrganizerMapsByCamera.Click += ButtonCoronaBatchOrganizerMapsByCamera_Click;
         // 
-        // buttonCoronaBatchOrganizerMapsByMaps
+        // button1
         // 
-        buttonCoronaBatchOrganizerMapsByMaps.BackColor = System.Drawing.Color.DarkGray;
-        buttonCoronaBatchOrganizerMapsByMaps.Location = new System.Drawing.Point(460, 36);
-        buttonCoronaBatchOrganizerMapsByMaps.Name = "buttonCoronaBatchOrganizerMapsByMaps";
-        buttonCoronaBatchOrganizerMapsByMaps.Size = new System.Drawing.Size(142, 45);
-        buttonCoronaBatchOrganizerMapsByMaps.TabIndex = 11;
-        buttonCoronaBatchOrganizerMapsByMaps.Text = "Organize render maps by maps";
-        buttonCoronaBatchOrganizerMapsByMaps.UseVisualStyleBackColor = false;
-        buttonCoronaBatchOrganizerMapsByMaps.Click += ButtonCoronaBatchOrganizerMapsByMaps_Click;
+        button1.BackColor = System.Drawing.Color.DarkGray;
+        button1.Location = new System.Drawing.Point(460, 36);
+        button1.Name = "button1";
+        button1.Size = new System.Drawing.Size(142, 45);
+        button1.TabIndex = 11;
+        button1.Text = "Organize render maps by maps";
+        button1.UseVisualStyleBackColor = false;
+        button1.Click += ButtonCoronaBatchOrganizerMapsByMaps_Click;
         // 
         // buttonUndoLast
         // 
@@ -204,42 +223,48 @@ partial class Form1
         buttonUndoLast.TabIndex = 13;
         buttonUndoLast.Text = "Undo last sort operation";
         buttonUndoLast.UseVisualStyleBackColor = false;
+        buttonUndoLast.Visible = false;
         buttonUndoLast.Click += ButtonUndoLast_Click;
         // 
         // label1
         // 
         label1.BackColor = System.Drawing.Color.Transparent;
         label1.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)204));
-        label1.ForeColor = System.Drawing.SystemColors.Desktop;
+        label1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
         label1.ImageAlign = System.Drawing.ContentAlignment.TopRight;
         label1.Location = new System.Drawing.Point(7, 9);
         label1.Name = "label1";
         label1.Size = new System.Drawing.Size(290, 24);
         label1.TabIndex = 14;
         label1.Text = "Creating a work folder structure";
+        label1.Visible = false;
         label1.Click += label1_Click;
         // 
         // label2
         // 
         label2.BackColor = System.Drawing.Color.Transparent;
         label2.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)204));
+        label2.ForeColor = System.Drawing.SystemColors.ButtonFace;
         label2.ImageAlign = System.Drawing.ContentAlignment.TopRight;
         label2.Location = new System.Drawing.Point(312, 9);
         label2.Name = "label2";
         label2.Size = new System.Drawing.Size(289, 24);
         label2.TabIndex = 15;
         label2.Text = "Organize corona maps";
+        label2.Visible = false;
         // 
         // label3
         // 
         label3.BackColor = System.Drawing.Color.Transparent;
         label3.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)204));
+        label3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
         label3.ImageAlign = System.Drawing.ContentAlignment.TopRight;
         label3.Location = new System.Drawing.Point(7, 135);
         label3.Name = "label3";
         label3.Size = new System.Drawing.Size(289, 24);
         label3.TabIndex = 16;
-        label3.Text = "Copy a folder structure \r\n";
+        label3.Text = "Copy a folder structure";
+        label3.Visible = false;
         label3.Click += label3_Click;
         // 
         // textBoxDestinationPath
@@ -250,6 +275,7 @@ partial class Form1
         textBoxDestinationPath.Size = new System.Drawing.Size(565, 23);
         textBoxDestinationPath.TabIndex = 17;
         textBoxDestinationPath.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+        textBoxDestinationPath.Visible = false;
         // 
         // buttonChooseDestination
         // 
@@ -260,6 +286,7 @@ partial class Form1
         buttonChooseDestination.TabIndex = 18;
         buttonChooseDestination.Text = "...";
         buttonChooseDestination.UseVisualStyleBackColor = false;
+        buttonChooseDestination.Visible = false;
         buttonChooseDestination.Click += ButtonChooseDestination_Click;
         // 
         // buttonCopyTemplate
@@ -271,6 +298,7 @@ partial class Form1
         buttonCopyTemplate.TabIndex = 19;
         buttonCopyTemplate.Text = "Create work folder structure";
         buttonCopyTemplate.UseVisualStyleBackColor = false;
+        buttonCopyTemplate.Visible = false;
         buttonCopyTemplate.Click += ButtonCopyTemplate_Click;
         // 
         // textBoxNewProjectName
@@ -281,6 +309,7 @@ partial class Form1
         textBoxNewProjectName.Size = new System.Drawing.Size(290, 23);
         textBoxNewProjectName.TabIndex = 20;
         textBoxNewProjectName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+        textBoxNewProjectName.Visible = false;
         // 
         // checkBoxAddNumber
         // 
@@ -290,6 +319,7 @@ partial class Form1
         checkBoxAddNumber.TabIndex = 21;
         checkBoxAddNumber.Text = " Add number";
         checkBoxAddNumber.UseVisualStyleBackColor = true;
+        checkBoxAddNumber.Visible = false;
         // 
         // label4
         // 
@@ -300,7 +330,8 @@ partial class Form1
         label4.Name = "label4";
         label4.Size = new System.Drawing.Size(289, 24);
         label4.TabIndex = 23;
-        label4.Text = "Renaming files\r\n";
+        label4.Text = "Renaming files";
+        label4.Visible = false;
         label4.Click += label4_Click;
         // 
         // Form1
@@ -320,7 +351,7 @@ partial class Form1
         Controls.Add(label2);
         Controls.Add(label1);
         Controls.Add(buttonUndoLast);
-        Controls.Add(buttonCoronaBatchOrganizerMapsByMaps);
+        Controls.Add(button1);
         Controls.Add(buttonCoronaBatchOrganizerMapsByCamera);
         Controls.Add(checkBoxCreateShortcut);
         Controls.Add(checkBoxDesign);
@@ -333,8 +364,8 @@ partial class Form1
         Controls.Add(textBoxPath);
         Controls.Add(button3dsMaxStructureFolders);
         Icon = ((System.Drawing.Icon)resources.GetObject("$this.Icon"));
+        Location = new System.Drawing.Point(15, 15);
         StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-        Text = "Folder manager for CG 1.1";
         Load += Form1_Load;
         ((System.ComponentModel.ISupportInitialize)bindingSource1).EndInit();
         ((System.ComponentModel.ISupportInitialize)bindingSource2).EndInit();
@@ -362,7 +393,7 @@ partial class Form1
 
     private System.Windows.Forms.Button buttonUndoLast;
 
-    private System.Windows.Forms.Button buttonCoronaBatchOrganizerMapsByMaps;
+    private System.Windows.Forms.Button button1;
 
     private System.Windows.Forms.Button buttonCoronaBatchOrganizerMapsByCamera;
 

@@ -83,17 +83,8 @@ namespace Folders_Max_WinForm
         }
     }
     
-    
-    
-
-    // 🔥 Сохраняем лог в .undo.json
-    // string logPath = Path.Combine(rootFolder, ".undo.json");
-    // var json = System.Text.Json.JsonSerializer.Serialize(log);
-
     BatchHistoryManager.SaveOperation(log, rootFolder);
-
-    // File.WriteAllText(logPath, json);
-
+    
     return rootFolder;
 }
    
@@ -102,9 +93,11 @@ namespace Folders_Max_WinForm
             bool addDate,
             bool addNumber)
         {
+            string baseName = "Maps By Camera";
+
             string folderName = NameGenerator.GenerateFinalName(
                 parentFolder,
-                "",
+                baseName,
                 addNumber,
                 addDate
             );
@@ -115,11 +108,7 @@ namespace Folders_Max_WinForm
 
             return fullPath;
         }
-
-
-
-
-
+        
         private static string GetPrefixNumber(string fileName)
         {
             if (fileName.Length < 2)
