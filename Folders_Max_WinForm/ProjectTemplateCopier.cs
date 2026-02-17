@@ -13,6 +13,18 @@ namespace Folders_Max_WinForm
             if (!Directory.Exists(destinationPath))
                 throw new Exception("Папка назначения не существует.");
 
+            // Нормализуем пути
+            templatePath = Path.GetFullPath(templatePath);
+            destinationPath = Path.GetFullPath(destinationPath);
+
+            // ❌ 1. Нельзя копировать в ту же папку
+            if (string.Equals(templatePath, destinationPath, StringComparison.OrdinalIgnoreCase))
+                throw new Exception("Нельзя копировать структуру в ту же самую папку.");
+
+            // ❌ 2. Нельзя копировать внутрь самой себя
+            if (destinationPath.StartsWith(templatePath, StringComparison.OrdinalIgnoreCase))
+                throw new Exception("Нельзя сохранять структуру внутрь самой себя.");
+
             string newProjectPath = Path.Combine(destinationPath, newProjectName);
 
             if (Directory.Exists(newProjectPath))
@@ -22,6 +34,7 @@ namespace Folders_Max_WinForm
 
             return newProjectPath;
         }
+
 
 
 
