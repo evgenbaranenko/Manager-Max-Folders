@@ -6,7 +6,7 @@
         <Nullable>enable</Nullable>
         <UseWindowsForms>true</UseWindowsForms>
         <ImplicitUsings>enable</ImplicitUsings>
-        <ApplicationIcon>Icon-FPM-03.ico</ApplicationIcon>
+        <ApplicationIcon>Icon-FPM-07.ico</ApplicationIcon>
     </PropertyGroup>
 
     <ItemGroup>
