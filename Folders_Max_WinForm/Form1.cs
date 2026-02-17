@@ -48,8 +48,16 @@ namespace Folders_Max_WinForm
             }
             else
             {
-                int nextNumber = GetNextProjectNumber(basePath);
-                string finalName = $"{nextNumber:D2}_{nameWithoutNumber}";
+                // int nextNumber = GetNextProjectNumber(basePath);
+                // string finalName = $"{nextNumber:D2}_{nameWithoutNumber}";
+                string finalName = NameGenerator.GenerateFinalName(
+                    basePath,
+                    nameWithoutNumber,
+                    checkBoxAddNumber.Checked,
+                    checkBoxAddDate.Checked
+                );
+              // string projectFolder = Path.Combine(basePath, finalName);
+
                 projectFolder = Path.Combine(basePath, finalName);
                 CreateDirectory(projectFolder);
                 isNewProject = true;
@@ -105,8 +113,15 @@ namespace Folders_Max_WinForm
             }
             else
             {
-                int nextNumber = GetNextProjectNumber(basePath);
-                string finalName = $"{nextNumber:D2}_{nameWithoutNumber}";
+                // int nextNumber = GetNextProjectNumber(basePath);
+                // string finalName = $"{nextNumber:D2}_{nameWithoutNumber}";
+                string finalName = NameGenerator.GenerateFinalName(
+                    basePath,
+                    nameWithoutNumber,
+                    checkBoxAddNumber.Checked,
+                    checkBoxAddDate.Checked
+                );
+                //string projectFolder = Path.Combine(basePath, finalName);
                 projectFolder = Path.Combine(basePath, finalName);
                 CreateDirectory(projectFolder);
                 isNewProject = true;
@@ -136,7 +151,8 @@ namespace Folders_Max_WinForm
                 string createdFolder =
                     CoronaBatchOrganizerMapsByCamera.Organize(
                         path,
-                        checkBoxAddDate.Checked
+                        checkBoxAddDate.Checked,
+                        checkBoxAddNumber.Checked
                     );
 
                 if (checkBoxCreateShortcut.Checked)
@@ -158,9 +174,9 @@ namespace Folders_Max_WinForm
                 string createdFolder =
                     CoronaBatchOrganizerMapsByMaps.Organize(
                         path,
-                        checkBoxAddDate.Checked
+                        checkBoxAddDate.Checked,
+                        checkBoxAddNumber.Checked
                     );
-
                 if (checkBoxCreateShortcut.Checked)
                     CreateDesktopShortcut(createdFolder);
 
@@ -216,22 +232,22 @@ namespace Folders_Max_WinForm
                 }
             }
 
-            // 🔥 Добавляем дату если включён чекбокс
-            if (checkBoxAddDate.Checked)
-            {
-                string date = DateTime.Now.ToString("dd-MM-yy");
-                newProjectName += $"_({date})";
-            }
+            // 🔥 Генерируем финальное имя правильно
+            string finalName = NameGenerator.GenerateFinalName(
+                destinationPath,
+                newProjectName,
+                checkBoxAddNumber.Checked,
+                checkBoxAddDate.Checked
+            );
 
             try
             {
                 string newProjectPath = ProjectTemplateCopier.CopyTemplate(
                     templatePath,
                     destinationPath,
-                    newProjectName
+                    finalName
                 );
 
-                // 🔥 Создание ярлыка
                 if (checkBoxCreateShortcut.Checked)
                 {
                     CreateDesktopShortcut(newProjectPath);
@@ -464,6 +480,8 @@ namespace Folders_Max_WinForm
         {
             // throw new System.NotImplementedException();
         }
+
+      
         private void CheckBoxCreateShortcut_CheckedChanged(object sender, EventArgs e)
         {
             //throw new System.NotImplementedException();

@@ -8,7 +8,7 @@ namespace Folders_Max_WinForm
 {
     public class CoronaBatchOrganizerMapsByMaps
     {
-        public static string Organize(string sourceFolder, bool addDate)
+        public static string Organize(string sourceFolder, bool addDate, bool addNumber)
         {
             if (!Directory.Exists(sourceFolder))
                 throw new Exception("Папка не существует");
@@ -30,7 +30,7 @@ namespace Folders_Max_WinForm
             if (parentFolder == null)
                 throw new Exception("Невозможно определить родительскую папку.");
 
-            string rootFolder = CreateRootFolder(parentFolder, addDate);
+            string rootFolder = CreateRootFolder(parentFolder, addDate, addNumber);
 
             // 🔥 Создаём лог операции
             var log = new BatchOperationLog
@@ -116,33 +116,17 @@ namespace Folders_Max_WinForm
             return true;
         }
 
-        private static string CreateRootFolder(string parentFolder, bool addDate)
+        private static string CreateRootFolder(
+            string parentFolder,
+            bool addDate,
+            bool addNumber)
         {
-            var existing = Directory.GetDirectories(parentFolder)
-                .Select(Path.GetFileName)
-                .Where(name =>
-                    name.Length >= 2 &&
-                    int.TryParse(name.Substring(0, 2), out _))
-                .ToList();
-
-            int max = 0;
-
-            foreach (var folder in existing)
-            {
-                if (int.TryParse(folder.Substring(0, 2), out int number))
-                    if (number > max)
-                        max = number;
-            }
-
-            int nextNumber = max + 1;
-
-            string folderName = $"{nextNumber:D2}";
-
-            if (addDate)
-            {
-                string date = DateTime.Now.ToString("dd-MM-yy");
-                folderName += $"_{date}";
-            }
+            string folderName = NameGenerator.GenerateFinalName(
+                parentFolder,
+                "",
+                addNumber,
+                addDate
+            );
 
             string fullPath = Path.Combine(parentFolder, folderName);
 
