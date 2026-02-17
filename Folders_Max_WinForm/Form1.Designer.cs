@@ -253,11 +253,11 @@ partial class Form1
         // buttonChooseDestination
         // 
         buttonChooseDestination.BackColor = System.Drawing.Color.DarkGray;
-        buttonChooseDestination.Location = new System.Drawing.Point(158, 243);
+        buttonChooseDestination.Location = new System.Drawing.Point(159, 243);
         buttonChooseDestination.Name = "buttonChooseDestination";
         buttonChooseDestination.Size = new System.Drawing.Size(140, 26);
         buttonChooseDestination.TabIndex = 18;
-        buttonChooseDestination.Text = "Choose path to save";
+        buttonChooseDestination.Text = "Path to save";
         buttonChooseDestination.UseVisualStyleBackColor = false;
         buttonChooseDestination.Click += ButtonChooseDestination_Click;
         // 
