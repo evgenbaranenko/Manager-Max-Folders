@@ -127,7 +127,7 @@ namespace Folders_Max_WinForm
                 CreateDesktopShortcut(projectFolder);
             }
         }
-        private void buttonCoronaBatchOrganizerMapsByCamera_Click(object sender, EventArgs e)
+        private void ButtonCoronaBatchOrganizerMapsByCamera_Click(object sender, EventArgs e)
         {
             if (InputPath(out var path)) return;
 
@@ -149,7 +149,7 @@ namespace Folders_Max_WinForm
                 MessageBox.Show(ex.Message);
             }
         }
-        private void buttonCoronaBatchOrganizerMapsByMaps_Click(object sender, EventArgs e)
+        private void ButtonCoronaBatchOrganizerMapsByMaps_Click(object sender, EventArgs e)
         {
             if (InputPath(out var path)) return;
 
@@ -171,7 +171,7 @@ namespace Folders_Max_WinForm
                 MessageBox.Show(ex.Message);
             }
         }
-        private void buttonUndoLast_Click(object sender, EventArgs e)
+        private void ButtonUndoLast_Click(object sender, EventArgs e)
         {
             try
             {
@@ -183,6 +183,81 @@ namespace Folders_Max_WinForm
                 MessageBox.Show(ex.Message);
             }
         }
+        private void ButtonCopyTemplate_Click(object sender, EventArgs e)
+        {
+            string templatePath = textBoxPath.Text.Trim();
+            string destinationPath = textBoxDestinationPath.Text.Trim();
+            string newProjectName = textBoxNewProjectName.Text.Trim();
+
+            if (string.IsNullOrWhiteSpace(templatePath))
+            {
+                MessageBox.Show("Выберите папку шаблона.");
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(destinationPath))
+            {
+                MessageBox.Show("Выберите папку назначения.");
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(newProjectName))
+            {
+                MessageBox.Show("Введите название проекта.");
+                return;
+            }
+
+            foreach (char c in Path.GetInvalidFileNameChars())
+            {
+                if (newProjectName.Contains(c))
+                {
+                    MessageBox.Show("Название содержит недопустимые символы.");
+                    return;
+                }
+            }
+
+            // 🔥 Добавляем дату если включён чекбокс
+            if (checkBoxAddDate.Checked)
+            {
+                string date = DateTime.Now.ToString("dd-MM-yy");
+                newProjectName += $"_({date})";
+            }
+
+            try
+            {
+                string newProjectPath = ProjectTemplateCopier.CopyTemplate(
+                    templatePath,
+                    destinationPath,
+                    newProjectName
+                );
+
+                // 🔥 Создание ярлыка
+                if (checkBoxCreateShortcut.Checked)
+                {
+                    CreateDesktopShortcut(newProjectPath);
+                }
+
+                MessageBox.Show("Структура успешно скопирована!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void ButtonChooseDestination_Click(object sender, EventArgs e)
+        {
+            using (FolderBrowserDialog dialog = new FolderBrowserDialog())
+            {
+                dialog.Description = "Выберите папку назначения";
+
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    textBoxDestinationPath.Text = dialog.SelectedPath;
+                }
+            }
+        }
+
         private string GetProjectTypeTag(bool isVizButton = false)
         {
             if (isVizButton)
