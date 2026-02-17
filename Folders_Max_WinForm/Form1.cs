@@ -22,7 +22,7 @@ namespace Folders_Max_WinForm
         
         private void ButtonCreateMaxFolders(object sender, EventArgs e)
         {
-            if (InputPath(out var basePath)) return;
+            if (!GetWorkingPath(out var basePath)) return;
             if (InputProjectName(out var projectName)) return;
             if (InputClient(out var clientName)) return;
 
@@ -48,16 +48,14 @@ namespace Folders_Max_WinForm
             }
             else
             {
-                // int nextNumber = GetNextProjectNumber(basePath);
-                // string finalName = $"{nextNumber:D2}_{nameWithoutNumber}";
+                
+             
                 string finalName = NameGenerator.GenerateFinalName(
                     basePath,
                     nameWithoutNumber,
                     checkBoxAddNumber.Checked,
                     checkBoxAddDate.Checked
                 );
-              // string projectFolder = Path.Combine(basePath, finalName);
-
                 projectFolder = Path.Combine(basePath, finalName);
                 CreateDirectory(projectFolder);
                 isNewProject = true;
@@ -78,10 +76,9 @@ namespace Folders_Max_WinForm
                 CreateDesktopShortcut(projectFolder);
             }
         }
-        
         private void ButtonCreateFullProject_Click(object sender, EventArgs e)
         {
-            if (InputPath(out var basePath)) return;
+            if (!GetWorkingPath(out var basePath)) return;
             if (InputProjectName(out var projectName)) return;
             if (InputClient(out var clientName)) return;
 
@@ -144,7 +141,7 @@ namespace Folders_Max_WinForm
         }
         private void ButtonCoronaBatchOrganizerMapsByCamera_Click(object sender, EventArgs e)
         {
-            if (InputPath(out var path)) return;
+            if (!GetWorkingPath(out var path)) return;
 
             try
             {
@@ -167,7 +164,7 @@ namespace Folders_Max_WinForm
         }
         private void ButtonCoronaBatchOrganizerMapsByMaps_Click(object sender, EventArgs e)
         {
-            if (InputPath(out var path)) return;
+            if (!GetWorkingPath(out var path)) return;
 
             try
             {
@@ -260,7 +257,6 @@ namespace Folders_Max_WinForm
                 MessageBox.Show(ex.Message);
             }
         }
-
         private void ButtonChooseDestination_Click(object sender, EventArgs e)
         {
             using (FolderBrowserDialog dialog = new FolderBrowserDialog())
@@ -273,7 +269,41 @@ namespace Folders_Max_WinForm
                 }
             }
         }
+        private bool GetWorkingPath(out string path)
+        {
+            string destination = textBoxDestinationPath.Text.Trim();
+            string source = textBoxPath.Text.Trim();
 
+            if (!string.IsNullOrWhiteSpace(destination))
+            {
+                if (!Directory.Exists(destination))
+                {
+                    MessageBox.Show("Указанный путь назначения не существует.");
+                    path = null;
+                    return false;
+                }
+
+                path = destination;
+                return true;
+            }
+
+            if (!string.IsNullOrWhiteSpace(source))
+            {
+                if (!Directory.Exists(source))
+                {
+                    MessageBox.Show("Указанный путь не существует.");
+                    path = null;
+                    return false;
+                }
+
+                path = source;
+                return true;
+            }
+
+            MessageBox.Show("Выберите путь.");
+            path = null;
+            return false;
+        }
         private string GetProjectTypeTag(bool isVizButton = false)
         {
             if (isVizButton)
@@ -383,27 +413,6 @@ namespace Folders_Max_WinForm
 
             return false;
         }
-        private int GetNextProjectNumber(string basePath)
-        {
-            var directories = Directory.GetDirectories(basePath);
-
-            int maxNumber = 0;
-
-            foreach (var dir in directories)
-            {
-                string folderName = Path.GetFileName(dir);
-
-                var parts = folderName.Split('_');
-
-                if (parts.Length > 0 && int.TryParse(parts[0], out int number))
-                {
-                    if (number > maxNumber)
-                        maxNumber = number;
-                }
-            }
-
-            return maxNumber + 1;
-        }
         private bool InputProjectName(out string projectName)
         {
             projectName = textBoxProjectName.Text.Trim();
@@ -480,8 +489,7 @@ namespace Folders_Max_WinForm
         {
             // throw new System.NotImplementedException();
         }
-
-      
+        
         private void CheckBoxCreateShortcut_CheckedChanged(object sender, EventArgs e)
         {
             //throw new System.NotImplementedException();
@@ -512,7 +520,17 @@ namespace Folders_Max_WinForm
 
         private void label3_Click(object sender, EventArgs e)
         {
-            throw new System.NotImplementedException();
+            //throw new System.NotImplementedException();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            //throw new System.NotImplementedException();
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+            // throw new System.NotImplementedException();
         }
     }
 }
