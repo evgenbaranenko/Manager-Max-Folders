@@ -48,15 +48,15 @@ partial class Form1
         buttonCoronaBatchOrganizerMapsByCamera = new System.Windows.Forms.Button();
         button1 = new System.Windows.Forms.Button();
         buttonUndoLast = new System.Windows.Forms.Button();
-        label1 = new System.Windows.Forms.Label();
-        label2 = new System.Windows.Forms.Label();
-        label3 = new System.Windows.Forms.Label();
         textBoxDestinationPath = new System.Windows.Forms.TextBox();
         buttonChooseDestination = new System.Windows.Forms.Button();
         buttonCopyTemplate = new System.Windows.Forms.Button();
         textBoxNewProjectName = new System.Windows.Forms.TextBox();
         checkBoxAddNumber = new System.Windows.Forms.CheckBox();
-        label4 = new System.Windows.Forms.Label();
+        groupBox1 = new System.Windows.Forms.GroupBox();
+        groupBox3 = new System.Windows.Forms.GroupBox();
+        groupBox4 = new System.Windows.Forms.GroupBox();
+        groupBox2 = new System.Windows.Forms.GroupBox();
         ((System.ComponentModel.ISupportInitialize)bindingSource1).BeginInit();
         ((System.ComponentModel.ISupportInitialize)bindingSource2).BeginInit();
         SuspendLayout();
@@ -65,25 +65,23 @@ partial class Form1
         // 
         button3dsMaxStructureFolders.BackColor = System.Drawing.Color.DarkGray;
         button3dsMaxStructureFolders.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-        button3dsMaxStructureFolders.Location = new System.Drawing.Point(7, 65);
+        button3dsMaxStructureFolders.Location = new System.Drawing.Point(14, 59);
         button3dsMaxStructureFolders.Name = "button3dsMaxStructureFolders";
         button3dsMaxStructureFolders.Size = new System.Drawing.Size(142, 45);
         button3dsMaxStructureFolders.TabIndex = 0;
         button3dsMaxStructureFolders.Text = "Create 3dsMax structure folders";
         button3dsMaxStructureFolders.UseVisualStyleBackColor = false;
-        button3dsMaxStructureFolders.Visible = false;
         button3dsMaxStructureFolders.Click += ButtonCreateMaxFolders;
         // 
         // textBoxPath
         // 
         textBoxPath.BackColor = System.Drawing.SystemColors.ButtonFace;
-        textBoxPath.Location = new System.Drawing.Point(7, 246);
+        textBoxPath.Location = new System.Drawing.Point(14, 246);
         textBoxPath.Name = "textBoxPath";
         textBoxPath.PlaceholderText = "Path";
         textBoxPath.Size = new System.Drawing.Size(565, 23);
         textBoxPath.TabIndex = 1;
         textBoxPath.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-        textBoxPath.Visible = false;
         textBoxPath.TextChanged += TextBoxPathTextChanged;
         // 
         // buttonChoosePath
@@ -91,14 +89,13 @@ partial class Form1
         buttonChoosePath.BackColor = System.Drawing.Color.DarkGray;
         buttonChoosePath.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
         buttonChoosePath.ForeColor = System.Drawing.SystemColors.ControlText;
-        buttonChoosePath.Location = new System.Drawing.Point(575, 246);
+        buttonChoosePath.Location = new System.Drawing.Point(582, 246);
         buttonChoosePath.Margin = new System.Windows.Forms.Padding(0);
         buttonChoosePath.Name = "buttonChoosePath";
         buttonChoosePath.Size = new System.Drawing.Size(28, 23);
         buttonChoosePath.TabIndex = 2;
         buttonChoosePath.Text = "...";
         buttonChoosePath.UseVisualStyleBackColor = false;
-        buttonChoosePath.Visible = false;
         buttonChoosePath.Click += ButtonChoosePath_Click;
         // 
         // bindingSource1
@@ -108,13 +105,12 @@ partial class Form1
         // textBoxProjectName
         // 
         textBoxProjectName.BackColor = System.Drawing.SystemColors.ButtonFace;
-        textBoxProjectName.Location = new System.Drawing.Point(154, 36);
+        textBoxProjectName.Location = new System.Drawing.Point(161, 30);
         textBoxProjectName.Name = "textBoxProjectName";
         textBoxProjectName.PlaceholderText = "Project name";
         textBoxProjectName.Size = new System.Drawing.Size(143, 23);
         textBoxProjectName.TabIndex = 3;
         textBoxProjectName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-        textBoxProjectName.Visible = false;
         // 
         // bindingSource2
         // 
@@ -124,89 +120,82 @@ partial class Form1
         // 
         buttonCreateFullProject.BackColor = System.Drawing.Color.DarkGray;
         buttonCreateFullProject.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-        buttonCreateFullProject.Location = new System.Drawing.Point(154, 65);
+        buttonCreateFullProject.Location = new System.Drawing.Point(161, 59);
         buttonCreateFullProject.Name = "buttonCreateFullProject";
-        buttonCreateFullProject.Size = new System.Drawing.Size(142, 45);
+        buttonCreateFullProject.Size = new System.Drawing.Size(143, 45);
         buttonCreateFullProject.TabIndex = 4;
         buttonCreateFullProject.Text = "Create ARCH\\INT structure folders";
         buttonCreateFullProject.UseVisualStyleBackColor = false;
-        buttonCreateFullProject.Visible = false;
         buttonCreateFullProject.Click += ButtonCreateFullProject_Click;
         // 
         // checkBoxAddDate
         // 
         checkBoxAddDate.BackColor = System.Drawing.Color.DarkGray;
         checkBoxAddDate.ForeColor = System.Drawing.SystemColors.ControlText;
-        checkBoxAddDate.Location = new System.Drawing.Point(123, 307);
+        checkBoxAddDate.Location = new System.Drawing.Point(130, 307);
         checkBoxAddDate.Name = "checkBoxAddDate";
         checkBoxAddDate.Size = new System.Drawing.Size(52, 20);
         checkBoxAddDate.TabIndex = 5;
         checkBoxAddDate.Text = "Date";
         checkBoxAddDate.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
         checkBoxAddDate.UseVisualStyleBackColor = true;
-        checkBoxAddDate.Visible = false;
         checkBoxAddDate.CheckedChanged += CheckBoxAddDate_CheckedChanged;
         // 
         // textBoxClient
         // 
         textBoxClient.BackColor = System.Drawing.SystemColors.ButtonFace;
-        textBoxClient.Location = new System.Drawing.Point(7, 36);
+        textBoxClient.Location = new System.Drawing.Point(14, 30);
         textBoxClient.Name = "textBoxClient";
         textBoxClient.PlaceholderText = "Customer";
         textBoxClient.Size = new System.Drawing.Size(141, 23);
         textBoxClient.TabIndex = 6;
         textBoxClient.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-        textBoxClient.Visible = false;
         // 
         // checkBoxArchitecture
         // 
-        checkBoxArchitecture.Location = new System.Drawing.Point(156, 112);
+        checkBoxArchitecture.Location = new System.Drawing.Point(163, 106);
         checkBoxArchitecture.Name = "checkBoxArchitecture";
         checkBoxArchitecture.Size = new System.Drawing.Size(63, 20);
         checkBoxArchitecture.TabIndex = 7;
         checkBoxArchitecture.Text = "ARCH";
         checkBoxArchitecture.UseVisualStyleBackColor = true;
-        checkBoxArchitecture.Visible = false;
         // 
         // checkBoxDesign
         // 
-        checkBoxDesign.Location = new System.Drawing.Point(225, 112);
+        checkBoxDesign.Location = new System.Drawing.Point(232, 106);
         checkBoxDesign.Name = "checkBoxDesign";
         checkBoxDesign.Size = new System.Drawing.Size(52, 20);
         checkBoxDesign.TabIndex = 8;
         checkBoxDesign.Text = "INT";
         checkBoxDesign.UseVisualStyleBackColor = true;
-        checkBoxDesign.Visible = false;
         // 
         // checkBoxCreateShortcut
         // 
         checkBoxCreateShortcut.ForeColor = System.Drawing.SystemColors.ControlText;
-        checkBoxCreateShortcut.Location = new System.Drawing.Point(198, 307);
+        checkBoxCreateShortcut.Location = new System.Drawing.Point(205, 307);
         checkBoxCreateShortcut.Name = "checkBoxCreateShortcut";
         checkBoxCreateShortcut.Size = new System.Drawing.Size(100, 20);
         checkBoxCreateShortcut.TabIndex = 9;
         checkBoxCreateShortcut.Text = "Link desktop";
         checkBoxCreateShortcut.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
         checkBoxCreateShortcut.UseVisualStyleBackColor = true;
-        checkBoxCreateShortcut.Visible = false;
         checkBoxCreateShortcut.CheckedChanged += CheckBoxCreateShortcut_CheckedChanged;
         // 
         // buttonCoronaBatchOrganizerMapsByCamera
         // 
         buttonCoronaBatchOrganizerMapsByCamera.BackColor = System.Drawing.Color.DarkGray;
-        buttonCoronaBatchOrganizerMapsByCamera.Location = new System.Drawing.Point(312, 36);
+        buttonCoronaBatchOrganizerMapsByCamera.Location = new System.Drawing.Point(319, 30);
         buttonCoronaBatchOrganizerMapsByCamera.Name = "buttonCoronaBatchOrganizerMapsByCamera";
         buttonCoronaBatchOrganizerMapsByCamera.Size = new System.Drawing.Size(142, 45);
         buttonCoronaBatchOrganizerMapsByCamera.TabIndex = 10;
         buttonCoronaBatchOrganizerMapsByCamera.Text = "Organize render maps by camera";
         buttonCoronaBatchOrganizerMapsByCamera.UseVisualStyleBackColor = false;
-        buttonCoronaBatchOrganizerMapsByCamera.Visible = false;
         buttonCoronaBatchOrganizerMapsByCamera.Click += ButtonCoronaBatchOrganizerMapsByCamera_Click;
         // 
         // button1
         // 
         button1.BackColor = System.Drawing.Color.DarkGray;
-        button1.Location = new System.Drawing.Point(460, 36);
+        button1.Location = new System.Drawing.Point(467, 30);
         button1.Name = "button1";
         button1.Size = new System.Drawing.Size(142, 45);
         button1.TabIndex = 11;
@@ -217,122 +206,106 @@ partial class Form1
         // buttonUndoLast
         // 
         buttonUndoLast.BackColor = System.Drawing.Color.DarkGray;
-        buttonUndoLast.Location = new System.Drawing.Point(312, 86);
+        buttonUndoLast.Location = new System.Drawing.Point(319, 80);
         buttonUndoLast.Name = "buttonUndoLast";
         buttonUndoLast.Size = new System.Drawing.Size(290, 25);
         buttonUndoLast.TabIndex = 13;
         buttonUndoLast.Text = "Undo last sort operation";
         buttonUndoLast.UseVisualStyleBackColor = false;
-        buttonUndoLast.Visible = false;
         buttonUndoLast.Click += ButtonUndoLast_Click;
-        // 
-        // label1
-        // 
-        label1.BackColor = System.Drawing.Color.Transparent;
-        label1.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)204));
-        label1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-        label1.ImageAlign = System.Drawing.ContentAlignment.TopRight;
-        label1.Location = new System.Drawing.Point(7, 9);
-        label1.Name = "label1";
-        label1.Size = new System.Drawing.Size(290, 24);
-        label1.TabIndex = 14;
-        label1.Text = "Creating a work folder structure";
-        label1.Visible = false;
-        label1.Click += label1_Click;
-        // 
-        // label2
-        // 
-        label2.BackColor = System.Drawing.Color.Transparent;
-        label2.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)204));
-        label2.ForeColor = System.Drawing.SystemColors.ButtonFace;
-        label2.ImageAlign = System.Drawing.ContentAlignment.TopRight;
-        label2.Location = new System.Drawing.Point(312, 9);
-        label2.Name = "label2";
-        label2.Size = new System.Drawing.Size(289, 24);
-        label2.TabIndex = 15;
-        label2.Text = "Organize corona maps";
-        label2.Visible = false;
-        // 
-        // label3
-        // 
-        label3.BackColor = System.Drawing.Color.Transparent;
-        label3.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)204));
-        label3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-        label3.ImageAlign = System.Drawing.ContentAlignment.TopRight;
-        label3.Location = new System.Drawing.Point(7, 135);
-        label3.Name = "label3";
-        label3.Size = new System.Drawing.Size(289, 24);
-        label3.TabIndex = 16;
-        label3.Text = "Copy a folder structure";
-        label3.Visible = false;
-        label3.Click += label3_Click;
         // 
         // textBoxDestinationPath
         // 
-        textBoxDestinationPath.Location = new System.Drawing.Point(7, 275);
+        textBoxDestinationPath.Location = new System.Drawing.Point(14, 275);
         textBoxDestinationPath.Name = "textBoxDestinationPath";
         textBoxDestinationPath.PlaceholderText = "Path to save";
         textBoxDestinationPath.Size = new System.Drawing.Size(565, 23);
         textBoxDestinationPath.TabIndex = 17;
         textBoxDestinationPath.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-        textBoxDestinationPath.Visible = false;
         // 
         // buttonChooseDestination
         // 
         buttonChooseDestination.BackColor = System.Drawing.Color.DarkGray;
-        buttonChooseDestination.Location = new System.Drawing.Point(575, 275);
+        buttonChooseDestination.Location = new System.Drawing.Point(582, 275);
         buttonChooseDestination.Name = "buttonChooseDestination";
         buttonChooseDestination.Size = new System.Drawing.Size(29, 23);
         buttonChooseDestination.TabIndex = 18;
         buttonChooseDestination.Text = "...";
         buttonChooseDestination.UseVisualStyleBackColor = false;
-        buttonChooseDestination.Visible = false;
         buttonChooseDestination.Click += ButtonChooseDestination_Click;
         // 
         // buttonCopyTemplate
         // 
         buttonCopyTemplate.BackColor = System.Drawing.Color.DarkGray;
-        buttonCopyTemplate.Location = new System.Drawing.Point(7, 193);
+        buttonCopyTemplate.Location = new System.Drawing.Point(14, 185);
         buttonCopyTemplate.Name = "buttonCopyTemplate";
         buttonCopyTemplate.Size = new System.Drawing.Size(290, 45);
         buttonCopyTemplate.TabIndex = 19;
         buttonCopyTemplate.Text = "Create work folder structure";
         buttonCopyTemplate.UseVisualStyleBackColor = false;
-        buttonCopyTemplate.Visible = false;
         buttonCopyTemplate.Click += ButtonCopyTemplate_Click;
         // 
         // textBoxNewProjectName
         // 
-        textBoxNewProjectName.Location = new System.Drawing.Point(7, 164);
+        textBoxNewProjectName.Location = new System.Drawing.Point(14, 156);
         textBoxNewProjectName.Name = "textBoxNewProjectName";
         textBoxNewProjectName.PlaceholderText = "Enter the name of the new project";
         textBoxNewProjectName.Size = new System.Drawing.Size(290, 23);
         textBoxNewProjectName.TabIndex = 20;
         textBoxNewProjectName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-        textBoxNewProjectName.Visible = false;
         // 
         // checkBoxAddNumber
         // 
-        checkBoxAddNumber.Location = new System.Drawing.Point(9, 309);
+        checkBoxAddNumber.Location = new System.Drawing.Point(16, 309);
         checkBoxAddNumber.Name = "checkBoxAddNumber";
         checkBoxAddNumber.Size = new System.Drawing.Size(97, 16);
         checkBoxAddNumber.TabIndex = 21;
         checkBoxAddNumber.Text = " Add number";
         checkBoxAddNumber.UseVisualStyleBackColor = true;
-        checkBoxAddNumber.Visible = false;
         // 
-        // label4
+        // groupBox1
         // 
-        label4.BackColor = System.Drawing.Color.Transparent;
-        label4.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)204));
-        label4.ImageAlign = System.Drawing.ContentAlignment.TopRight;
-        label4.Location = new System.Drawing.Point(312, 135);
-        label4.Name = "label4";
-        label4.Size = new System.Drawing.Size(289, 24);
-        label4.TabIndex = 23;
-        label4.Text = "Renaming files";
-        label4.Visible = false;
-        label4.Click += label4_Click;
+        groupBox1.BackColor = System.Drawing.Color.Transparent;
+        groupBox1.ForeColor = System.Drawing.SystemColors.ButtonFace;
+        groupBox1.Location = new System.Drawing.Point(9, 10);
+        groupBox1.Name = "groupBox1";
+        groupBox1.Size = new System.Drawing.Size(300, 120);
+        groupBox1.TabIndex = 25;
+        groupBox1.TabStop = false;
+        groupBox1.Text = "CREATING A WORK FOLDER STRUCTURE";
+        // 
+        // groupBox3
+        // 
+        groupBox3.BackColor = System.Drawing.Color.Transparent;
+        groupBox3.ForeColor = System.Drawing.SystemColors.ButtonFace;
+        groupBox3.Location = new System.Drawing.Point(10, 137);
+        groupBox3.Name = "groupBox3";
+        groupBox3.Size = new System.Drawing.Size(300, 100);
+        groupBox3.TabIndex = 27;
+        groupBox3.TabStop = false;
+        groupBox3.Text = "COPY A FOLDER STRUCTURE";
+        // 
+        // groupBox4
+        // 
+        groupBox4.BackColor = System.Drawing.Color.Transparent;
+        groupBox4.ForeColor = System.Drawing.SystemColors.ButtonFace;
+        groupBox4.Location = new System.Drawing.Point(314, 137);
+        groupBox4.Name = "groupBox4";
+        groupBox4.Size = new System.Drawing.Size(300, 100);
+        groupBox4.TabIndex = 28;
+        groupBox4.TabStop = false;
+        groupBox4.Text = "RENAMING FILES";
+        // 
+        // groupBox2
+        // 
+        groupBox2.BackColor = System.Drawing.Color.Transparent;
+        groupBox2.ForeColor = System.Drawing.SystemColors.ButtonFace;
+        groupBox2.Location = new System.Drawing.Point(314, 10);
+        groupBox2.Name = "groupBox2";
+        groupBox2.Size = new System.Drawing.Size(300, 120);
+        groupBox2.TabIndex = 26;
+        groupBox2.TabStop = false;
+        groupBox2.Text = "ORGANIZE CORONA MAPS";
         // 
         // Form1
         // 
@@ -340,29 +313,29 @@ partial class Form1
         AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
         BackColor = System.Drawing.Color.DarkGray;
         BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-        ClientSize = new System.Drawing.Size(630, 571);
-        Controls.Add(label4);
+        ClientSize = new System.Drawing.Size(627, 334);
+        Controls.Add(textBoxProjectName);
+        Controls.Add(textBoxClient);
         Controls.Add(checkBoxAddNumber);
         Controls.Add(textBoxNewProjectName);
         Controls.Add(buttonCopyTemplate);
         Controls.Add(buttonChooseDestination);
         Controls.Add(textBoxDestinationPath);
-        Controls.Add(label3);
-        Controls.Add(label2);
-        Controls.Add(label1);
         Controls.Add(buttonUndoLast);
         Controls.Add(button1);
         Controls.Add(buttonCoronaBatchOrganizerMapsByCamera);
         Controls.Add(checkBoxCreateShortcut);
         Controls.Add(checkBoxDesign);
         Controls.Add(checkBoxArchitecture);
-        Controls.Add(textBoxClient);
         Controls.Add(checkBoxAddDate);
         Controls.Add(buttonCreateFullProject);
-        Controls.Add(textBoxProjectName);
         Controls.Add(buttonChoosePath);
         Controls.Add(textBoxPath);
         Controls.Add(button3dsMaxStructureFolders);
+        Controls.Add(groupBox1);
+        Controls.Add(groupBox2);
+        Controls.Add(groupBox3);
+        Controls.Add(groupBox4);
         Icon = ((System.Drawing.Icon)resources.GetObject("$this.Icon"));
         Location = new System.Drawing.Point(15, 15);
         StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -373,7 +346,13 @@ partial class Form1
         PerformLayout();
     }
 
-    private System.Windows.Forms.Label label4;
+    private System.Windows.Forms.GroupBox groupBox2;
+
+    private System.Windows.Forms.GroupBox groupBox4;
+
+    private System.Windows.Forms.GroupBox groupBox3;
+
+    private System.Windows.Forms.GroupBox groupBox1;
 
     private System.Windows.Forms.CheckBox checkBoxAddNumber;
 
@@ -384,12 +363,6 @@ partial class Form1
     private System.Windows.Forms.Button buttonChooseDestination;
 
     private System.Windows.Forms.TextBox textBoxDestinationPath;
-
-    private System.Windows.Forms.Label label3;
-
-    private System.Windows.Forms.Label label2;
-
-    private System.Windows.Forms.Label label1;
 
     private System.Windows.Forms.Button buttonUndoLast;
 
