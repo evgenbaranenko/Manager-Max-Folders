@@ -34,7 +34,13 @@ namespace Folders_Max_WinForm
             if (parentFolder == null)
                 throw new Exception("Невозможно определить родительскую папку.");
 
-            string rootFolder = CreateRootFolder(parentFolder, addDate, addNumber);
+            string rootFolder = CreateRootFolder(
+                destinationFolder,
+                sourceFolder,
+                addDate,
+                addNumber
+            );
+
 
             // 🔥 Создаём лог операции
             var log = new BatchOperationLog
@@ -72,12 +78,7 @@ namespace Folders_Max_WinForm
             // 🔥 Сохраняем лог
             
             BatchHistoryManager.SaveOperation(log, rootFolder);
-           // string logPath = Path.Combine(rootFolder, ".undo.json");
-          
-           // var json = System.Text.Json.JsonSerializer.Serialize(log);
-
-           // File.WriteAllText(logPath, json);
-
+            
             return rootFolder;
         }
         
@@ -121,25 +122,29 @@ namespace Folders_Max_WinForm
         }
 
         private static string CreateRootFolder(
-            string parentFolder,
+            string destinationFolder,
+            string sourceFolder,
             bool addDate,
             bool addNumber)
         {
-            string baseName = "Maps By Maps";
+            string sourceFolderName = new DirectoryInfo(sourceFolder).Name;
+
+            string baseName = $"{sourceFolderName} - Maps By Maps";
 
             string folderName = NameGenerator.GenerateFinalName(
-                parentFolder,
+                destinationFolder,
                 baseName,
                 addNumber,
                 addDate
             );
 
-            string fullPath = Path.Combine(parentFolder, folderName);
+            string fullPath = Path.Combine(destinationFolder, folderName);
 
             Directory.CreateDirectory(fullPath);
 
             return fullPath;
         }
+
 
     }
 }
