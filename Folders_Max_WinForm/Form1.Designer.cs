@@ -46,7 +46,7 @@ partial class Form1
         checkBoxDesign = new System.Windows.Forms.CheckBox();
         checkBoxCreateShortcut = new System.Windows.Forms.CheckBox();
         buttonCoronaBatchOrganizerMapsByCamera = new System.Windows.Forms.Button();
-        button1 = new System.Windows.Forms.Button();
+        buttonCoronaBatchOrganizerMapsByMaps = new System.Windows.Forms.Button();
         buttonUndoLast = new System.Windows.Forms.Button();
         textBoxDestinationPath = new System.Windows.Forms.TextBox();
         buttonChooseDestination = new System.Windows.Forms.Button();
@@ -57,6 +57,7 @@ partial class Form1
         groupBox3 = new System.Windows.Forms.GroupBox();
         groupBox4 = new System.Windows.Forms.GroupBox();
         groupBox2 = new System.Windows.Forms.GroupBox();
+        toolTip1 = new System.Windows.Forms.ToolTip(components);
         ((System.ComponentModel.ISupportInitialize)bindingSource1).BeginInit();
         ((System.ComponentModel.ISupportInitialize)bindingSource2).BeginInit();
         SuspendLayout();
@@ -189,19 +190,20 @@ partial class Form1
         buttonCoronaBatchOrganizerMapsByCamera.Size = new System.Drawing.Size(142, 45);
         buttonCoronaBatchOrganizerMapsByCamera.TabIndex = 10;
         buttonCoronaBatchOrganizerMapsByCamera.Text = "Organize render maps by camera";
+        toolTip1.SetToolTip(buttonCoronaBatchOrganizerMapsByCamera, ("Собирает все карты корона рендер для каждого ракурса в отдельные папки\r\n1. Выбира" + "ем \"Path\" - путь где лежат все карты после сохранения/батч рендер\r\n2. "));
         buttonCoronaBatchOrganizerMapsByCamera.UseVisualStyleBackColor = false;
         buttonCoronaBatchOrganizerMapsByCamera.Click += ButtonCoronaBatchOrganizerMapsByCamera_Click;
         // 
-        // button1
+        // buttonCoronaBatchOrganizerMapsByMaps
         // 
-        button1.BackColor = System.Drawing.Color.DarkGray;
-        button1.Location = new System.Drawing.Point(467, 30);
-        button1.Name = "button1";
-        button1.Size = new System.Drawing.Size(142, 45);
-        button1.TabIndex = 11;
-        button1.Text = "Organize render maps by maps";
-        button1.UseVisualStyleBackColor = false;
-        button1.Click += ButtonCoronaBatchOrganizerMapsByMaps_Click;
+        buttonCoronaBatchOrganizerMapsByMaps.BackColor = System.Drawing.Color.DarkGray;
+        buttonCoronaBatchOrganizerMapsByMaps.Location = new System.Drawing.Point(467, 30);
+        buttonCoronaBatchOrganizerMapsByMaps.Name = "buttonCoronaBatchOrganizerMapsByMaps";
+        buttonCoronaBatchOrganizerMapsByMaps.Size = new System.Drawing.Size(142, 45);
+        buttonCoronaBatchOrganizerMapsByMaps.TabIndex = 11;
+        buttonCoronaBatchOrganizerMapsByMaps.Text = "Organize render maps by maps";
+        buttonCoronaBatchOrganizerMapsByMaps.UseVisualStyleBackColor = false;
+        buttonCoronaBatchOrganizerMapsByMaps.Click += ButtonCoronaBatchOrganizerMapsByMaps_Click;
         // 
         // buttonUndoLast
         // 
@@ -307,13 +309,18 @@ partial class Form1
         groupBox2.TabStop = false;
         groupBox2.Text = "ORGANIZE CORONA MAPS";
         // 
+        // toolTip1
+        // 
+        toolTip1.AutomaticDelay = 1000;
+        toolTip1.Popup += toolTip1_Popup;
+        // 
         // Form1
         // 
         AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
         AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
         BackColor = System.Drawing.Color.DarkGray;
         BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-        ClientSize = new System.Drawing.Size(627, 334);
+        ClientSize = new System.Drawing.Size(627, 558);
         Controls.Add(textBoxProjectName);
         Controls.Add(textBoxClient);
         Controls.Add(checkBoxAddNumber);
@@ -322,7 +329,7 @@ partial class Form1
         Controls.Add(buttonChooseDestination);
         Controls.Add(textBoxDestinationPath);
         Controls.Add(buttonUndoLast);
-        Controls.Add(button1);
+        Controls.Add(buttonCoronaBatchOrganizerMapsByMaps);
         Controls.Add(buttonCoronaBatchOrganizerMapsByCamera);
         Controls.Add(checkBoxCreateShortcut);
         Controls.Add(checkBoxDesign);
@@ -346,6 +353,8 @@ partial class Form1
         PerformLayout();
     }
 
+    private System.Windows.Forms.ToolTip toolTip1;
+
     private System.Windows.Forms.GroupBox groupBox2;
 
     private System.Windows.Forms.GroupBox groupBox4;
@@ -366,7 +375,7 @@ partial class Form1
 
     private System.Windows.Forms.Button buttonUndoLast;
 
-    private System.Windows.Forms.Button button1;
+    private System.Windows.Forms.Button buttonCoronaBatchOrganizerMapsByMaps;
 
     private System.Windows.Forms.Button buttonCoronaBatchOrganizerMapsByCamera;
 
