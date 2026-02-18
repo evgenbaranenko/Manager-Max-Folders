@@ -6,7 +6,11 @@ namespace Folders_Max_WinForm
 {
     public class CoronaBatchOrganizerMapsByCamera
     {
-        public static string Organize(string sourceFolder, bool addDate, bool addNumber)
+        public static string Organize(
+            string sourceFolder,
+            string destinationFolder,
+            bool addDate,
+            bool addNumber)
 {
     if (!Directory.Exists(sourceFolder))
         throw new Exception("Папка не существует");
@@ -24,7 +28,7 @@ namespace Folders_Max_WinForm
         throw new Exception("Нет файлов подходящих для сортировки.");
 
     // Создаём корневую папку НА УРОВЕНЬ ВЫШЕ
-    string parentFolder = Directory.GetParent(sourceFolder)?.FullName;
+    string parentFolder = destinationFolder;
 
     if (parentFolder == null)
         throw new Exception("Невозможно определить родительскую папку.");
