@@ -6,6 +6,7 @@ namespace Folders_Max_WinForm
         {
             InitializeComponent();
         }
+
         private void ButtonChoosePath_Click(object sender, EventArgs e)
         {
             using (FolderBrowserDialog dialog = new FolderBrowserDialog())
@@ -19,7 +20,7 @@ namespace Folders_Max_WinForm
                 }
             }
         }
-        
+
         private void ButtonCreateMaxFolders(object sender, EventArgs e)
         {
             if (!GetWorkingPath(out var basePath)) return;
@@ -48,8 +49,6 @@ namespace Folders_Max_WinForm
             }
             else
             {
-                
-             
                 string finalName = NameGenerator.GenerateFinalName(
                     basePath,
                     nameWithoutNumber,
@@ -70,12 +69,13 @@ namespace Folders_Max_WinForm
             }
 
             MessageBox.Show("VIZ структура создана / обновлена успешно!");
-            
+
             if (checkBoxCreateShortcut.Checked)
             {
                 CreateDesktopShortcut(projectFolder);
             }
         }
+
         private void ButtonCreateFullProject_Click(object sender, EventArgs e)
         {
             if (!GetWorkingPath(out var basePath)) return;
@@ -133,12 +133,13 @@ namespace Folders_Max_WinForm
             }
 
             MessageBox.Show("Структура проекта обновлена / создана успешно!");
-            
+
             if (checkBoxCreateShortcut.Checked)
             {
                 CreateDesktopShortcut(projectFolder);
             }
         }
+
         private void ButtonCoronaBatchOrganizerMapsByCamera_Click(object sender, EventArgs e)
         {
             if (InputPath(out var sourcePath)) return;
@@ -188,6 +189,7 @@ namespace Folders_Max_WinForm
                 MessageBox.Show(ex.Message);
             }
         }
+
         private void ButtonCoronaBatchOrganizerMapsByMaps_Click(object sender, EventArgs e)
         {
             if (InputPath(out var sourcePath)) return;
@@ -235,6 +237,7 @@ namespace Folders_Max_WinForm
                 MessageBox.Show(ex.Message);
             }
         }
+
         private void ButtonUndoLast_Click(object sender, EventArgs e)
         {
             try
@@ -247,6 +250,7 @@ namespace Folders_Max_WinForm
                 MessageBox.Show(ex.Message);
             }
         }
+
         private void ButtonCopyTemplate_Click(object sender, EventArgs e)
         {
             string templatePath = textBoxPath.Text.Trim();
@@ -308,6 +312,7 @@ namespace Folders_Max_WinForm
                 MessageBox.Show(ex.Message);
             }
         }
+
         private void ButtonChooseDestination_Click(object sender, EventArgs e)
         {
             using (FolderBrowserDialog dialog = new FolderBrowserDialog())
@@ -320,6 +325,7 @@ namespace Folders_Max_WinForm
                 }
             }
         }
+
         private bool GetWorkingPath(out string path)
         {
             string destination = textBoxDestinationPath.Text.Trim();
@@ -355,6 +361,7 @@ namespace Folders_Max_WinForm
             path = null;
             return false;
         }
+
         private string GetProjectTypeTag(bool isVizButton = false)
         {
             if (isVizButton)
@@ -371,6 +378,7 @@ namespace Folders_Max_WinForm
 
             return "";
         }
+
         private string FindExistingProject(string basePath, string nameWithoutNumber)
         {
             var directories = Directory.GetDirectories(basePath);
@@ -387,6 +395,7 @@ namespace Folders_Max_WinForm
 
             return null;
         }
+
         private bool CreateFullProjectStructure(string basePath)
         {
             bool createdSomething = false;
@@ -435,6 +444,7 @@ namespace Folders_Max_WinForm
 
             return createdSomething;
         }
+
         private bool SafeCreate(string path)
         {
             if (Directory.Exists(path))
@@ -443,6 +453,7 @@ namespace Folders_Max_WinForm
             Directory.CreateDirectory(path);
             return true;
         }
+
         private bool InputClient(out string clientName)
         {
             clientName = textBoxClient.Text.Trim();
@@ -464,6 +475,7 @@ namespace Folders_Max_WinForm
 
             return false;
         }
+
         private bool InputProjectName(out string projectName)
         {
             projectName = textBoxProjectName.Text.Trim();
@@ -486,6 +498,7 @@ namespace Folders_Max_WinForm
 
             return false;
         }
+
         private bool Create3dsMaxStructureFolders(string basePath)
         {
             bool createdSomething = false;
@@ -516,7 +529,9 @@ namespace Folders_Max_WinForm
 
             return createdSomething;
         }
-        private void CreateDirectory( string folder ) => Directory.CreateDirectory(folder);
+
+        private void CreateDirectory(string folder) => Directory.CreateDirectory(folder);
+
         private bool InputPath(out string basePath)
         {
             basePath = textBoxPath.Text.Trim();
@@ -528,23 +543,26 @@ namespace Folders_Max_WinForm
             }
 
             if (Directory.Exists(basePath)) return false;
-            
+
             MessageBox.Show("Такого пути не существует!", "Ошибка");
             return true;
         }
+
         private void TextBoxPathTextChanged(object sender, EventArgs e)
-        { 
+        {
             // throw new System.NotImplementedException();
         }
+
         private void CheckBoxAddDate_CheckedChanged(object sender, EventArgs e)
         {
             // throw new System.NotImplementedException();
         }
-        
+
         private void CheckBoxCreateShortcut_CheckedChanged(object sender, EventArgs e)
         {
             //throw new System.NotImplementedException();
         }
+
         private void CreateDesktopShortcut(string projectFolder)
         {
             string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
