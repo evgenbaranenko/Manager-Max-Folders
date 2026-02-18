@@ -8,7 +8,11 @@ namespace Folders_Max_WinForm
 {
     public class CoronaBatchOrganizerMapsByMaps
     {
-        public static string Organize(string sourceFolder, bool addDate, bool addNumber)
+        public static string Organize(
+            string sourceFolder,
+            string destinationFolder,
+            bool addDate,
+            bool addNumber)
         {
             if (!Directory.Exists(sourceFolder))
                 throw new Exception("Папка не существует");
@@ -25,7 +29,7 @@ namespace Folders_Max_WinForm
             if (!validFiles.Any())
                 throw new Exception("Нет файлов подходящих под формат 00_Name0000.");
 
-            string parentFolder = Directory.GetParent(sourceFolder)?.FullName;
+            string parentFolder = destinationFolder;
 
             if (parentFolder == null)
                 throw new Exception("Невозможно определить родительскую папку.");

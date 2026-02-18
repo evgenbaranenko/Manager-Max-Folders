@@ -141,13 +141,39 @@ namespace Folders_Max_WinForm
         }
         private void ButtonCoronaBatchOrganizerMapsByCamera_Click(object sender, EventArgs e)
         {
-            if (!GetWorkingPath(out var path)) return;
+            if (InputPath(out var sourcePath)) return;
+
+            string destinationPath;
+
+            // Если указан destination — используем его
+            if (!string.IsNullOrWhiteSpace(textBoxDestinationPath.Text))
+            {
+                destinationPath = textBoxDestinationPath.Text.Trim();
+
+                if (!Directory.Exists(destinationPath))
+                {
+                    MessageBox.Show("Путь назначения не существует.");
+                    return;
+                }
+            }
+            else
+            {
+                // иначе сохраняем на уровень выше
+                destinationPath = Directory.GetParent(sourcePath)?.FullName;
+
+                if (destinationPath == null)
+                {
+                    MessageBox.Show("Невозможно определить родительскую папку.");
+                    return;
+                }
+            }
 
             try
             {
                 string createdFolder =
                     CoronaBatchOrganizerMapsByCamera.Organize(
-                        path,
+                        sourcePath,
+                        destinationPath,
                         checkBoxAddDate.Checked,
                         checkBoxAddNumber.Checked
                     );
@@ -164,16 +190,41 @@ namespace Folders_Max_WinForm
         }
         private void ButtonCoronaBatchOrganizerMapsByMaps_Click(object sender, EventArgs e)
         {
-            if (!GetWorkingPath(out var path)) return;
+            if (InputPath(out var sourcePath)) return;
+
+            string destinationPath;
+
+            if (!string.IsNullOrWhiteSpace(textBoxDestinationPath.Text))
+            {
+                destinationPath = textBoxDestinationPath.Text.Trim();
+
+                if (!Directory.Exists(destinationPath))
+                {
+                    MessageBox.Show("Путь назначения не существует.");
+                    return;
+                }
+            }
+            else
+            {
+                destinationPath = Directory.GetParent(sourcePath)?.FullName;
+
+                if (destinationPath == null)
+                {
+                    MessageBox.Show("Невозможно определить родительскую папку.");
+                    return;
+                }
+            }
 
             try
             {
                 string createdFolder =
                     CoronaBatchOrganizerMapsByMaps.Organize(
-                        path,
+                        sourcePath,
+                        destinationPath,
                         checkBoxAddDate.Checked,
                         checkBoxAddNumber.Checked
                     );
+
                 if (checkBoxCreateShortcut.Checked)
                     CreateDesktopShortcut(createdFolder);
 
