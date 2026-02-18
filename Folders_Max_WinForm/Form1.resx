@@ -58,8 +58,39 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <metadata name="button3dsMaxStructureFolders.Locked" type="System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">
+    <value>True</value>
+  </metadata>
+  <metadata name="myStrFld_03.TrayLocation" type="System.Drawing.Point, System.Drawing.Primitives, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>239, 85</value>
+  </metadata>
+  <data name="button3dsMaxStructureFolders.ToolTip" xml:space="preserve">
+    <value>Моя сборка структуры файлов:
+создает структуру файлов для визуализации
+
+1. Ввести имя\название заказчика
+2. Ввести имя\название проекта
+3. Выбрать путь куда сохранить - Path или Path to save
+
+Add number - добавляет в начале нумерацию проекта 
+Date - добавляет дату проекта в конце 
+Link desktop - добавляет ярлык на рабочем столе 
+</value>
+  </data>
+  <metadata name="textBoxPath.Locked" type="System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">
+    <value>True</value>
+  </metadata>
+  <metadata name="buttonChoosePath.Locked" type="System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">
+    <value>True</value>
+  </metadata>
   <metadata name="bindingSource1.TrayLocation" type="System.Drawing.Point, System.Drawing.Primitives, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
+  </metadata>
+  <metadata name="textBoxProjectName.Locked" type="System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">
+    <value>True</value>
+  </metadata>
+  <metadata name="myStrFld_02.TrayLocation" type="System.Drawing.Point, System.Drawing.Primitives, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>136, 84</value>
   </metadata>
   <metadata name="bindingSource2.TrayLocation" type="System.Drawing.Point, System.Drawing.Primitives, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>154, 17</value>
@@ -70,8 +101,137 @@
   <metadata name="fontDialog2.TrayLocation" type="System.Drawing.Point, System.Drawing.Primitives, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>407, 17</value>
   </metadata>
-  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing.Primitives, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>523, 17</value>
+  <metadata name="buttonCreateFullProject.Locked" type="System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">
+    <value>True</value>
+  </metadata>
+  <metadata name="myStrFld_04.TrayLocation" type="System.Drawing.Point, System.Drawing.Primitives, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>341, 86</value>
+  </metadata>
+  <data name="buttonCreateFullProject.ToolTip" xml:space="preserve">
+    <value>Моя сборка структуры файлов:
+создает структуру файлов для экстерьера и/или интерьера
+в зависимости от нажатых чекбоксов
+
+1. Ввести имя\название заказчика
+2. Ввести имя\название проекта
+3. Выбрать путь куда сохранить - Path или Path to save
+
+Add number - добавляет в начале нумерацию проекта 
+Date - добавляет дату проекта в конце 
+Link desktop - добавляет ярлык на рабочем столе 
+</value>
+  </data>
+  <metadata name="checkBoxAddDate.Locked" type="System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">
+    <value>True</value>
+  </metadata>
+  <metadata name="textBoxClient.Locked" type="System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">
+    <value>True</value>
+  </metadata>
+  <metadata name="myStrFld_01.TrayLocation" type="System.Drawing.Point, System.Drawing.Primitives, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>32, 87</value>
+  </metadata>
+  <metadata name="checkBoxArchitecture.Locked" type="System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">
+    <value>True</value>
+  </metadata>
+  <metadata name="checkBoxDesign.Locked" type="System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">
+    <value>True</value>
+  </metadata>
+  <metadata name="checkBoxCreateShortcut.Locked" type="System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">
+    <value>True</value>
+  </metadata>
+  <metadata name="buttonCoronaBatchOrganizerMapsByCamera.Locked" type="System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">
+    <value>True</value>
+  </metadata>
+  <metadata name="organizeCoronaMap_01.TrayLocation" type="System.Drawing.Point, System.Drawing.Primitives, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>30, 45</value>
+  </metadata>
+  <data name="buttonCoronaBatchOrganizerMapsByCamera.ToolTip" xml:space="preserve">
+    <value>Собирает все карты корона рендер для каждого ракурса в отдельные папки
+с нумерацией ракурсов
+
+1. Выбрать "Path" - путь где лежат все карты после сохранения/батч рендера
+2. Выбрать "Path to save" - путь где сохраняються все отсортированные папки
+    Если не выбран "Path to save", то папки сохраняються на уровень выше
+    от указанного пути в "Path" 
+
+Add number - добавляет в начале нумерацию проекта 
+Date - добавляет дату проекта в конце 
+Link desktop - добавляет ярлык на рабочем столе 
+</value>
+  </data>
+  <metadata name="buttonCoronaBatchOrganizerMapsByMaps.Locked" type="System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">
+    <value>True</value>
+  </metadata>
+  <metadata name="organizeCoronaMap_03.TrayLocation" type="System.Drawing.Point, System.Drawing.Primitives, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>362, 50</value>
+  </metadata>
+  <data name="buttonCoronaBatchOrganizerMapsByMaps.ToolTip" xml:space="preserve">
+    <value>Собирает все карты корона рендер для каждого карты 
+в отдельные папки с названием этих карт
+
+1. Выбрать "Path" - путь где лежат все карты после сохранения/батч рендера
+2. Выбрать "Path to save" - путь где сохраняються все отсортированные папки
+    Если не выбран "Path to save", то папки сохраняються на уровень выше
+    от указанного пути в "Path" 
+
+Add number - добавляет в начале нумерацию проекта 
+Date - добавляет дату проекта в конце 
+Link desktop - добавляет ярлык на рабочем столе </value>
+  </data>
+  <metadata name="buttonUndoLast.Locked" type="System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">
+    <value>True</value>
+  </metadata>
+  <metadata name="organizeCoronaMap_02.TrayLocation" type="System.Drawing.Point, System.Drawing.Primitives, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>198, 48</value>
+  </metadata>
+  <metadata name="textBoxDestinationPath.Locked" type="System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">
+    <value>True</value>
+  </metadata>
+  <metadata name="buttonChooseDestination.Locked" type="System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">
+    <value>True</value>
+  </metadata>
+  <metadata name="buttonCopyTemplate.Locked" type="System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">
+    <value>True</value>
+  </metadata>
+  <metadata name="copyFldStr_02.TrayLocation" type="System.Drawing.Point, System.Drawing.Primitives, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>170, 116</value>
+  </metadata>
+  <data name="buttonCopyTemplate.ToolTip" xml:space="preserve">
+    <value>Любая структура файлов:
+1. Ввести имя/название проекта
+2. Выбрать путь в "Path" - откуда взять структуру проекта
+3. Выбрать путь в "Path to save" - куда скопировать новую структуру проекта
+
+Add number - добавляет в начале нумерацию проекта 
+Date - добавляет дату проекта в конце 
+Link desktop - добавляет ярлык на рабочем столе </value>
+  </data>
+  <metadata name="textBoxNewProjectName.Locked" type="System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">
+    <value>True</value>
+  </metadata>
+  <metadata name="copyFldStr_01.TrayLocation" type="System.Drawing.Point, System.Drawing.Primitives, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>42, 116</value>
+  </metadata>
+  <metadata name="checkBoxAddNumber.Locked" type="System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">
+    <value>True</value>
+  </metadata>
+  <metadata name="groupBox1.Locked" type="System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">
+    <value>True</value>
+  </metadata>
+  <metadata name="groupBox3.Locked" type="System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">
+    <value>True</value>
+  </metadata>
+  <metadata name="groupBox4.Locked" type="System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">
+    <value>True</value>
+  </metadata>
+  <metadata name="groupBox2.Locked" type="System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">
+    <value>True</value>
+  </metadata>
+  <metadata name="$this.Locked" type="System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">
+    <value>True</value>
+  </metadata>
+  <metadata name="$this.TrayHeight" type="System.Int32, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">
+    <value>174</value>
   </metadata>
   <assembly alias="System.Drawing.Common" name="System.Drawing.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51" />
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing.Common" mimetype="application/x-microsoft.net.object.bytearray.base64">

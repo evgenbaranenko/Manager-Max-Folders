@@ -57,7 +57,15 @@ partial class Form1
         groupBox3 = new System.Windows.Forms.GroupBox();
         groupBox4 = new System.Windows.Forms.GroupBox();
         groupBox2 = new System.Windows.Forms.GroupBox();
-        toolTip1 = new System.Windows.Forms.ToolTip(components);
+        organizeCoronaMap_01 = new System.Windows.Forms.ToolTip(components);
+        organizeCoronaMap_03 = new System.Windows.Forms.ToolTip(components);
+        organizeCoronaMap_02 = new System.Windows.Forms.ToolTip(components);
+        myStrFld_01 = new System.Windows.Forms.ToolTip(components);
+        myStrFld_02 = new System.Windows.Forms.ToolTip(components);
+        myStrFld_03 = new System.Windows.Forms.ToolTip(components);
+        myStrFld_04 = new System.Windows.Forms.ToolTip(components);
+        copyFldStr_01 = new System.Windows.Forms.ToolTip(components);
+        copyFldStr_02 = new System.Windows.Forms.ToolTip(components);
         ((System.ComponentModel.ISupportInitialize)bindingSource1).BeginInit();
         ((System.ComponentModel.ISupportInitialize)bindingSource2).BeginInit();
         SuspendLayout();
@@ -71,6 +79,7 @@ partial class Form1
         button3dsMaxStructureFolders.Size = new System.Drawing.Size(142, 45);
         button3dsMaxStructureFolders.TabIndex = 0;
         button3dsMaxStructureFolders.Text = "Create 3dsMax structure folders";
+        myStrFld_03.SetToolTip(button3dsMaxStructureFolders, resources.GetString("button3dsMaxStructureFolders.ToolTip"));
         button3dsMaxStructureFolders.UseVisualStyleBackColor = false;
         button3dsMaxStructureFolders.Click += ButtonCreateMaxFolders;
         // 
@@ -112,6 +121,7 @@ partial class Form1
         textBoxProjectName.Size = new System.Drawing.Size(143, 23);
         textBoxProjectName.TabIndex = 3;
         textBoxProjectName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+        myStrFld_02.SetToolTip(textBoxProjectName, "Моя сборка структуры файлов:\r\n- имя/название проекта");
         // 
         // bindingSource2
         // 
@@ -126,6 +136,7 @@ partial class Form1
         buttonCreateFullProject.Size = new System.Drawing.Size(143, 45);
         buttonCreateFullProject.TabIndex = 4;
         buttonCreateFullProject.Text = "Create ARCH\\INT structure folders";
+        myStrFld_04.SetToolTip(buttonCreateFullProject, resources.GetString("buttonCreateFullProject.ToolTip"));
         buttonCreateFullProject.UseVisualStyleBackColor = false;
         buttonCreateFullProject.Click += ButtonCreateFullProject_Click;
         // 
@@ -151,6 +162,7 @@ partial class Form1
         textBoxClient.Size = new System.Drawing.Size(141, 23);
         textBoxClient.TabIndex = 6;
         textBoxClient.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+        myStrFld_01.SetToolTip(textBoxClient, "Моя сборка структуры файлов:\r\n- имя/название заказчика");
         // 
         // checkBoxArchitecture
         // 
@@ -190,7 +202,7 @@ partial class Form1
         buttonCoronaBatchOrganizerMapsByCamera.Size = new System.Drawing.Size(142, 45);
         buttonCoronaBatchOrganizerMapsByCamera.TabIndex = 10;
         buttonCoronaBatchOrganizerMapsByCamera.Text = "Organize render maps by camera";
-        toolTip1.SetToolTip(buttonCoronaBatchOrganizerMapsByCamera, ("Собирает все карты корона рендер для каждого ракурса в отдельные папки\r\n1. Выбира" + "ем \"Path\" - путь где лежат все карты после сохранения/батч рендер\r\n2. "));
+        organizeCoronaMap_01.SetToolTip(buttonCoronaBatchOrganizerMapsByCamera, resources.GetString("buttonCoronaBatchOrganizerMapsByCamera.ToolTip"));
         buttonCoronaBatchOrganizerMapsByCamera.UseVisualStyleBackColor = false;
         buttonCoronaBatchOrganizerMapsByCamera.Click += ButtonCoronaBatchOrganizerMapsByCamera_Click;
         // 
@@ -202,6 +214,7 @@ partial class Form1
         buttonCoronaBatchOrganizerMapsByMaps.Size = new System.Drawing.Size(142, 45);
         buttonCoronaBatchOrganizerMapsByMaps.TabIndex = 11;
         buttonCoronaBatchOrganizerMapsByMaps.Text = "Organize render maps by maps";
+        organizeCoronaMap_03.SetToolTip(buttonCoronaBatchOrganizerMapsByMaps, resources.GetString("buttonCoronaBatchOrganizerMapsByMaps.ToolTip"));
         buttonCoronaBatchOrganizerMapsByMaps.UseVisualStyleBackColor = false;
         buttonCoronaBatchOrganizerMapsByMaps.Click += ButtonCoronaBatchOrganizerMapsByMaps_Click;
         // 
@@ -213,6 +226,7 @@ partial class Form1
         buttonUndoLast.Size = new System.Drawing.Size(290, 25);
         buttonUndoLast.TabIndex = 13;
         buttonUndoLast.Text = "Undo last sort operation";
+        organizeCoronaMap_02.SetToolTip(buttonUndoLast, "Возвращает все отсортированные файлы в исходную папку");
         buttonUndoLast.UseVisualStyleBackColor = false;
         buttonUndoLast.Click += ButtonUndoLast_Click;
         // 
@@ -244,6 +258,7 @@ partial class Form1
         buttonCopyTemplate.Size = new System.Drawing.Size(290, 45);
         buttonCopyTemplate.TabIndex = 19;
         buttonCopyTemplate.Text = "Create work folder structure";
+        copyFldStr_02.SetToolTip(buttonCopyTemplate, resources.GetString("buttonCopyTemplate.ToolTip"));
         buttonCopyTemplate.UseVisualStyleBackColor = false;
         buttonCopyTemplate.Click += ButtonCopyTemplate_Click;
         // 
@@ -255,6 +270,7 @@ partial class Form1
         textBoxNewProjectName.Size = new System.Drawing.Size(290, 23);
         textBoxNewProjectName.TabIndex = 20;
         textBoxNewProjectName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+        copyFldStr_01.SetToolTip(textBoxNewProjectName, "Любая структура файлов:\r\n- имя\\название проекта\r\n");
         // 
         // checkBoxAddNumber
         // 
@@ -309,10 +325,27 @@ partial class Form1
         groupBox2.TabStop = false;
         groupBox2.Text = "ORGANIZE CORONA MAPS";
         // 
-        // toolTip1
+        // organizeCoronaMap_01
         // 
-        toolTip1.AutomaticDelay = 1000;
-        toolTip1.Popup += toolTip1_Popup;
+        organizeCoronaMap_01.AutomaticDelay = 1500;
+        organizeCoronaMap_01.Popup += toolTip1_Popup;
+        // 
+        // organizeCoronaMap_03
+        // 
+        organizeCoronaMap_03.AutomaticDelay = 1500;
+        organizeCoronaMap_03.Popup += organizeCoronaMap_03_Popup;
+        // 
+        // organizeCoronaMap_02
+        // 
+        organizeCoronaMap_02.AutomaticDelay = 1500;
+        // 
+        // myStrFld_01
+        // 
+        myStrFld_01.AutomaticDelay = 1500;
+        // 
+        // myStrFld_04
+        // 
+        myStrFld_04.AutomaticDelay = 1500;
         // 
         // Form1
         // 
@@ -320,7 +353,7 @@ partial class Form1
         AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
         BackColor = System.Drawing.Color.DarkGray;
         BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-        ClientSize = new System.Drawing.Size(627, 558);
+        ClientSize = new System.Drawing.Size(627, 334);
         Controls.Add(textBoxProjectName);
         Controls.Add(textBoxClient);
         Controls.Add(checkBoxAddNumber);
@@ -343,6 +376,7 @@ partial class Form1
         Controls.Add(groupBox2);
         Controls.Add(groupBox3);
         Controls.Add(groupBox4);
+        FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
         Icon = ((System.Drawing.Icon)resources.GetObject("$this.Icon"));
         Location = new System.Drawing.Point(15, 15);
         StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -353,7 +387,25 @@ partial class Form1
         PerformLayout();
     }
 
-    private System.Windows.Forms.ToolTip toolTip1;
+    private System.Windows.Forms.ToolTip copyFldStr_02;
+
+    private System.Windows.Forms.ToolTip copyFldStr_01;
+
+    private System.Windows.Forms.ToolTip organizeCoronaMap_03;
+
+    private System.Windows.Forms.ToolTip myStrFld_04;
+
+    private System.Windows.Forms.ToolTip myStrFld_03;
+
+    private System.Windows.Forms.ToolTip myStrFld_02;
+
+    private System.Windows.Forms.ToolTip myStrFld_01;
+
+    private System.Windows.Forms.ToolTip organizeCoronaMap_02;
+
+    private System.Windows.Forms.ToolTip toolTip2;
+
+    private System.Windows.Forms.ToolTip organizeCoronaMap_01;
 
     private System.Windows.Forms.GroupBox groupBox2;
 

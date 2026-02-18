@@ -259,15 +259,16 @@ namespace Folders_Max_WinForm
 
             if (string.IsNullOrWhiteSpace(templatePath))
             {
-                MessageBox.Show("Выберите папку шаблона.");
+                MessageBox.Show("Выберите папку шаблона! \nНужно указать путь в \"Path\"");
                 return;
             }
 
             if (string.IsNullOrWhiteSpace(destinationPath))
             {
-                MessageBox.Show("Выберите папку назначения.");
+                MessageBox.Show("Выберите папку назначения! \nНужно указать путь в \"Path to save\"");
                 return;
             }
+
 
             if (string.IsNullOrWhiteSpace(newProjectName))
             {
@@ -357,7 +358,7 @@ namespace Folders_Max_WinForm
                 return true;
             }
 
-            MessageBox.Show("Выберите путь.");
+            MessageBox.Show("Выберите путь! \nНужно указать путь в \"Path\"");
             path = null;
             return false;
         }
@@ -538,7 +539,7 @@ namespace Folders_Max_WinForm
 
             if (string.IsNullOrWhiteSpace(basePath))
             {
-                MessageBox.Show("Укажите путь для создания папок!", "Ошибка");
+                MessageBox.Show("Выберите путь! \nНужно указать путь в \"Path\"", "Ошибка");
                 return true;
             }
 
@@ -608,6 +609,11 @@ namespace Folders_Max_WinForm
         }
 
         private void toolTip1_Popup(object sender, PopupEventArgs e)
+        {
+            // throw new System.NotImplementedException();
+        }
+
+        private void organizeCoronaMap_03_Popup(object sender, PopupEventArgs e)
         {
             // throw new System.NotImplementedException();
         }
