@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
-using System.Text.Json;
+using System.Text.RegularExpressions;
 
 namespace Folders_Max_WinForm
 {
@@ -21,14 +21,6 @@ namespace Folders_Max_WinForm
             if (files.Length == 0)
                 throw new Exception("В папке нет файлов для обработки.");
 
-            bool hasValidFiles = files.Any(f =>
-                Path.GetFileName(f).Contains("Interactive LightMix") ||
-                GetPrefixNumber(Path.GetFileName(f)) != null);
-
-            if (!hasValidFiles)
-                throw new Exception("Нет файлов подходящих для сортировки.");
-
-
             string rootFolder = CreateRootFolder(
                 destinationFolder,
                 sourceFolder,
@@ -36,7 +28,6 @@ namespace Folders_Max_WinForm
                 addNumber
             );
 
-            // 🔥 Создаём лог операции
             var log = new BatchOperationLog
             {
                 OriginalFolder = sourceFolder
@@ -45,21 +36,20 @@ namespace Folders_Max_WinForm
             foreach (var file in files)
             {
                 string fileName = Path.GetFileName(file);
-
                 string targetPath = null;
 
-                // 1️⃣ LightMix остаётся в корне
-                if (fileName.Contains("Interactive LightMix"))
+                // 🔹 1. LightMix ВСЕГДА в корень новой папки
+                if (fileName.Contains("LightMix", StringComparison.OrdinalIgnoreCase))
                 {
                     targetPath = Path.Combine(rootFolder, fileName);
                 }
                 else
                 {
-                    string prefix = GetPrefixNumber(fileName);
+                    string cameraNumber = ExtractCameraNumber(fileName);
 
-                    if (prefix != null)
+                    if (cameraNumber != null)
                     {
-                        string targetFolder = Path.Combine(rootFolder, prefix);
+                        string targetFolder = Path.Combine(rootFolder, cameraNumber);
 
                         if (!Directory.Exists(targetFolder))
                             Directory.CreateDirectory(targetFolder);
@@ -70,10 +60,11 @@ namespace Folders_Max_WinForm
 
                 if (targetPath == null)
                     continue;
+
+                if (!File.Exists(targetPath))
                 {
                     File.Move(file, targetPath);
 
-                    // 🔥 Логируем перемещение
                     log.Files.Add(new FileMoveInfo
                     {
                         Source = file,
@@ -85,6 +76,64 @@ namespace Folders_Max_WinForm
             BatchHistoryManager.SaveOperation(log, rootFolder);
 
             return rootFolder;
+        }
+
+
+
+        private static string ExtractCameraKey(string fileName)
+        {
+            if (fileName.StartsWith("SCV_", StringComparison.OrdinalIgnoreCase))
+            {
+                var parts = fileName.Split('_');
+                if (parts.Length >= 2)
+                    return parts[0] + "_" + parts[1];
+            }
+
+            var match = System.Text.RegularExpressions.Regex.Match(fileName, @"^(\d{2})_");
+            if (match.Success)
+                return match.Groups[1].Value;
+
+            return null;
+        }
+        // 🔥 Универсальный парсер камеры
+        private static string GetCameraNumber(string fileName)
+        {
+            /*
+             Поддерживает:
+             SCV_010
+             SCV_010_***
+             SCV_010000
+             любые дополнительные префиксы
+            */
+
+            var match = Regex.Match(fileName, @"SCV_(\d{3})");
+
+            if (match.Success)
+                return match.Groups[1].Value;
+
+            return null;
+        }
+        private static string ExtractCameraNumber(string fileName)
+        {
+            string name = Path.GetFileNameWithoutExtension(fileName);
+
+            // 🔹 Новый формат SCV_01_...
+            if (name.StartsWith("SCV_", StringComparison.OrdinalIgnoreCase))
+            {
+                var parts = name.Split('_');
+                if (parts.Length > 1 && int.TryParse(parts[1], out int scvNum))
+                    return scvNum.ToString("D2");
+            }
+
+            // 🔹 Старый формат 01_...
+            if (name.Length >= 2 && int.TryParse(name.Substring(0, 2), out int oldNum))
+                return oldNum.ToString("D2");
+
+            // 🔹 Формат 010000
+            if (name.Length >= 2 && int.TryParse(name.Substring(0, 2), out int numericOnly))
+                return numericOnly.ToString("D2");
+
+            return null;
         }
 
         private static string CreateRootFolder(
@@ -112,16 +161,6 @@ namespace Folders_Max_WinForm
             Directory.CreateDirectory(fullPath);
 
             return fullPath;
-        }
-
-        private static string GetPrefixNumber(string fileName)
-        {
-            if (fileName.Length < 2)
-                return null;
-
-            string firstTwo = fileName.Substring(0, 2);
-
-            return int.TryParse(firstTwo, out _) ? firstTwo : null;
         }
     }
 }

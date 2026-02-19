@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
-using System.Text.Json;
 using System.Text.RegularExpressions;
 
 namespace Folders_Max_WinForm
@@ -22,18 +21,6 @@ namespace Folders_Max_WinForm
             if (files.Length == 0)
                 throw new Exception("В папке нет файлов для сортировки.");
 
-            var validFiles = files
-                .Where(f => TryGetFolderName(Path.GetFileName(f), out _))
-                .ToList();
-
-            if (!validFiles.Any())
-                throw new Exception("Нет файлов подходящих под формат 00_Name0000.");
-
-            string parentFolder = destinationFolder;
-
-            if (parentFolder == null)
-                throw new Exception("Невозможно определить родительскую папку.");
-
             string rootFolder = CreateRootFolder(
                 destinationFolder,
                 sourceFolder,
@@ -41,21 +28,21 @@ namespace Folders_Max_WinForm
                 addNumber
             );
 
-
-            // 🔥 Создаём лог операции
             var log = new BatchOperationLog
             {
                 OriginalFolder = sourceFolder
             };
 
-            foreach (var file in validFiles)
+            foreach (var file in files)
             {
                 string fileName = Path.GetFileName(file);
 
-                if (!TryGetFolderName(fileName, out string folderName))
+                string folderKey = GetFolderKey(fileName);
+
+                if (folderKey == null)
                     continue;
 
-                string targetFolder = Path.Combine(rootFolder, folderName);
+                string targetFolder = Path.Combine(rootFolder, folderKey);
 
                 if (!Directory.Exists(targetFolder))
                     Directory.CreateDirectory(targetFolder);
@@ -66,7 +53,6 @@ namespace Folders_Max_WinForm
                 {
                     File.Move(file, targetPath);
 
-                    // 🔥 Логируем перемещение
                     log.Files.Add(new FileMoveInfo
                     {
                         Source = file,
@@ -75,58 +61,81 @@ namespace Folders_Max_WinForm
                 }
             }
 
-            // 🔥 Сохраняем лог
-            
             BatchHistoryManager.SaveOperation(log, rootFolder);
-            
+
             return rootFolder;
         }
-        
-        private static bool TryGetFolderName(string fileName, out string folderName)
-        {
-            folderName = null;
 
+        // ------------------------------------------------------------
+        // 🔥 УНИВЕРСАЛЬНОЕ ОПРЕДЕЛЕНИЕ ПАПКИ
+        // ------------------------------------------------------------
+        private static string GetFolderKey(string fileName)
+        {
             string nameWithoutExt = Path.GetFileNameWithoutExtension(fileName);
 
-            // 1️⃣ Если имя состоит только из цифр → кладём в папку 000000
-            if (Regex.IsMatch(nameWithoutExt, @"^\d+$"))
+            // --------------------------------------------------
+            // 1️⃣ SCV_010  (без хвоста)
+            // --------------------------------------------------
+            if (Regex.IsMatch(nameWithoutExt, @"^SCV_\d{3}$"))
+                return "0000";
+
+            // --------------------------------------------------
+            // 2️⃣ SCV_010_ЧтоТо
+            // --------------------------------------------------
+            var scvMatch = Regex.Match(nameWithoutExt, @"^SCV_\d{3}_(.*)");
+            if (scvMatch.Success)
             {
-                folderName = "000000";
-                return true;
+                string namePart = scvMatch.Groups[1].Value;
+
+                // если пусто или только цифры
+                if (string.IsNullOrWhiteSpace(namePart) || Regex.IsMatch(namePart, @"^\d+$"))
+                    return "0000";
+
+                namePart = Regex.Replace(namePart, @"\d+$", "");
+
+                if (string.IsNullOrWhiteSpace(namePart))
+                    return "0000";
+
+                return namePart.Trim();
             }
 
-            // 2️⃣ Если формат 05_Name0000
-            if (fileName.Length < 4)
-                return false;
+            // --------------------------------------------------
+            // 3️⃣ Новая система 01_CMasking_ID0000
+            // --------------------------------------------------
+            if (nameWithoutExt.Length > 3 &&
+                int.TryParse(nameWithoutExt.Substring(0, 2), out _) &&
+                nameWithoutExt[2] == '_')
+            {
+                string namePart = nameWithoutExt.Substring(3);
 
-            if (!int.TryParse(fileName.Substring(0, 2), out _))
-                return false;
+                namePart = Regex.Replace(namePart, @"\d+$", "");
 
-            if (fileName[2] != '_')
-                return false;
+                if (string.IsNullOrWhiteSpace(namePart))
+                    return "0000";
 
-            string withoutPrefix = fileName.Substring(3);
+                return namePart.Trim();
+            }
 
-            string cleaned = Regex.Replace(
-                Path.GetFileNameWithoutExtension(withoutPrefix),
-                @"\d+$",
-                ""
-            );
+            // --------------------------------------------------
+            // 4️⃣ Только цифры (010000)
+            // --------------------------------------------------
+            if (Regex.IsMatch(nameWithoutExt, @"^\d+$"))
+                return "0000";
 
-            if (string.IsNullOrWhiteSpace(cleaned))
-                return false;
-
-            folderName = cleaned.Trim();
-
-            return true;
+            return null;
         }
 
+
+        // ------------------------------------------------------------
         private static string CreateRootFolder(
             string destinationFolder,
             string sourceFolder,
             bool addDate,
             bool addNumber)
         {
+            destinationFolder = Path.GetFullPath(destinationFolder);
+            sourceFolder = Path.GetFullPath(sourceFolder);
+
             string sourceFolderName = new DirectoryInfo(sourceFolder).Name;
 
             string baseName = $"{sourceFolderName} - Maps By Maps";
@@ -144,7 +153,5 @@ namespace Folders_Max_WinForm
 
             return fullPath;
         }
-
-
     }
 }

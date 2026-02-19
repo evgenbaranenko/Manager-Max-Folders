@@ -36,8 +36,6 @@ namespace Folders_Max_WinForm
         }
 
 
-
-
         private static void CopyDirectory(string sourceDir, string targetDir)
         {
             Directory.CreateDirectory(targetDir);
