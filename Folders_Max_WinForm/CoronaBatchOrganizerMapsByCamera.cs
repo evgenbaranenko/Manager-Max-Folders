@@ -8,18 +8,18 @@ namespace Folders_Max_WinForm
     public class CoronaBatchOrganizerMapsByCamera
     {
         public static string Organize(
-            string sourceFolder,
-            string destinationFolder,
-            bool addDate,
-            bool addNumber)
+     string sourceFolder,
+     string destinationFolder,
+     bool addDate,
+     bool addNumber)
         {
             if (!Directory.Exists(sourceFolder))
                 throw new Exception("Папка не существует");
 
-            var files = Directory.GetFiles(sourceFolder, "*.*", SearchOption.TopDirectoryOnly);
+            var files = Directory.GetFiles(sourceFolder);
 
             if (files.Length == 0)
-                throw new Exception("В папке нет файлов для обработки.");
+                throw new Exception("В папке нет файлов.");
 
             string rootFolder = CreateRootFolder(
                 destinationFolder,
@@ -36,30 +36,32 @@ namespace Folders_Max_WinForm
             foreach (var file in files)
             {
                 string fileName = Path.GetFileName(file);
-                string targetPath = null;
+                string targetFolder = null;
 
-                // 🔹 1. LightMix ВСЕГДА в корень новой папки
+                // 🔥 1️⃣ Все LightMix в отдельную папку
                 if (fileName.Contains("LightMix", StringComparison.OrdinalIgnoreCase))
                 {
-                    targetPath = Path.Combine(rootFolder, fileName);
+                    targetFolder = Path.Combine(rootFolder, "LightMix");
                 }
                 else
                 {
-                    string cameraNumber = ExtractCameraNumber(fileName);
+                    // 🔥 2️⃣ Определяем камеру (SCV_001, SCV_010 и т.д.)
+                    string cameraName = GetCameraPrefix(fileName);
 
-                    if (cameraNumber != null)
+                    if (!string.IsNullOrWhiteSpace(cameraName))
                     {
-                        string targetFolder = Path.Combine(rootFolder, cameraNumber);
-
-                        if (!Directory.Exists(targetFolder))
-                            Directory.CreateDirectory(targetFolder);
-
-                        targetPath = Path.Combine(targetFolder, fileName);
+                        targetFolder = Path.Combine(rootFolder, cameraName);
+                    }
+                    else
+                    {
+                        // 🔥 3️⃣ Если не удалось определить — в папку 0000
+                        targetFolder = Path.Combine(rootFolder, "0000");
                     }
                 }
 
-                if (targetPath == null)
-                    continue;
+                Directory.CreateDirectory(targetFolder);
+
+                string targetPath = Path.Combine(targetFolder, fileName);
 
                 if (!File.Exists(targetPath))
                 {
@@ -77,64 +79,20 @@ namespace Folders_Max_WinForm
 
             return rootFolder;
         }
-
-
-
-        private static string ExtractCameraKey(string fileName)
+        private static string GetCameraPrefix(string fileName)
         {
+            // SCV_001_...
             if (fileName.StartsWith("SCV_", StringComparison.OrdinalIgnoreCase))
             {
                 var parts = fileName.Split('_');
+
                 if (parts.Length >= 2)
-                    return parts[0] + "_" + parts[1];
+                    return $"SCV_{parts[1]}";
             }
 
-            var match = System.Text.RegularExpressions.Regex.Match(fileName, @"^(\d{2})_");
-            if (match.Success)
-                return match.Groups[1].Value;
-
             return null;
         }
-        // 🔥 Универсальный парсер камеры
-        private static string GetCameraNumber(string fileName)
-        {
-            /*
-             Поддерживает:
-             SCV_010
-             SCV_010_***
-             SCV_010000
-             любые дополнительные префиксы
-            */
 
-            var match = Regex.Match(fileName, @"SCV_(\d{3})");
-
-            if (match.Success)
-                return match.Groups[1].Value;
-
-            return null;
-        }
-        private static string ExtractCameraNumber(string fileName)
-        {
-            string name = Path.GetFileNameWithoutExtension(fileName);
-
-            // 🔹 Новый формат SCV_01_...
-            if (name.StartsWith("SCV_", StringComparison.OrdinalIgnoreCase))
-            {
-                var parts = name.Split('_');
-                if (parts.Length > 1 && int.TryParse(parts[1], out int scvNum))
-                    return scvNum.ToString("D2");
-            }
-
-            // 🔹 Старый формат 01_...
-            if (name.Length >= 2 && int.TryParse(name.Substring(0, 2), out int oldNum))
-                return oldNum.ToString("D2");
-
-            // 🔹 Формат 010000
-            if (name.Length >= 2 && int.TryParse(name.Substring(0, 2), out int numericOnly))
-                return numericOnly.ToString("D2");
-
-            return null;
-        }
 
         private static string CreateRootFolder(
             string destinationFolder,

@@ -326,6 +326,7 @@ namespace Folders_Max_WinForm
                 }
             }
         }
+
         private void ButtonRenameFiles_Click(object sender, EventArgs e)
         {
             if (InputPath(out var folderPath)) return;
