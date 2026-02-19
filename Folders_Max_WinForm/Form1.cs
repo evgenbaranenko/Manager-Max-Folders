@@ -326,6 +326,49 @@ namespace Folders_Max_WinForm
                 }
             }
         }
+        private void ButtonRenameFiles_Click(object sender, EventArgs e)
+        {
+            if (InputPath(out var folderPath)) return;
+
+            string newName = textBoxRename.Text.Trim();
+
+            if (string.IsNullOrWhiteSpace(newName))
+            {
+                MessageBox.Show("Введите новое имя файла!", "Ошибка");
+                return;
+            }
+
+            var files = Directory.GetFiles(folderPath);
+
+            if (files.Length == 0)
+            {
+                MessageBox.Show("В папке нет файлов.");
+                return;
+            }
+
+            int counter = 1;
+
+            foreach (var file in files)
+            {
+                string extension = Path.GetExtension(file);
+
+                string finalName = $"{newName}_{counter:D2}{extension}";
+                string newPath = Path.Combine(folderPath, finalName);
+
+                // 🔥 Гарантия уникальности
+                while (File.Exists(newPath))
+                {
+                    counter++;
+                    finalName = $"{newName}_{counter:D2}{extension}";
+                    newPath = Path.Combine(folderPath, finalName);
+                }
+
+                File.Move(file, newPath);
+                counter++;
+            }
+
+            MessageBox.Show("Файлы успешно переименованы!");
+        }
 
         private bool GetWorkingPath(out string path)
         {
