@@ -73,6 +73,8 @@ namespace Folders_Max_WinForm
         {
             string nameWithoutExt = Path.GetFileNameWithoutExtension(fileName);
 
+            string namePart = null;
+
             // --------------------------------------------------
             // 1️⃣ SCV_010  (без хвоста)
             // --------------------------------------------------
@@ -85,45 +87,43 @@ namespace Folders_Max_WinForm
             var scvMatch = Regex.Match(nameWithoutExt, @"^SCV_\d{3}_(.*)");
             if (scvMatch.Success)
             {
-                string namePart = scvMatch.Groups[1].Value;
-
-                // если пусто или только цифры
-                if (string.IsNullOrWhiteSpace(namePart) || Regex.IsMatch(namePart, @"^\d+$"))
-                    return "0000";
-
-                namePart = Regex.Replace(namePart, @"\d+$", "");
-
-                if (string.IsNullOrWhiteSpace(namePart))
-                    return "0000";
-
-                return namePart.Trim();
+                namePart = scvMatch.Groups[1].Value;
             }
-
             // --------------------------------------------------
             // 3️⃣ Новая система 01_CMasking_ID0000
             // --------------------------------------------------
-            if (nameWithoutExt.Length > 3 &&
-                int.TryParse(nameWithoutExt.Substring(0, 2), out _) &&
-                nameWithoutExt[2] == '_')
+            else if (nameWithoutExt.Length > 3 &&
+                     int.TryParse(nameWithoutExt.Substring(0, 2), out _) &&
+                     nameWithoutExt[2] == '_')
             {
-                string namePart = nameWithoutExt.Substring(3);
-
-                namePart = Regex.Replace(namePart, @"\d+$", "");
-
-                if (string.IsNullOrWhiteSpace(namePart))
-                    return "0000";
-
-                return namePart.Trim();
+                namePart = nameWithoutExt.Substring(3);
+            }
+            // --------------------------------------------------
+            // 4️⃣ Только цифры
+            // --------------------------------------------------
+            else if (Regex.IsMatch(nameWithoutExt, @"^\d+$"))
+            {
+                return "0000";
             }
 
-            // --------------------------------------------------
-            // 4️⃣ Только цифры (010000)
-            // --------------------------------------------------
-            if (Regex.IsMatch(nameWithoutExt, @"^\d+$"))
+            if (string.IsNullOrWhiteSpace(namePart))
+                return null;
+
+            // 🔥 Удаляем цифры в конце
+            namePart = Regex.Replace(namePart, @"\d+$", "");
+
+            // 🔥 ГЛУБОКАЯ ОЧИСТКА
+            namePart = namePart.Trim();
+            namePart = namePart.Trim('_', '-', ' ');
+            namePart = Regex.Replace(namePart, @"_{2,}", "_");
+            namePart = Regex.Replace(namePart, @"\s{2,}", " ");
+
+            if (string.IsNullOrWhiteSpace(namePart))
                 return "0000";
 
-            return null;
+            return namePart;
         }
+
 
 
         // ------------------------------------------------------------
