@@ -51,46 +51,6 @@ namespace Folders_Max_WinForm
 
             return null;
         }
-
-        private static void ProcessFile(string filePath, string rootFolder, BatchOperationLog log)
-        {
-            var fileName = Path.GetFileName(filePath);
-            var cameraNumber = ExtractCameraNumber(fileName);
-
-            bool isLightMix = fileName.Contains("LightMix", StringComparison.OrdinalIgnoreCase);
-
-            if (cameraNumber == null)
-                return;
-
-            var cameraFolder = Path.Combine(rootFolder, cameraNumber);
-            EnsureDirectoryExists(cameraFolder);
-
-            var targetPath = Path.Combine(cameraFolder, fileName);
-            if (!File.Exists(targetPath))
-            {
-                File.Move(filePath, targetPath);
-                log.Files.Add(new FileMoveInfo { Source = filePath, Destination = targetPath });
-            }
-
-            if (isLightMix)
-            {
-                var lightMixFolder = Path.Combine(rootFolder, "LightMixs");
-                EnsureDirectoryExists(lightMixFolder);
-
-                var copyPath = Path.Combine(lightMixFolder, fileName);
-                if (!File.Exists(copyPath))
-                {
-                    File.Copy(targetPath, copyPath);
-                    log.Files.Add(new FileMoveInfo { Source = targetPath, Destination = copyPath });
-                }
-            }
-        }
-
-        private static void EnsureDirectoryExists(string path)
-        {
-            if (!Directory.Exists(path))
-                Directory.CreateDirectory(path);
-        }
         // 🔥 Универсальный парсер камеры
         private static string GetCameraNumber(string fileName)
         {

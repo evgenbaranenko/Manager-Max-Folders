@@ -1,45 +1,10 @@
-namespace Folders_Max_WinForm
+﻿namespace Folders_Max_WinForm
 {
     public partial class Form1 : Form
     {
         public Form1()
         {
             InitializeComponent();
-        }
-
-        private bool TryResolveDestination(string sourcePath, out string destinationPath)
-        {
-            destinationPath = null;
-
-            if (!string.IsNullOrWhiteSpace(textBoxDestinationPath.Text))
-            {
-                destinationPath = textBoxDestinationPath.Text.Trim();
-
-                if (!Directory.Exists(destinationPath))
-                {
-                    MessageBox.Show("Путь назначения не существует.");
-                    return false;
-                }
-
-                return true;
-            }
-
-            destinationPath = Directory.GetParent(sourcePath)?.FullName;
-            if (destinationPath == null)
-            {
-                MessageBox.Show("Невозможно определить родительскую папку.");
-                return false;
-            }
-
-            return true;
-        }
-
-        private void PostOrganizeSuccess(string createdFolder)
-        {
-            if (checkBoxCreateShortcut.Checked)
-                CreateDesktopShortcut(createdFolder);
-
-            MessageBox.Show("Сортировка выполнена!");
         }
 
         private void ButtonChoosePath_Click(object sender, EventArgs e)

@@ -1,45 +1,10 @@
-namespace Folders_Max_WinForm
+﻿namespace Folders_Max_WinForm
 {
     public partial class Form1 : Form
     {
         public Form1()
         {
             InitializeComponent();
-        }
-
-        private bool TryResolveDestination(string sourcePath, out string destinationPath)
-        {
-            destinationPath = null;
-
-            if (!string.IsNullOrWhiteSpace(textBoxDestinationPath.Text))
-            {
-                destinationPath = textBoxDestinationPath.Text.Trim();
-
-                if (!Directory.Exists(destinationPath))
-                {
-                    MessageBox.Show("Путь назначения не существует.");
-                    return false;
-                }
-
-                return true;
-            }
-
-            destinationPath = Directory.GetParent(sourcePath)?.FullName;
-            if (destinationPath == null)
-            {
-                MessageBox.Show("Невозможно определить родительскую папку.");
-                return false;
-            }
-
-            return true;
-        }
-
-        private void PostOrganizeSuccess(string createdFolder)
-        {
-            if (checkBoxCreateShortcut.Checked)
-                CreateDesktopShortcut(createdFolder);
-
-            MessageBox.Show("Сортировка выполнена!");
         }
 
         private void ButtonChoosePath_Click(object sender, EventArgs e)
@@ -178,19 +143,46 @@ namespace Folders_Max_WinForm
         private void ButtonCoronaBatchOrganizerMapsByCamera_Click(object sender, EventArgs e)
         {
             if (InputPath(out var sourcePath)) return;
-            if (!TryResolveDestination(sourcePath, out var destinationPath))
-                return;
+
+            string destinationPath;
+
+            // Если указан destination — используем его
+            if (!string.IsNullOrWhiteSpace(textBoxDestinationPath.Text))
+            {
+                destinationPath = textBoxDestinationPath.Text.Trim();
+
+                if (!Directory.Exists(destinationPath))
+                {
+                    MessageBox.Show("Путь назначения не существует.");
+                    return;
+                }
+            }
+            else
+            {
+                // иначе сохраняем на уровень выше
+                destinationPath = Directory.GetParent(sourcePath)?.FullName;
+
+                if (destinationPath == null)
+                {
+                    MessageBox.Show("Невозможно определить родительскую папку.");
+                    return;
+                }
+            }
 
             try
             {
-                string createdFolder = CoronaBatchOrganizerMapsByCamera.Organize(
-                    sourcePath,
-                    destinationPath,
-                    checkBoxAddDate.Checked,
-                    checkBoxAddNumber.Checked
-                );
+                string createdFolder =
+                    CoronaBatchOrganizerMapsByCamera.Organize(
+                        sourcePath,
+                        destinationPath,
+                        checkBoxAddDate.Checked,
+                        checkBoxAddNumber.Checked
+                    );
 
-                PostOrganizeSuccess(createdFolder);
+                if (checkBoxCreateShortcut.Checked)
+                    CreateDesktopShortcut(createdFolder);
+
+                MessageBox.Show("Сортировка выполнена!");
             }
             catch (Exception ex)
             {
@@ -201,19 +193,44 @@ namespace Folders_Max_WinForm
         private void ButtonCoronaBatchOrganizerMapsByMaps_Click(object sender, EventArgs e)
         {
             if (InputPath(out var sourcePath)) return;
-            if (!TryResolveDestination(sourcePath, out var destinationPath))
-                return;
+
+            string destinationPath;
+
+            if (!string.IsNullOrWhiteSpace(textBoxDestinationPath.Text))
+            {
+                destinationPath = textBoxDestinationPath.Text.Trim();
+
+                if (!Directory.Exists(destinationPath))
+                {
+                    MessageBox.Show("Путь назначения не существует.");
+                    return;
+                }
+            }
+            else
+            {
+                destinationPath = Directory.GetParent(sourcePath)?.FullName;
+
+                if (destinationPath == null)
+                {
+                    MessageBox.Show("Невозможно определить родительскую папку.");
+                    return;
+                }
+            }
 
             try
             {
-                string createdFolder = CoronaBatchOrganizerMapsByMaps.Organize(
-                    sourcePath,
-                    destinationPath,
-                    checkBoxAddDate.Checked,
-                    checkBoxAddNumber.Checked
-                );
+                string createdFolder =
+                    CoronaBatchOrganizerMapsByMaps.Organize(
+                        sourcePath,
+                        destinationPath,
+                        checkBoxAddDate.Checked,
+                        checkBoxAddNumber.Checked
+                    );
 
-                PostOrganizeSuccess(createdFolder);
+                if (checkBoxCreateShortcut.Checked)
+                    CreateDesktopShortcut(createdFolder);
+
+                MessageBox.Show("Сортировка выполнена!");
             }
             catch (Exception ex)
             {
