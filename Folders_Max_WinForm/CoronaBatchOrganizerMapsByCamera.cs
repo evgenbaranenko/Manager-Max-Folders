@@ -38,39 +38,94 @@ namespace Folders_Max_WinForm
                 string fileName = Path.GetFileName(file);
                 string targetPath = null;
 
-                // 🔹 1. LightMix ВСЕГДА в корень новой папки
-                if (fileName.Contains("LightMix", StringComparison.OrdinalIgnoreCase))
-                {
-                    targetPath = Path.Combine(rootFolder, fileName);
-                }
-                else
-                {
-                    string cameraNumber = ExtractCameraNumber(fileName);
+                //// 🔹 1. LightMix ВСЕГДА в корень новой папки
+                //if (fileName.Contains("LightMix", StringComparison.OrdinalIgnoreCase))
+                //{
+                //    targetPath = Path.Combine(rootFolder, fileName);
+                //}
+                //else
+                //{
+                //    string cameraNumber = ExtractCameraNumber(fileName);
 
-                    if (cameraNumber != null)
+                //    if (cameraNumber != null)
+                //    {
+                //        string targetFolder = Path.Combine(rootFolder, cameraNumber);
+
+                //        if (!Directory.Exists(targetFolder))
+                //            Directory.CreateDirectory(targetFolder);
+
+                //        targetPath = Path.Combine(targetFolder, fileName);
+                //    }
+                //}
+
+                //if (targetPath == null)
+                //    continue;
+
+                //if (!File.Exists(targetPath))
+                //{
+                //    File.Move(file, targetPath);
+
+                //    log.Files.Add(new FileMoveInfo
+                //    {
+                //        Source = file,
+                //        Destination = targetPath
+                //    });
+                //}
+
+                string cameraNumber = ExtractCameraNumber(fileName);
+
+                bool isLightMix = fileName.Contains("LightMix", StringComparison.OrdinalIgnoreCase);
+
+                // --------------------------------------------------
+                // 1️⃣ Если определена камера
+                // --------------------------------------------------
+                if (cameraNumber != null)
+                {
+                    string cameraFolder = Path.Combine(rootFolder, cameraNumber);
+
+                    if (!Directory.Exists(cameraFolder))
+                        Directory.CreateDirectory(cameraFolder);
+
+                    targetPath = Path.Combine(cameraFolder, fileName);
+
+                    if (!File.Exists(targetPath))
                     {
-                        string targetFolder = Path.Combine(rootFolder, cameraNumber);
+                        File.Move(file, targetPath);
 
-                        if (!Directory.Exists(targetFolder))
-                            Directory.CreateDirectory(targetFolder);
-
-                        targetPath = Path.Combine(targetFolder, fileName);
+                        log.Files.Add(new FileMoveInfo
+                        {
+                            Source = file,
+                            Destination = targetPath
+                        });
                     }
-                }
 
-                if (targetPath == null)
-                    continue;
-
-                if (!File.Exists(targetPath))
-                {
-                    File.Move(file, targetPath);
-
-                    log.Files.Add(new FileMoveInfo
+                    // --------------------------------------------------
+                    // 🔥 2️⃣ Если это LightMix — дополнительно копируем
+                    // --------------------------------------------------
+                    if (isLightMix)
                     {
-                        Source = file,
-                        Destination = targetPath
-                    });
+                        string lightMixFolder = Path.Combine(rootFolder, "LightMixs");
+
+                        if (!Directory.Exists(lightMixFolder))
+                            Directory.CreateDirectory(lightMixFolder);
+
+                        string copyPath = Path.Combine(lightMixFolder, fileName);
+
+                        if (!File.Exists(copyPath))
+                        {
+                            File.Copy(targetPath, copyPath);
+
+                            log.Files.Add(new FileMoveInfo
+                            {
+                                Source = targetPath,
+                                Destination = copyPath
+                            });
+                        }
+                    }
+
+                    continue;
                 }
+
             }
 
             BatchHistoryManager.SaveOperation(log, rootFolder);
