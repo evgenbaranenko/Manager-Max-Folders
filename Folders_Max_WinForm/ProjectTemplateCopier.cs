@@ -12,24 +12,24 @@ namespace Folders_Max_WinForm
         /// <exception cref="ArgumentException">Если один из путей или имя проекта некорректны.</exception>
         /// <exception cref="DirectoryNotFoundException">Если шаблонная или целевая папка не найдены.</exception>
         /// <exception cref="IOException">Если целевая папка уже существует или при ошибке копирования.</exception>
-        public static string CopyTemplate(string templatePath, string destinationPath, string newProjectName)
+        public static string CopyTemplate(string templatePath, string destinationPath, string newProjectName, BatchOperationLog? log = null)
         {
             if (string.IsNullOrWhiteSpace(templatePath))
-                throw new ArgumentException("Template path must be provided", nameof(templatePath));
+                throw new ArgumentException(MessageText.TemplatePathRequired, nameof(templatePath));
             if (string.IsNullOrWhiteSpace(destinationPath))
-                throw new ArgumentException("Destination path must be provided", nameof(destinationPath));
+                throw new ArgumentException(MessageText.DestinationPathRequired, nameof(destinationPath));
             if (string.IsNullOrWhiteSpace(newProjectName))
-                throw new ArgumentException("New project name must be provided", nameof(newProjectName));
+                throw new ArgumentException(MessageText.NewProjectNameRequired, nameof(newProjectName));
 
             // Проверка на недопустимые символы в имени
             if (newProjectName.IndexOfAny(Path.GetInvalidFileNameChars()) >= 0)
-                throw new ArgumentException("New project name contains invalid characters", nameof(newProjectName));
+                throw new ArgumentException(MessageText.NewProjectNameInvalidChars, nameof(newProjectName));
 
             if (!Directory.Exists(templatePath))
-                throw new DirectoryNotFoundException($"Template folder not found: {templatePath}");
+                throw new DirectoryNotFoundException(MessageText.TemplateFolderNotFound);
 
             if (!Directory.Exists(destinationPath))
-                throw new DirectoryNotFoundException($"Destination folder not found: {destinationPath}");
+                throw new DirectoryNotFoundException(MessageText.DestinationFolderNotFound);
 
             // Нормализуем пути
             templatePath = Path.GetFullPath(templatePath);
@@ -40,7 +40,7 @@ namespace Folders_Max_WinForm
                 destinationPath.TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar),
                 StringComparison.OrdinalIgnoreCase))
             {
-                throw new IOException("Cannot copy template into the same folder.");
+                throw new IOException(MessageText.CannotCopyIntoSameFolder);
             }
 
             // Нельзя копировать внутрь самой себя — учитываем границу директорий
@@ -50,20 +50,20 @@ namespace Folders_Max_WinForm
                 : templatePath + Path.DirectorySeparatorChar;
 
             if (destinationPath.StartsWith(templateWithSep, StringComparison.OrdinalIgnoreCase))
-                throw new IOException("Cannot copy template inside itself.");
+                throw new IOException(MessageText.CannotCopyInsideItself);
 
             string newProjectPath = Path.Combine(destinationPath, newProjectName);
 
             if (Directory.Exists(newProjectPath) || File.Exists(newProjectPath))
-                throw new IOException("A folder with the specified project name already exists.");
+                throw new IOException(MessageText.FolderExistsWithName);
 
-            CopyDirectory(templatePath, newProjectPath);
+            CopyDirectory(templatePath, newProjectPath, log);
 
             return newProjectPath;
         }
 
 
-        private static void CopyDirectory(string sourceDir, string targetDir)
+        private static void CopyDirectory(string sourceDir, string targetDir, BatchOperationLog? log = null)
         {
             // Создаём целевую директорию
             Directory.CreateDirectory(targetDir);
@@ -73,13 +73,17 @@ namespace Folders_Max_WinForm
             {
                 var destFile = Path.Combine(targetDir, Path.GetFileName(file));
                 File.Copy(file, destFile);
+                if (log != null)
+                {
+                    try { log.Files.Add(new FileMoveInfo { Source = file, Destination = destFile, IsCopy = true }); } catch { }
+                }
             }
 
             // Рекурсивно копируем поддиректории
             foreach (var directory in Directory.EnumerateDirectories(sourceDir))
             {
                 var destDir = Path.Combine(targetDir, Path.GetFileName(directory));
-                CopyDirectory(directory, destDir);
+                CopyDirectory(directory, destDir, log);
             }
         }
     }

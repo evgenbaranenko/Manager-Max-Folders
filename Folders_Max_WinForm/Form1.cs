@@ -232,8 +232,22 @@ namespace Folders_Max_WinForm
         {
             try
             {
+                var last = BatchHistoryManager.PeekLast();
+                if (last == null)
+                {
+                MessageBox.Show(MessageText.NoOperationsToUndo);
+                    return;
+                }
+
+                string summary = string.Format(MessageText.ConfirmUndoFormat,
+                    last.OriginalFolder,
+                    last.Files?.Count ?? 0,
+                    last.CreatedDirectories?.Count ?? 0);
+                var res = MessageBox.Show(summary, MessageText.ConfirmUndoTitle, MessageBoxButtons.YesNo);
+                if (res != DialogResult.Yes) return;
+
                 BatchHistoryManager.UndoLast();
-                MessageBox.Show("Последняя операция отменена!");
+                MessageBox.Show(MessageText.LastOperationUndone);
             }
             catch (Exception ex)
             {
@@ -285,14 +299,16 @@ namespace Folders_Max_WinForm
 
             try
             {
+                var opLog = new BatchOperationLog { OriginalFolder = templatePath };
+
                 string newProjectPath = ProjectTemplateCopier.CopyTemplate(
                     templatePath,
                     destinationPath,
-                    finalName
+                    finalName,
+                    opLog
                 );
 
-                // Записываем операцию в историю, чтобы её можно было отменить
-                var opLog = new BatchOperationLog { OriginalFolder = templatePath };
+                // Записываем операцию в истории, чтобы её можно было отменить
                 opLog.CreatedDirectories.Add(newProjectPath);
                 BatchHistoryManager.SaveOperation(opLog, newProjectPath);
 
@@ -313,7 +329,7 @@ namespace Folders_Max_WinForm
         {
             using (FolderBrowserDialog dialog = new FolderBrowserDialog())
             {
-                dialog.Description = "Выберите папку назначения";
+                dialog.Description = MessageText.ChooseDestinationDialogDescription;
 
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
@@ -341,7 +357,9 @@ namespace Folders_Max_WinForm
                 return;
             }
 
-            int counter = 1;
+            int counter = (int)numericUpDownCounterStart.Value;
+            int step = (int)numericUpDownCounterStep.Value;
+            int digits = (int)numericUpDownCounterDigits.Value;
 
             var opLog = new BatchOperationLog { OriginalFolder = folderPath };
 
@@ -349,23 +367,25 @@ namespace Folders_Max_WinForm
             {
                 string extension = Path.GetExtension(file);
 
-                string finalName = $"{newName}_{counter:D2}{extension}";
+                string finalName = $"{newName}_{counter.ToString($"D{digits}")}{extension}";
                 string newPath = Path.Combine(folderPath, finalName);
 
-                // 🔥 Гарантия уникальности
+                // Гарантия уникальности — увеличиваем счётчик на шаг, пока имя занято
                 while (File.Exists(newPath))
                 {
-                    counter++;
-                    finalName = $"{newName}_{counter:D2}{extension}";
+                    counter += step;
+                    finalName = $"{newName}_{counter.ToString($"D{digits}")}{extension}";
                     newPath = Path.Combine(folderPath, finalName);
                 }
 
                 File.Move(file, newPath);
                 opLog.Files.Add(new FileMoveInfo { Source = file, Destination = newPath });
-                counter++;
+
+                counter += step;
             }
 
-            BatchHistoryManager.SaveOperation(opLog, folderPath);
+            // For renaming we don't want Undo to delete the folder itself — only move files back.
+            BatchHistoryManager.SaveOperation(opLog, string.Empty);
 
             MessageBox.Show(MessageText.FilesRenamedSuccessfully);
         }
@@ -508,7 +528,7 @@ namespace Folders_Max_WinForm
 
             if (string.IsNullOrWhiteSpace(clientName))
             {
-                MessageBox.Show("Введите заказчика!", "Ошибка");
+                MessageBox.Show(MessageText.EnterClientName, MessageText.ErrorTitle);
                 return true;
             }
 
@@ -516,7 +536,7 @@ namespace Folders_Max_WinForm
             {
                 if (clientName.Contains(c))
                 {
-                    MessageBox.Show("Название заказчика содержит недопустимые символы!", "Ошибка");
+                    MessageBox.Show(MessageText.ClientNameContainsInvalidChars, MessageText.ErrorTitle);
                     return true;
                 }
             }
@@ -530,7 +550,7 @@ namespace Folders_Max_WinForm
 
             if (string.IsNullOrWhiteSpace(projectName))
             {
-                MessageBox.Show("Введите название проекта!", "Ошибка");
+                MessageBox.Show(MessageText.EnterProjectName, MessageText.ErrorTitle);
                 return true;
             }
 
@@ -539,7 +559,7 @@ namespace Folders_Max_WinForm
             {
                 if (projectName.Contains(c))
                 {
-                    MessageBox.Show("Название проекта содержит недопустимые символы!", "Ошибка");
+                    MessageBox.Show(MessageText.InvalidProjectNameChars, MessageText.ErrorTitle);
                     return true;
                 }
             }
@@ -586,13 +606,13 @@ namespace Folders_Max_WinForm
 
             if (string.IsNullOrWhiteSpace(basePath))
             {
-                MessageBox.Show("Выберите путь! \nНужно указать путь в \"Path\"", "Ошибка");
+                MessageBox.Show(MessageText.ChoosePathPrompt, MessageText.ErrorTitle);
                 return true;
             }
 
             if (Directory.Exists(basePath)) return false;
 
-            MessageBox.Show("Такого пути не существует!", "Ошибка");
+            MessageBox.Show(MessageText.PathDoesNotExist, MessageText.ErrorTitle);
             return true;
         }
 

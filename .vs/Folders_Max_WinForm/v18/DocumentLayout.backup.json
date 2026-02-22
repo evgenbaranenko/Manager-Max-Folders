@@ -3,20 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\evgen\\Desktop\\FPM\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{18DBB283-8C5E-4D59-9D26-2E10D58CAFEA}|Folders_Max_WinForm\\Folders_Max_WinForm.csproj|c:\\users\\evgen\\desktop\\fpm\\folders_max_winform\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{18DBB283-8C5E-4D59-9D26-2E10D58CAFEA}|Folders_Max_WinForm\\Folders_Max_WinForm.csproj|solutionrelative:folders_max_winform\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{18DBB283-8C5E-4D59-9D26-2E10D58CAFEA}|Folders_Max_WinForm\\Folders_Max_WinForm.csproj|c:\\users\\evgen\\desktop\\fpm\\folders_max_winform\\coronabatchorganizermapsbymaps.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{18DBB283-8C5E-4D59-9D26-2E10D58CAFEA}|Folders_Max_WinForm\\Folders_Max_WinForm.csproj|solutionrelative:folders_max_winform\\coronabatchorganizermapsbymaps.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{18DBB283-8C5E-4D59-9D26-2E10D58CAFEA}|Folders_Max_WinForm\\Folders_Max_WinForm.csproj|c:\\users\\evgen\\desktop\\fpm\\folders_max_winform\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{18DBB283-8C5E-4D59-9D26-2E10D58CAFEA}|Folders_Max_WinForm\\Folders_Max_WinForm.csproj|solutionrelative:folders_max_winform\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{18DBB283-8C5E-4D59-9D26-2E10D58CAFEA}|Folders_Max_WinForm\\Folders_Max_WinForm.csproj|c:\\users\\evgen\\desktop\\fpm\\folders_max_winform\\namegenerator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{18DBB283-8C5E-4D59-9D26-2E10D58CAFEA}|Folders_Max_WinForm\\Folders_Max_WinForm.csproj|solutionrelative:folders_max_winform\\namegenerator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{18DBB283-8C5E-4D59-9D26-2E10D58CAFEA}|Folders_Max_WinForm\\Folders_Max_WinForm.csproj|c:\\users\\evgen\\desktop\\fpm\\folders_max_winform\\messagetext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{18DBB283-8C5E-4D59-9D26-2E10D58CAFEA}|Folders_Max_WinForm\\Folders_Max_WinForm.csproj|solutionrelative:folders_max_winform\\messagetext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{18DBB283-8C5E-4D59-9D26-2E10D58CAFEA}|Folders_Max_WinForm\\Folders_Max_WinForm.csproj|c:\\users\\evgen\\desktop\\fpm\\folders_max_winform\\coronabatchorganizermapsbycamera.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{18DBB283-8C5E-4D59-9D26-2E10D58CAFEA}|Folders_Max_WinForm\\Folders_Max_WinForm.csproj|solutionrelative:folders_max_winform\\coronabatchorganizermapsbycamera.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{18DBB283-8C5E-4D59-9D26-2E10D58CAFEA}|Folders_Max_WinForm\\Folders_Max_WinForm.csproj|c:\\users\\evgen\\desktop\\fpm\\folders_max_winform\\batchoperationlog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -27,12 +19,32 @@
       "RelativeMoniker": "D:0:0:{18DBB283-8C5E-4D59-9D26-2E10D58CAFEA}|Folders_Max_WinForm\\Folders_Max_WinForm.csproj|solutionrelative:folders_max_winform\\batchhistorymanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{18DBB283-8C5E-4D59-9D26-2E10D58CAFEA}|Folders_Max_WinForm\\Folders_Max_WinForm.csproj|c:\\users\\evgen\\desktop\\fpm\\folders_max_winform\\coronabatchorganizermapsbycamera.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{18DBB283-8C5E-4D59-9D26-2E10D58CAFEA}|Folders_Max_WinForm\\Folders_Max_WinForm.csproj|solutionrelative:folders_max_winform\\coronabatchorganizermapsbycamera.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{18DBB283-8C5E-4D59-9D26-2E10D58CAFEA}|Folders_Max_WinForm\\Folders_Max_WinForm.csproj|c:\\users\\evgen\\desktop\\fpm\\folders_max_winform\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{18DBB283-8C5E-4D59-9D26-2E10D58CAFEA}|Folders_Max_WinForm\\Folders_Max_WinForm.csproj|solutionrelative:folders_max_winform\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{18DBB283-8C5E-4D59-9D26-2E10D58CAFEA}|Folders_Max_WinForm\\Folders_Max_WinForm.csproj|c:\\users\\evgen\\desktop\\fpm\\folders_max_winform\\coronabatchorganizermapsbymaps.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{18DBB283-8C5E-4D59-9D26-2E10D58CAFEA}|Folders_Max_WinForm\\Folders_Max_WinForm.csproj|solutionrelative:folders_max_winform\\coronabatchorganizermapsbymaps.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{18DBB283-8C5E-4D59-9D26-2E10D58CAFEA}|Folders_Max_WinForm\\Folders_Max_WinForm.csproj|c:\\users\\evgen\\desktop\\fpm\\folders_max_winform\\namegenerator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{18DBB283-8C5E-4D59-9D26-2E10D58CAFEA}|Folders_Max_WinForm\\Folders_Max_WinForm.csproj|solutionrelative:folders_max_winform\\namegenerator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{18DBB283-8C5E-4D59-9D26-2E10D58CAFEA}|Folders_Max_WinForm\\Folders_Max_WinForm.csproj|c:\\users\\evgen\\desktop\\fpm\\folders_max_winform\\messagetext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{18DBB283-8C5E-4D59-9D26-2E10D58CAFEA}|Folders_Max_WinForm\\Folders_Max_WinForm.csproj|solutionrelative:folders_max_winform\\messagetext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{18DBB283-8C5E-4D59-9D26-2E10D58CAFEA}|Folders_Max_WinForm\\Folders_Max_WinForm.csproj|c:\\users\\evgen\\desktop\\fpm\\folders_max_winform\\projecttemplatecopier.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{18DBB283-8C5E-4D59-9D26-2E10D58CAFEA}|Folders_Max_WinForm\\Folders_Max_WinForm.csproj|solutionrelative:folders_max_winform\\projecttemplatecopier.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{18DBB283-8C5E-4D59-9D26-2E10D58CAFEA}|Folders_Max_WinForm\\Folders_Max_WinForm.csproj|c:\\users\\evgen\\desktop\\fpm\\folders_max_winform\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{18DBB283-8C5E-4D59-9D26-2E10D58CAFEA}|Folders_Max_WinForm\\Folders_Max_WinForm.csproj|solutionrelative:folders_max_winform\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{18DBB283-8C5E-4D59-9D26-2E10D58CAFEA}|Folders_Max_WinForm\\Folders_Max_WinForm.csproj|c:\\users\\evgen\\desktop\\fpm\\folders_max_winform\\form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{18DBB283-8C5E-4D59-9D26-2E10D58CAFEA}|Folders_Max_WinForm\\Folders_Max_WinForm.csproj|solutionrelative:folders_max_winform\\form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{18DBB283-8C5E-4D59-9D26-2E10D58CAFEA}|Folders_Max_WinForm\\Folders_Max_WinForm.csproj|c:\\users\\evgen\\desktop\\fpm\\folders_max_winform\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{18DBB283-8C5E-4D59-9D26-2E10D58CAFEA}|Folders_Max_WinForm\\Folders_Max_WinForm.csproj|solutionrelative:folders_max_winform\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -42,109 +54,145 @@
       "DocumentGroups": [
         {
           "DockedWidth": 1006,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 6,
           "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{40ea2e6b-2121-4bb8-a43e-c83c04b51041}"
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
-            },
-            {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "BatchHistoryManager.cs",
-              "DocumentMoniker": "C:\\Users\\evgen\\Desktop\\FPM\\Folders_Max_WinForm\\BatchHistoryManager.cs",
-              "RelativeDocumentMoniker": "Folders_Max_WinForm\\BatchHistoryManager.cs",
-              "ToolTip": "C:\\Users\\evgen\\Desktop\\FPM\\Folders_Max_WinForm\\BatchHistoryManager.cs",
-              "RelativeToolTip": "Folders_Max_WinForm\\BatchHistoryManager.cs",
-              "ViewState": "AgIAAHEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-22T13:19:29.722Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "BatchOperationLog.cs",
-              "DocumentMoniker": "C:\\Users\\evgen\\Desktop\\FPM\\Folders_Max_WinForm\\BatchOperationLog.cs",
-              "RelativeDocumentMoniker": "Folders_Max_WinForm\\BatchOperationLog.cs",
-              "ToolTip": "C:\\Users\\evgen\\Desktop\\FPM\\Folders_Max_WinForm\\BatchOperationLog.cs",
-              "RelativeToolTip": "Folders_Max_WinForm\\BatchOperationLog.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-22T13:19:18.244Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 8,
               "Title": "Form1.cs",
               "DocumentMoniker": "C:\\Users\\evgen\\Desktop\\FPM\\Folders_Max_WinForm\\Form1.cs",
               "RelativeDocumentMoniker": "Folders_Max_WinForm\\Form1.cs",
               "ToolTip": "C:\\Users\\evgen\\Desktop\\FPM\\Folders_Max_WinForm\\Form1.cs",
               "RelativeToolTip": "Folders_Max_WinForm\\Form1.cs",
-              "ViewState": "AgIAAAIAAAAAAAAAAAAswOgAAAAMAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAOYAAABFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-02-22T13:16:47.954Z",
+              "IsPinned": true,
               "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "MessageText.cs",
-              "DocumentMoniker": "C:\\Users\\evgen\\Desktop\\FPM\\Folders_Max_WinForm\\MessageText.cs",
-              "RelativeDocumentMoniker": "Folders_Max_WinForm\\MessageText.cs",
-              "ToolTip": "C:\\Users\\evgen\\Desktop\\FPM\\Folders_Max_WinForm\\MessageText.cs",
-              "RelativeToolTip": "Folders_Max_WinForm\\MessageText.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAARAAAAAAAAAA==",
+              "Title": "BatchHistoryManager.cs",
+              "DocumentMoniker": "C:\\Users\\evgen\\Desktop\\FPM\\Folders_Max_WinForm\\BatchHistoryManager.cs",
+              "RelativeDocumentMoniker": "Folders_Max_WinForm\\BatchHistoryManager.cs",
+              "ToolTip": "C:\\Users\\evgen\\Desktop\\FPM\\Folders_Max_WinForm\\BatchHistoryManager.cs",
+              "RelativeToolTip": "Folders_Max_WinForm\\BatchHistoryManager.cs",
+              "ViewState": "AgIAAD4AAAAAAAAAAAAuwK4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-22T12:32:26.711Z",
+              "WhenOpened": "2026-02-22T14:45:20.66Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "NameGenerator.cs",
-              "DocumentMoniker": "C:\\Users\\evgen\\Desktop\\FPM\\Folders_Max_WinForm\\NameGenerator.cs",
-              "RelativeDocumentMoniker": "Folders_Max_WinForm\\NameGenerator.cs",
-              "ToolTip": "C:\\Users\\evgen\\Desktop\\FPM\\Folders_Max_WinForm\\NameGenerator.cs",
-              "RelativeToolTip": "Folders_Max_WinForm\\NameGenerator.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAASAAAAAAAAAA==",
+              "Title": "BatchOperationLog.cs",
+              "DocumentMoniker": "C:\\Users\\evgen\\Desktop\\FPM\\Folders_Max_WinForm\\BatchOperationLog.cs",
+              "RelativeDocumentMoniker": "Folders_Max_WinForm\\BatchOperationLog.cs",
+              "ToolTip": "C:\\Users\\evgen\\Desktop\\FPM\\Folders_Max_WinForm\\BatchOperationLog.cs",
+              "RelativeToolTip": "Folders_Max_WinForm\\BatchOperationLog.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAArwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-21T21:04:03.513Z",
+              "WhenOpened": "2026-02-22T14:51:14.109Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 1,
               "Title": "CoronaBatchOrganizerMapsByCamera.cs",
               "DocumentMoniker": "C:\\Users\\evgen\\Desktop\\FPM\\Folders_Max_WinForm\\CoronaBatchOrganizerMapsByCamera.cs",
               "RelativeDocumentMoniker": "Folders_Max_WinForm\\CoronaBatchOrganizerMapsByCamera.cs",
               "ToolTip": "C:\\Users\\evgen\\Desktop\\FPM\\Folders_Max_WinForm\\CoronaBatchOrganizerMapsByCamera.cs",
               "RelativeToolTip": "Folders_Max_WinForm\\CoronaBatchOrganizerMapsByCamera.cs",
-              "ViewState": "AgIAABkAAAAAAAAAAIBJwIYAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAE4AAAAAAAAAAAAwwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-21T20:08:20.645Z",
+              "WhenOpened": "2026-02-22T14:51:24.844Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 0,
               "Title": "CoronaBatchOrganizerMapsByMaps.cs",
               "DocumentMoniker": "C:\\Users\\evgen\\Desktop\\FPM\\Folders_Max_WinForm\\CoronaBatchOrganizerMapsByMaps.cs",
               "RelativeDocumentMoniker": "Folders_Max_WinForm\\CoronaBatchOrganizerMapsByMaps.cs",
               "ToolTip": "C:\\Users\\evgen\\Desktop\\FPM\\Folders_Max_WinForm\\CoronaBatchOrganizerMapsByMaps.cs",
               "RelativeToolTip": "Folders_Max_WinForm\\CoronaBatchOrganizerMapsByMaps.cs",
-              "ViewState": "AgIAABkAAAAAAAAAAIBJwAkAAAAmAAAAAAAAAA==",
+              "ViewState": "AgIAAG8AAAAAAAAAAAAmwEAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-22T12:48:40.685Z",
+              "WhenOpened": "2026-02-22T20:13:06.489Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\evgen\\Desktop\\FPM\\Folders_Max_WinForm\\Program.cs",
+              "RelativeDocumentMoniker": "Folders_Max_WinForm\\Program.cs",
+              "ToolTip": "C:\\Users\\evgen\\Desktop\\FPM\\Folders_Max_WinForm\\Program.cs",
+              "RelativeToolTip": "Folders_Max_WinForm\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-22T20:32:51.753Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "NameGenerator.cs",
+              "DocumentMoniker": "C:\\Users\\evgen\\Desktop\\FPM\\Folders_Max_WinForm\\NameGenerator.cs",
+              "RelativeDocumentMoniker": "Folders_Max_WinForm\\NameGenerator.cs",
+              "ToolTip": "C:\\Users\\evgen\\Desktop\\FPM\\Folders_Max_WinForm\\NameGenerator.cs",
+              "RelativeToolTip": "Folders_Max_WinForm\\NameGenerator.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-22T20:32:49.853Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "MessageText.cs",
+              "DocumentMoniker": "C:\\Users\\evgen\\Desktop\\FPM\\Folders_Max_WinForm\\MessageText.cs",
+              "RelativeDocumentMoniker": "Folders_Max_WinForm\\MessageText.cs",
+              "ToolTip": "C:\\Users\\evgen\\Desktop\\FPM\\Folders_Max_WinForm\\MessageText.cs",
+              "RelativeToolTip": "Folders_Max_WinForm\\MessageText.cs",
+              "ViewState": "AgIAABYAAAAAAAAAAAAnwEAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-22T19:49:35.892Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Form1.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\evgen\\Desktop\\FPM\\Folders_Max_WinForm\\Form1.Designer.cs",
+              "RelativeDocumentMoniker": "Folders_Max_WinForm\\Form1.Designer.cs",
+              "ToolTip": "C:\\Users\\evgen\\Desktop\\FPM\\Folders_Max_WinForm\\Form1.Designer.cs",
+              "RelativeToolTip": "Folders_Max_WinForm\\Form1.Designer.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-22T14:37:43.281Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "ProjectTemplateCopier.cs",
+              "DocumentMoniker": "C:\\Users\\evgen\\Desktop\\FPM\\Folders_Max_WinForm\\ProjectTemplateCopier.cs",
+              "RelativeDocumentMoniker": "Folders_Max_WinForm\\ProjectTemplateCopier.cs",
+              "ToolTip": "C:\\Users\\evgen\\Desktop\\FPM\\Folders_Max_WinForm\\ProjectTemplateCopier.cs",
+              "RelativeToolTip": "Folders_Max_WinForm\\ProjectTemplateCopier.cs",
+              "ViewState": "AgIAACQAAAAAAAAAAAAAAA4AAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-22T14:51:34.469Z",
               "EditorCaption": ""
             }
           ]
@@ -159,7 +207,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 10,
               "Title": "Form1.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
               "DocumentMoniker": "C:\\Users\\evgen\\Desktop\\FPM\\Folders_Max_WinForm\\Form1.cs",
               "RelativeDocumentMoniker": "Folders_Max_WinForm\\Form1.cs",
