@@ -27,5 +27,7 @@ namespace Folders_Max_WinForm
     {
         public string Source { get; set; } = string.Empty;
         public string Destination { get; set; } = string.Empty;
+        /// <summary>True если запись — копирование (а не перемещение).</summary>
+        public bool IsCopy { get; set; } = false;
     }
 }

@@ -31,6 +31,12 @@ partial class Form1
     {
         components = new System.ComponentModel.Container();
         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+        labelCounterStart = new Label();
+        numericUpDownCounterStart = new NumericUpDown();
+        labelCounterStep = new Label();
+        numericUpDownCounterStep = new NumericUpDown();
+        labelCounterDigits = new Label();
+        numericUpDownCounterDigits = new NumericUpDown();
         button3dsMaxStructureFolders = new Button();
         textBoxPath = new TextBox();
         buttonChoosePath = new Button();
@@ -71,6 +77,9 @@ partial class Form1
         ((System.ComponentModel.ISupportInitialize)bindingSource1).BeginInit();
         ((System.ComponentModel.ISupportInitialize)bindingSource2).BeginInit();
         groupBox4.SuspendLayout();
+        ((System.ComponentModel.ISupportInitialize)numericUpDownCounterStart).BeginInit();
+        ((System.ComponentModel.ISupportInitialize)numericUpDownCounterStep).BeginInit();
+        ((System.ComponentModel.ISupportInitialize)numericUpDownCounterDigits).BeginInit();
         SuspendLayout();
         // 
         // button3dsMaxStructureFolders
@@ -91,7 +100,7 @@ partial class Form1
         textBoxPath.BackColor = SystemColors.ButtonFace;
         textBoxPath.Location = new Point(14, 246);
         textBoxPath.Name = "textBoxPath";
-        textBoxPath.PlaceholderText = "Path";
+        textBoxPath.PlaceholderText = MessageText.PlaceholderPath;
         textBoxPath.Size = new Size(565, 23);
         textBoxPath.TabIndex = 1;
         textBoxPath.TextAlign = HorizontalAlignment.Center;
@@ -120,7 +129,7 @@ partial class Form1
         textBoxProjectName.BackColor = SystemColors.ButtonFace;
         textBoxProjectName.Location = new Point(161, 30);
         textBoxProjectName.Name = "textBoxProjectName";
-        textBoxProjectName.PlaceholderText = "Project name";
+        textBoxProjectName.PlaceholderText = MessageText.PlaceholderProjectName;
         textBoxProjectName.Size = new Size(143, 23);
         textBoxProjectName.TabIndex = 3;
         textBoxProjectName.TextAlign = HorizontalAlignment.Center;
@@ -161,7 +170,7 @@ partial class Form1
         textBoxClient.BackColor = SystemColors.ButtonFace;
         textBoxClient.Location = new Point(14, 30);
         textBoxClient.Name = "textBoxClient";
-        textBoxClient.PlaceholderText = "Customer";
+        textBoxClient.PlaceholderText = MessageText.PlaceholderCustomer;
         textBoxClient.Size = new Size(141, 23);
         textBoxClient.TabIndex = 6;
         textBoxClient.TextAlign = HorizontalAlignment.Center;
@@ -237,7 +246,7 @@ partial class Form1
         // 
         textBoxDestinationPath.Location = new Point(14, 275);
         textBoxDestinationPath.Name = "textBoxDestinationPath";
-        textBoxDestinationPath.PlaceholderText = "Path to save";
+        textBoxDestinationPath.PlaceholderText = MessageText.PlaceholderPathToSave;
         textBoxDestinationPath.Size = new Size(565, 23);
         textBoxDestinationPath.TabIndex = 17;
         textBoxDestinationPath.TextAlign = HorizontalAlignment.Center;
@@ -269,7 +278,7 @@ partial class Form1
         // 
         textBoxNewProjectName.Location = new Point(14, 156);
         textBoxNewProjectName.Name = "textBoxNewProjectName";
-        textBoxNewProjectName.PlaceholderText = "Enter the name of the new project";
+        textBoxNewProjectName.PlaceholderText = MessageText.PlaceholderNewProjectName;
         textBoxNewProjectName.Size = new Size(290, 23);
         textBoxNewProjectName.TabIndex = 20;
         textBoxNewProjectName.TextAlign = HorizontalAlignment.Center;
@@ -311,6 +320,12 @@ partial class Form1
         groupBox4.BackColor = Color.Transparent;
         groupBox4.Controls.Add(buttonRenameFiles);
         groupBox4.Controls.Add(textBoxRename);
+        groupBox4.Controls.Add(labelCounterStart);
+        groupBox4.Controls.Add(numericUpDownCounterStart);
+        groupBox4.Controls.Add(labelCounterStep);
+        groupBox4.Controls.Add(numericUpDownCounterStep);
+        groupBox4.Controls.Add(labelCounterDigits);
+        groupBox4.Controls.Add(numericUpDownCounterDigits);
         groupBox4.ForeColor = SystemColors.ButtonFace;
         groupBox4.Location = new Point(314, 137);
         groupBox4.Name = "groupBox4";
@@ -335,8 +350,51 @@ partial class Form1
         // 
         textBoxRename.Location = new Point(6, 19);
         textBoxRename.Name = "textBoxRename";
+        textBoxRename.PlaceholderText = MessageText.PlaceholderRename;
         textBoxRename.Size = new Size(161, 23);
         textBoxRename.TabIndex = 0;
+        // 
+        // labelCounterStart
+        // 
+        labelCounterStart.Location = new Point(175, 19);
+        labelCounterStart.Size = new Size(40, 23);
+        labelCounterStart.Text = "Start:";
+        // 
+        // numericUpDownCounterStart
+        // 
+        numericUpDownCounterStart.Location = new Point(215, 19);
+        numericUpDownCounterStart.Size = new Size(60, 23);
+        numericUpDownCounterStart.Minimum = 0;
+        numericUpDownCounterStart.Maximum = 1000000;
+        numericUpDownCounterStart.Value = 0;
+        // 
+        // labelCounterStep
+        // 
+        labelCounterStep.Location = new Point(175, 45);
+        labelCounterStep.Size = new Size(40, 23);
+        labelCounterStep.Text = "Step:";
+        // 
+        // numericUpDownCounterStep
+        // 
+        numericUpDownCounterStep.Location = new Point(215, 45);
+        numericUpDownCounterStep.Size = new Size(60, 23);
+        numericUpDownCounterStep.Minimum = 1;
+        numericUpDownCounterStep.Maximum = 1000000;
+        numericUpDownCounterStep.Value = 1;
+        // 
+        // labelCounterDigits
+        // 
+        labelCounterDigits.Location = new Point(175, 71);
+        labelCounterDigits.Size = new Size(40, 23);
+        labelCounterDigits.Text = "Digits:";
+        // 
+        // numericUpDownCounterDigits
+        // 
+        numericUpDownCounterDigits.Location = new Point(215, 71);
+        numericUpDownCounterDigits.Size = new Size(60, 23);
+        numericUpDownCounterDigits.Minimum = 1;
+        numericUpDownCounterDigits.Maximum = 10;
+        numericUpDownCounterDigits.Value = 2;
         // 
         // groupBox2
         // 
@@ -408,6 +466,9 @@ partial class Form1
         Load += Form1_Load;
         ((System.ComponentModel.ISupportInitialize)bindingSource1).EndInit();
         ((System.ComponentModel.ISupportInitialize)bindingSource2).EndInit();
+        ((System.ComponentModel.ISupportInitialize)numericUpDownCounterStart).EndInit();
+        ((System.ComponentModel.ISupportInitialize)numericUpDownCounterStep).EndInit();
+        ((System.ComponentModel.ISupportInitialize)numericUpDownCounterDigits).EndInit();
         groupBox4.ResumeLayout(false);
         groupBox4.PerformLayout();
         ResumeLayout(false);
@@ -415,6 +476,13 @@ partial class Form1
     }
 
     private System.Windows.Forms.ToolTip copyFldStr_02;
+
+    private Label labelCounterStart;
+    private NumericUpDown numericUpDownCounterStart;
+    private Label labelCounterStep;
+    private NumericUpDown numericUpDownCounterStep;
+    private Label labelCounterDigits;
+    private NumericUpDown numericUpDownCounterDigits;
 
     private System.Windows.Forms.ToolTip copyFldStr_01;
 

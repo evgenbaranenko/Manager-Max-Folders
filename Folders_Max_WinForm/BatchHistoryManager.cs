@@ -38,6 +38,19 @@ namespace Folders_Max_WinForm
         }
 
         /// <summary>
+        /// Возвращает последнюю операцию без удаления её из истории (или null если истории нет).
+        /// </summary>
+        public static BatchOperationLog? PeekLast()
+        {
+            lock (FileLock)
+            {
+                var operations = LoadAll();
+                if (operations.Count == 0) return null;
+                return operations[^1];
+            }
+        }
+
+        /// <summary>
         /// Отменяет последнюю операцию из истории. Попытки отмены выполняются по файлам по отдельности —
         /// при ошибке для одного файла процесс продолжается для остальных.
         /// </summary>
@@ -52,29 +65,30 @@ namespace Folders_Max_WinForm
 
                 var last = operations[^1];
 
-                // Перемещаем файлы обратно в исходные позиции
-                foreach (var file in last.Files)
+                // Перемещаем файлы обратно в исходные позиции.
+                // Важно проходить список в обратном порядке: это гарантирует, что сначала будут обработаны копии
+                // (например LightMix), а затем исходные перемещения — так избегаем восстановления файлов в неправильных местах.
+                for (int i = last.Files.Count - 1; i >= 0; i--)
                 {
+                    var file = last.Files[i];
                     try
                     {
-                        // Если файл был скопирован (Source указывает на уже перемещённый файл внутри новой структуры),
-                        // попробуем удалить его копию при наличии. Иначе — переместить обратно.
-                        if (File.Exists(file.Destination))
+                        if (file.IsCopy)
                         {
-                            var destDir = Path.GetDirectoryName(file.Source);
-                            if (!string.IsNullOrEmpty(destDir) && !Directory.Exists(destDir))
-                                Directory.CreateDirectory(destDir);
-
-                            File.Move(file.Destination, file.Source, true);
+                            // Если это копия — просто удаляем файл копии
+                            if (File.Exists(file.Destination))
+                                File.Delete(file.Destination);
                         }
                         else
                         {
-                            // Возможно, файл был скопирован (например LightMix) — в таком случае Source may point to
-                            // an already existing file inside the new structure. We attempt to delete Source if it exists
-                            // and Destination is absent — best-effort cleanup.
-                            if (File.Exists(file.Source))
+                            if (File.Exists(file.Destination))
                             {
-                                try { File.Delete(file.Source); } catch { }
+                                var destDir = Path.GetDirectoryName(file.Source);
+                                if (!string.IsNullOrEmpty(destDir) && !Directory.Exists(destDir))
+                                    Directory.CreateDirectory(destDir);
+
+                                // Попытка перемещения с перезаписью при необходимости
+                                File.Move(file.Destination, file.Source, true);
                             }
                         }
                     }

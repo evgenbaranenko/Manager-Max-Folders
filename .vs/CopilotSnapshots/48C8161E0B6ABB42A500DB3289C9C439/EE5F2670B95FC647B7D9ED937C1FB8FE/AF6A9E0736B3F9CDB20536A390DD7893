@@ -1,0 +1,553 @@
+﻿namespace Folders_Max_WinForm;
+
+partial class Form1
+{
+    /// <summary>
+    ///  Required designer variable.
+    /// </summary>
+    private System.ComponentModel.IContainer components = null;
+
+    /// <summary>
+    ///  Clean up any resources being used.
+    /// </summary>
+    /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing && (components != null))
+        {
+            components.Dispose();
+        }
+
+        base.Dispose(disposing);
+    }
+
+    #region Windows Form Designer generated code
+
+    /// <summary>
+    /// Required method for Designer support - do not modify
+    /// the contents of this method with the code editor.
+    /// </summary>
+    private void InitializeComponent()
+    {
+        components = new System.ComponentModel.Container();
+        System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+        labelCounterStart = new Label();
+        numericUpDownCounterStart = new NumericUpDown();
+        labelCounterStep = new Label();
+        numericUpDownCounterStep = new NumericUpDown();
+        labelCounterDigits = new Label();
+        numericUpDownCounterDigits = new NumericUpDown();
+        button3dsMaxStructureFolders = new Button();
+        textBoxPath = new TextBox();
+        buttonChoosePath = new Button();
+        bindingSource1 = new BindingSource(components);
+        textBoxProjectName = new TextBox();
+        bindingSource2 = new BindingSource(components);
+        fontDialog1 = new FontDialog();
+        fontDialog2 = new FontDialog();
+        buttonCreateFullProject = new Button();
+        checkBoxAddDate = new CheckBox();
+        textBoxClient = new TextBox();
+        checkBoxArchitecture = new CheckBox();
+        checkBoxDesign = new CheckBox();
+        checkBoxCreateShortcut = new CheckBox();
+        buttonCoronaBatchOrganizerMapsByCamera = new Button();
+        buttonCoronaBatchOrganizerMapsByMaps = new Button();
+        buttonUndoLast = new Button();
+        textBoxDestinationPath = new TextBox();
+        buttonChooseDestination = new Button();
+        buttonCopyTemplate = new Button();
+        textBoxNewProjectName = new TextBox();
+        checkBoxAddNumber = new CheckBox();
+        groupBox1 = new GroupBox();
+        groupBox3 = new GroupBox();
+        groupBox4 = new GroupBox();
+        buttonRenameFiles = new Button();
+        textBoxRename = new TextBox();
+        groupBox2 = new GroupBox();
+        organizeCoronaMap_01 = new ToolTip(components);
+        organizeCoronaMap_03 = new ToolTip(components);
+        organizeCoronaMap_02 = new ToolTip(components);
+        myStrFld_01 = new ToolTip(components);
+        myStrFld_02 = new ToolTip(components);
+        myStrFld_03 = new ToolTip(components);
+        myStrFld_04 = new ToolTip(components);
+        copyFldStr_01 = new ToolTip(components);
+        copyFldStr_02 = new ToolTip(components);
+        ((System.ComponentModel.ISupportInitialize)bindingSource1).BeginInit();
+        ((System.ComponentModel.ISupportInitialize)bindingSource2).BeginInit();
+        groupBox4.SuspendLayout();
+        ((System.ComponentModel.ISupportInitialize)numericUpDownCounterStart).BeginInit();
+        ((System.ComponentModel.ISupportInitialize)numericUpDownCounterStep).BeginInit();
+        ((System.ComponentModel.ISupportInitialize)numericUpDownCounterDigits).BeginInit();
+        SuspendLayout();
+        // 
+        // button3dsMaxStructureFolders
+        // 
+        button3dsMaxStructureFolders.BackColor = Color.DarkGray;
+        button3dsMaxStructureFolders.ForeColor = SystemColors.ActiveCaptionText;
+        button3dsMaxStructureFolders.Location = new Point(14, 59);
+        button3dsMaxStructureFolders.Name = "button3dsMaxStructureFolders";
+        button3dsMaxStructureFolders.Size = new Size(142, 45);
+        button3dsMaxStructureFolders.TabIndex = 0;
+        button3dsMaxStructureFolders.Text = "Create 3dsMax structure folders";
+        myStrFld_03.SetToolTip(button3dsMaxStructureFolders, resources.GetString("button3dsMaxStructureFolders.ToolTip"));
+        button3dsMaxStructureFolders.UseVisualStyleBackColor = false;
+        button3dsMaxStructureFolders.Click += ButtonCreateMaxFolders;
+        // 
+        // textBoxPath
+        // 
+        textBoxPath.BackColor = SystemColors.ButtonFace;
+        textBoxPath.Location = new Point(14, 246);
+        textBoxPath.Name = "textBoxPath";
+        textBoxPath.PlaceholderText = "Path";
+        textBoxPath.Size = new Size(565, 23);
+        textBoxPath.TabIndex = 1;
+        textBoxPath.TextAlign = HorizontalAlignment.Center;
+        textBoxPath.TextChanged += TextBoxPathTextChanged;
+        // 
+        // buttonChoosePath
+        // 
+        buttonChoosePath.BackColor = Color.DarkGray;
+        buttonChoosePath.BackgroundImageLayout = ImageLayout.Center;
+        buttonChoosePath.ForeColor = SystemColors.ControlText;
+        buttonChoosePath.Location = new Point(582, 246);
+        buttonChoosePath.Margin = new Padding(0);
+        buttonChoosePath.Name = "buttonChoosePath";
+        buttonChoosePath.Size = new Size(28, 23);
+        buttonChoosePath.TabIndex = 2;
+        buttonChoosePath.Text = "...";
+        buttonChoosePath.UseVisualStyleBackColor = false;
+        buttonChoosePath.Click += ButtonChoosePath_Click;
+        // 
+        // bindingSource1
+        // 
+        bindingSource1.RaiseListChangedEvents = false;
+        // 
+        // textBoxProjectName
+        // 
+        textBoxProjectName.BackColor = SystemColors.ButtonFace;
+        textBoxProjectName.Location = new Point(161, 30);
+        textBoxProjectName.Name = "textBoxProjectName";
+        textBoxProjectName.PlaceholderText = "Project name";
+        textBoxProjectName.Size = new Size(143, 23);
+        textBoxProjectName.TabIndex = 3;
+        textBoxProjectName.TextAlign = HorizontalAlignment.Center;
+        myStrFld_02.SetToolTip(textBoxProjectName, "Моя сборка структуры файлов:\r\n- имя/название проекта");
+        // 
+        // bindingSource2
+        // 
+        bindingSource2.RaiseListChangedEvents = false;
+        // 
+        // buttonCreateFullProject
+        // 
+        buttonCreateFullProject.BackColor = Color.DarkGray;
+        buttonCreateFullProject.ForeColor = SystemColors.ActiveCaptionText;
+        buttonCreateFullProject.Location = new Point(161, 59);
+        buttonCreateFullProject.Name = "buttonCreateFullProject";
+        buttonCreateFullProject.Size = new Size(143, 45);
+        buttonCreateFullProject.TabIndex = 4;
+        buttonCreateFullProject.Text = "Create ARCH\\INT structure folders";
+        myStrFld_04.SetToolTip(buttonCreateFullProject, resources.GetString("buttonCreateFullProject.ToolTip"));
+        buttonCreateFullProject.UseVisualStyleBackColor = false;
+        buttonCreateFullProject.Click += ButtonCreateFullProject_Click;
+        // 
+        // checkBoxAddDate
+        // 
+        checkBoxAddDate.BackColor = Color.DarkGray;
+        checkBoxAddDate.ForeColor = SystemColors.ControlText;
+        checkBoxAddDate.Location = new Point(130, 309);
+        checkBoxAddDate.Name = "checkBoxAddDate";
+        checkBoxAddDate.Size = new Size(52, 20);
+        checkBoxAddDate.TabIndex = 5;
+        checkBoxAddDate.Text = "Date";
+        checkBoxAddDate.TextAlign = ContentAlignment.MiddleCenter;
+        checkBoxAddDate.UseVisualStyleBackColor = true;
+        checkBoxAddDate.CheckedChanged += CheckBoxAddDate_CheckedChanged;
+        // 
+        // textBoxClient
+        // 
+        textBoxClient.BackColor = SystemColors.ButtonFace;
+        textBoxClient.Location = new Point(14, 30);
+        textBoxClient.Name = "textBoxClient";
+        textBoxClient.PlaceholderText = "Customer";
+        textBoxClient.Size = new Size(141, 23);
+        textBoxClient.TabIndex = 6;
+        textBoxClient.TextAlign = HorizontalAlignment.Center;
+        myStrFld_01.SetToolTip(textBoxClient, "Моя сборка структуры файлов:\r\n- имя/название заказчика");
+        // 
+        // checkBoxArchitecture
+        // 
+        checkBoxArchitecture.Location = new Point(163, 106);
+        checkBoxArchitecture.Name = "checkBoxArchitecture";
+        checkBoxArchitecture.Size = new Size(63, 20);
+        checkBoxArchitecture.TabIndex = 7;
+        checkBoxArchitecture.Text = "ARCH";
+        checkBoxArchitecture.UseVisualStyleBackColor = true;
+        // 
+        // checkBoxDesign
+        // 
+        checkBoxDesign.Location = new Point(232, 106);
+        checkBoxDesign.Name = "checkBoxDesign";
+        checkBoxDesign.Size = new Size(52, 20);
+        checkBoxDesign.TabIndex = 8;
+        checkBoxDesign.Text = "INT";
+        checkBoxDesign.UseVisualStyleBackColor = true;
+        // 
+        // checkBoxCreateShortcut
+        // 
+        checkBoxCreateShortcut.ForeColor = SystemColors.ControlText;
+        checkBoxCreateShortcut.Location = new Point(205, 309);
+        checkBoxCreateShortcut.Name = "checkBoxCreateShortcut";
+        checkBoxCreateShortcut.Size = new Size(100, 20);
+        checkBoxCreateShortcut.TabIndex = 9;
+        checkBoxCreateShortcut.Text = "Link desktop";
+        checkBoxCreateShortcut.TextAlign = ContentAlignment.MiddleCenter;
+        checkBoxCreateShortcut.UseVisualStyleBackColor = true;
+        checkBoxCreateShortcut.CheckedChanged += CheckBoxCreateShortcut_CheckedChanged;
+        // 
+        // buttonCoronaBatchOrganizerMapsByCamera
+        // 
+        buttonCoronaBatchOrganizerMapsByCamera.BackColor = Color.DarkGray;
+        buttonCoronaBatchOrganizerMapsByCamera.Location = new Point(319, 30);
+        buttonCoronaBatchOrganizerMapsByCamera.Name = "buttonCoronaBatchOrganizerMapsByCamera";
+        buttonCoronaBatchOrganizerMapsByCamera.Size = new Size(142, 45);
+        buttonCoronaBatchOrganizerMapsByCamera.TabIndex = 10;
+        buttonCoronaBatchOrganizerMapsByCamera.Text = "Organize render maps by camera";
+        organizeCoronaMap_01.SetToolTip(buttonCoronaBatchOrganizerMapsByCamera, resources.GetString("buttonCoronaBatchOrganizerMapsByCamera.ToolTip"));
+        buttonCoronaBatchOrganizerMapsByCamera.UseVisualStyleBackColor = false;
+        buttonCoronaBatchOrganizerMapsByCamera.Click += ButtonCoronaBatchOrganizerMapsByCamera_Click;
+        // 
+        // buttonCoronaBatchOrganizerMapsByMaps
+        // 
+        buttonCoronaBatchOrganizerMapsByMaps.BackColor = Color.DarkGray;
+        buttonCoronaBatchOrganizerMapsByMaps.Location = new Point(467, 30);
+        buttonCoronaBatchOrganizerMapsByMaps.Name = "buttonCoronaBatchOrganizerMapsByMaps";
+        buttonCoronaBatchOrganizerMapsByMaps.Size = new Size(142, 45);
+        buttonCoronaBatchOrganizerMapsByMaps.TabIndex = 11;
+        buttonCoronaBatchOrganizerMapsByMaps.Text = "Organize render maps by maps";
+        organizeCoronaMap_03.SetToolTip(buttonCoronaBatchOrganizerMapsByMaps, resources.GetString("buttonCoronaBatchOrganizerMapsByMaps.ToolTip"));
+        buttonCoronaBatchOrganizerMapsByMaps.UseVisualStyleBackColor = false;
+        buttonCoronaBatchOrganizerMapsByMaps.Click += ButtonCoronaBatchOrganizerMapsByMaps_Click;
+        // 
+        // buttonUndoLast
+        // 
+        buttonUndoLast.BackColor = Color.DarkGray;
+        buttonUndoLast.Location = new Point(321, 304);
+        buttonUndoLast.Name = "buttonUndoLast";
+        buttonUndoLast.Size = new Size(290, 30);
+        buttonUndoLast.TabIndex = 13;
+        buttonUndoLast.Text = "Undo last sort operation";
+        organizeCoronaMap_02.SetToolTip(buttonUndoLast, "Возвращает все отсортированные файлы в исходную папку");
+        buttonUndoLast.UseVisualStyleBackColor = false;
+        buttonUndoLast.Click += ButtonUndoLast_Click;
+        // 
+        // textBoxDestinationPath
+        // 
+        textBoxDestinationPath.Location = new Point(14, 275);
+        textBoxDestinationPath.Name = "textBoxDestinationPath";
+        textBoxDestinationPath.PlaceholderText = "Path to save";
+        textBoxDestinationPath.Size = new Size(565, 23);
+        textBoxDestinationPath.TabIndex = 17;
+        textBoxDestinationPath.TextAlign = HorizontalAlignment.Center;
+        // 
+        // buttonChooseDestination
+        // 
+        buttonChooseDestination.BackColor = Color.DarkGray;
+        buttonChooseDestination.Location = new Point(582, 275);
+        buttonChooseDestination.Name = "buttonChooseDestination";
+        buttonChooseDestination.Size = new Size(29, 23);
+        buttonChooseDestination.TabIndex = 18;
+        buttonChooseDestination.Text = "...";
+        buttonChooseDestination.UseVisualStyleBackColor = false;
+        buttonChooseDestination.Click += ButtonChooseDestination_Click;
+        // 
+        // buttonCopyTemplate
+        // 
+        buttonCopyTemplate.BackColor = Color.DarkGray;
+        buttonCopyTemplate.Location = new Point(14, 185);
+        buttonCopyTemplate.Name = "buttonCopyTemplate";
+        buttonCopyTemplate.Size = new Size(290, 45);
+        buttonCopyTemplate.TabIndex = 19;
+        buttonCopyTemplate.Text = "Create work folder structure";
+        copyFldStr_02.SetToolTip(buttonCopyTemplate, resources.GetString("buttonCopyTemplate.ToolTip"));
+        buttonCopyTemplate.UseVisualStyleBackColor = false;
+        buttonCopyTemplate.Click += ButtonCopyTemplate_Click;
+        // 
+        // textBoxNewProjectName
+        // 
+        textBoxNewProjectName.Location = new Point(14, 156);
+        textBoxNewProjectName.Name = "textBoxNewProjectName";
+        textBoxNewProjectName.PlaceholderText = "Enter the name of the new project";
+        textBoxNewProjectName.Size = new Size(290, 23);
+        textBoxNewProjectName.TabIndex = 20;
+        textBoxNewProjectName.TextAlign = HorizontalAlignment.Center;
+        copyFldStr_01.SetToolTip(textBoxNewProjectName, "Любая структура файлов:\r\n- имя\\название проекта\r\n");
+        // 
+        // checkBoxAddNumber
+        // 
+        checkBoxAddNumber.Location = new Point(16, 311);
+        checkBoxAddNumber.Name = "checkBoxAddNumber";
+        checkBoxAddNumber.Size = new Size(97, 16);
+        checkBoxAddNumber.TabIndex = 21;
+        checkBoxAddNumber.Text = " Add number";
+        checkBoxAddNumber.UseVisualStyleBackColor = true;
+        // 
+        // groupBox1
+        // 
+        groupBox1.BackColor = Color.Transparent;
+        groupBox1.ForeColor = SystemColors.ButtonFace;
+        groupBox1.Location = new Point(9, 10);
+        groupBox1.Name = "groupBox1";
+        groupBox1.Size = new Size(300, 120);
+        groupBox1.TabIndex = 25;
+        groupBox1.TabStop = false;
+        groupBox1.Text = "CREATING A WORK FOLDER STRUCTURE";
+        // 
+        // groupBox3
+        // 
+        groupBox3.BackColor = Color.Transparent;
+        groupBox3.ForeColor = SystemColors.ButtonFace;
+        groupBox3.Location = new Point(10, 137);
+        groupBox3.Name = "groupBox3";
+        groupBox3.Size = new Size(300, 100);
+        groupBox3.TabIndex = 27;
+        groupBox3.TabStop = false;
+        groupBox3.Text = "COPY A FOLDER STRUCTURE";
+        // 
+        // groupBox4
+        // 
+        groupBox4.BackColor = Color.Transparent;
+        groupBox4.Controls.Add(buttonRenameFiles);
+        groupBox4.Controls.Add(textBoxRename);
+        groupBox4.Controls.Add(labelCounterStart);
+        groupBox4.Controls.Add(numericUpDownCounterStart);
+        groupBox4.Controls.Add(labelCounterStep);
+        groupBox4.Controls.Add(numericUpDownCounterStep);
+        groupBox4.Controls.Add(labelCounterDigits);
+        groupBox4.Controls.Add(numericUpDownCounterDigits);
+        groupBox4.ForeColor = SystemColors.ButtonFace;
+        groupBox4.Location = new Point(314, 137);
+        groupBox4.Name = "groupBox4";
+        groupBox4.Size = new Size(300, 100);
+        groupBox4.TabIndex = 28;
+        groupBox4.TabStop = false;
+        groupBox4.Text = "RENAMING FILES";
+        // 
+        // buttonRenameFiles
+        // 
+        buttonRenameFiles.BackColor = Color.DarkGray;
+        buttonRenameFiles.ForeColor = SystemColors.ControlText;
+        buttonRenameFiles.Location = new Point(6, 52);
+        buttonRenameFiles.Name = "buttonRenameFiles";
+        buttonRenameFiles.Size = new Size(161, 37);
+        buttonRenameFiles.TabIndex = 1;
+        buttonRenameFiles.Text = "Rename files";
+        buttonRenameFiles.UseVisualStyleBackColor = false;
+        buttonRenameFiles.Click += ButtonRenameFiles_Click;
+        // 
+        // textBoxRename
+        // 
+        textBoxRename.Location = new Point(6, 19);
+        textBoxRename.Name = "textBoxRename";
+        textBoxRename.Size = new Size(161, 23);
+        textBoxRename.TabIndex = 0;
+        // 
+        // labelCounterStart
+        // 
+        labelCounterStart.Location = new Point(175, 19);
+        labelCounterStart.Size = new Size(40, 23);
+        labelCounterStart.Text = "Start:";
+        // 
+        // numericUpDownCounterStart
+        // 
+        numericUpDownCounterStart.Location = new Point(215, 19);
+        numericUpDownCounterStart.Size = new Size(60, 23);
+        numericUpDownCounterStart.Minimum = 0;
+        numericUpDownCounterStart.Maximum = 1000000;
+        numericUpDownCounterStart.Value = 0;
+        // 
+        // labelCounterStep
+        // 
+        labelCounterStep.Location = new Point(175, 45);
+        labelCounterStep.Size = new Size(40, 23);
+        labelCounterStep.Text = "Step:";
+        // 
+        // numericUpDownCounterStep
+        // 
+        numericUpDownCounterStep.Location = new Point(215, 45);
+        numericUpDownCounterStep.Size = new Size(60, 23);
+        numericUpDownCounterStep.Minimum = 1;
+        numericUpDownCounterStep.Maximum = 1000000;
+        numericUpDownCounterStep.Value = 1;
+        // 
+        // labelCounterDigits
+        // 
+        labelCounterDigits.Location = new Point(175, 71);
+        labelCounterDigits.Size = new Size(40, 23);
+        labelCounterDigits.Text = "Digits:";
+        // 
+        // numericUpDownCounterDigits
+        // 
+        numericUpDownCounterDigits.Location = new Point(215, 71);
+        numericUpDownCounterDigits.Size = new Size(60, 23);
+        numericUpDownCounterDigits.Minimum = 1;
+        numericUpDownCounterDigits.Maximum = 10;
+        numericUpDownCounterDigits.Value = 2;
+        // 
+        // groupBox2
+        // 
+        groupBox2.BackColor = Color.Transparent;
+        groupBox2.ForeColor = SystemColors.ButtonFace;
+        groupBox2.Location = new Point(314, 10);
+        groupBox2.Name = "groupBox2";
+        groupBox2.Size = new Size(300, 120);
+        groupBox2.TabIndex = 26;
+        groupBox2.TabStop = false;
+        groupBox2.Text = "ORGANIZE CORONA MAPS";
+        // 
+        // organizeCoronaMap_01
+        // 
+        organizeCoronaMap_01.AutomaticDelay = 1500;
+        organizeCoronaMap_01.Popup += toolTip1_Popup;
+        // 
+        // organizeCoronaMap_03
+        // 
+        organizeCoronaMap_03.AutomaticDelay = 1500;
+        organizeCoronaMap_03.Popup += organizeCoronaMap_03_Popup;
+        // 
+        // organizeCoronaMap_02
+        // 
+        organizeCoronaMap_02.AutomaticDelay = 1500;
+        // 
+        // myStrFld_01
+        // 
+        myStrFld_01.AutomaticDelay = 1500;
+        // 
+        // myStrFld_04
+        // 
+        myStrFld_04.AutomaticDelay = 1500;
+        // 
+        // Form1
+        // 
+        AutoScaleDimensions = new SizeF(7F, 15F);
+        AutoScaleMode = AutoScaleMode.Font;
+        BackColor = Color.DarkGray;
+        BackgroundImageLayout = ImageLayout.Center;
+        ClientSize = new Size(627, 340);
+        Controls.Add(textBoxProjectName);
+        Controls.Add(textBoxClient);
+        Controls.Add(checkBoxAddNumber);
+        Controls.Add(textBoxNewProjectName);
+        Controls.Add(buttonCopyTemplate);
+        Controls.Add(buttonChooseDestination);
+        Controls.Add(textBoxDestinationPath);
+        Controls.Add(buttonUndoLast);
+        Controls.Add(buttonCoronaBatchOrganizerMapsByMaps);
+        Controls.Add(buttonCoronaBatchOrganizerMapsByCamera);
+        Controls.Add(checkBoxCreateShortcut);
+        Controls.Add(checkBoxDesign);
+        Controls.Add(checkBoxArchitecture);
+        Controls.Add(checkBoxAddDate);
+        Controls.Add(buttonCreateFullProject);
+        Controls.Add(buttonChoosePath);
+        Controls.Add(textBoxPath);
+        Controls.Add(button3dsMaxStructureFolders);
+        Controls.Add(groupBox1);
+        Controls.Add(groupBox2);
+        Controls.Add(groupBox3);
+        Controls.Add(groupBox4);
+        FormBorderStyle = FormBorderStyle.FixedSingle;
+        Icon = (Icon)resources.GetObject("$this.Icon");
+        Location = new Point(15, 15);
+        Name = "Form1";
+        StartPosition = FormStartPosition.CenterScreen;
+        Load += Form1_Load;
+        ((System.ComponentModel.ISupportInitialize)bindingSource1).EndInit();
+        ((System.ComponentModel.ISupportInitialize)bindingSource2).EndInit();
+        groupBox4.ResumeLayout(false);
+        groupBox4.PerformLayout();
+        ResumeLayout(false);
+        PerformLayout();
+    }
+
+    private System.Windows.Forms.ToolTip copyFldStr_02;
+        private Label labelCounterStart;
+        private NumericUpDown numericUpDownCounterStart;
+        private Label labelCounterStep;
+        private NumericUpDown numericUpDownCounterStep;
+        private Label labelCounterDigits;
+        private NumericUpDown numericUpDownCounterDigits;
+
+    private System.Windows.Forms.ToolTip copyFldStr_01;
+
+    private System.Windows.Forms.ToolTip organizeCoronaMap_03;
+
+    private System.Windows.Forms.ToolTip myStrFld_04;
+
+    private System.Windows.Forms.ToolTip myStrFld_03;
+
+    private System.Windows.Forms.ToolTip myStrFld_02;
+
+    private System.Windows.Forms.ToolTip myStrFld_01;
+
+    private System.Windows.Forms.ToolTip organizeCoronaMap_02;
+
+    private System.Windows.Forms.ToolTip toolTip2;
+
+    private System.Windows.Forms.ToolTip organizeCoronaMap_01;
+
+    private System.Windows.Forms.GroupBox groupBox2;
+
+    private System.Windows.Forms.GroupBox groupBox4;
+
+    private System.Windows.Forms.GroupBox groupBox3;
+
+    private System.Windows.Forms.GroupBox groupBox1;
+
+    private System.Windows.Forms.CheckBox checkBoxAddNumber;
+
+    private System.Windows.Forms.TextBox textBoxNewProjectName;
+
+    private System.Windows.Forms.Button buttonCopyTemplate;
+
+    private System.Windows.Forms.Button buttonChooseDestination;
+
+    private System.Windows.Forms.TextBox textBoxDestinationPath;
+
+    private System.Windows.Forms.Button buttonUndoLast;
+
+    private System.Windows.Forms.Button buttonCoronaBatchOrganizerMapsByMaps;
+
+    private System.Windows.Forms.Button buttonCoronaBatchOrganizerMapsByCamera;
+
+    private System.Windows.Forms.CheckBox checkBoxCreateShortcut;
+
+    private System.Windows.Forms.CheckBox checkBoxArchitecture;
+    private System.Windows.Forms.CheckBox checkBoxDesign;
+
+    private System.Windows.Forms.TextBox textBoxClient;
+
+    private System.Windows.Forms.CheckBox checkBoxAddDate;
+
+    private System.Windows.Forms.Button buttonCreateFullProject;
+
+    private System.Windows.Forms.FontDialog fontDialog1;
+    private System.Windows.Forms.FontDialog fontDialog2;
+
+    private System.Windows.Forms.TextBox textBoxProjectName;
+    private System.Windows.Forms.BindingSource bindingSource2;
+
+    private System.Windows.Forms.BindingSource bindingSource1;
+
+    private System.Windows.Forms.Button buttonChoosePath;
+
+    private System.Windows.Forms.TextBox textBoxPath;
+
+    private System.Windows.Forms.Button button3dsMaxStructureFolders;
+
+    #endregion
+
+    private TextBox textBoxRename;
+    private Button buttonRenameFiles;
+}

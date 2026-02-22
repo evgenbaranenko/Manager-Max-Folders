@@ -77,7 +77,7 @@ namespace Folders_Max_WinForm
             namePart = Regex.Replace(namePart, @"_{2,}", "_");
             namePart = Regex.Replace(namePart, @"\s{2,}", " ");
 
-            return string.IsNullOrWhiteSpace(namePart) ? "0000" : namePart;
+            return string.IsNullOrWhiteSpace(namePart) ? MessageText.DefaultFolderKey : namePart;
         }
 
         private static void ProcessFile(string filePath, string rootFolder, BatchOperationLog log)
@@ -104,8 +104,6 @@ namespace Folders_Max_WinForm
                 Directory.CreateDirectory(path);
         }
 
-
-
         // ------------------------------------------------------------
         private static string CreateRootFolder(
             string destinationFolder,
@@ -118,7 +116,7 @@ namespace Folders_Max_WinForm
 
             string sourceFolderName = new DirectoryInfo(sourceFolder).Name;
 
-            string baseName = $"{sourceFolderName} - Maps By Maps";
+            string baseName = sourceFolderName + MessageText.MapsByMapsSuffix;
 
             string folderName = NameGenerator.GenerateFinalName(
                 destinationFolder,

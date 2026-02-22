@@ -49,9 +49,32 @@ namespace Folders_Max_WinForm
         public const string CannotCopyIntoSameFolder = "Cannot copy the structure into the same folder.";
         public const string CannotCopyInsideItself = "Cannot copy the structure inside itself.";
 
+        // Exceptions and validation messages for template copying
+        public const string TemplatePathRequired = "Template path must be provided.";
+        public const string DestinationPathRequired = "Destination path must be provided.";
+        public const string NewProjectNameRequired = "New project name must be provided.";
+        public const string NewProjectNameInvalidChars = "New project name contains invalid characters.";
+
         public const string TryAgain = "Please try again.";
         public const string FolderNotFound = "Folder not found.";
         public const string NoFilesToProcessInFolder = "No files to process in the folder.";
         public const string NoFilesToSortInFolder = "No files to sort in the folder.";
+
+        public const string ConfirmUndoTitle = "Confirm Undo";
+        public const string ConfirmUndoFormat = "Operation from: {0}\nMoved files: {1}\nCreated folders: {2}\nDelete/undo?";
+
+        // Default folder key used when no meaningful name can be derived
+        public const string DefaultFolderKey = "0000";
+
+        // Suffixes used when creating root folder names
+        public const string MapsByMapsSuffix = " - Maps By Maps";
+
+        // Placeholder texts for UI textboxes
+        public const string PlaceholderPath = "Path";
+        public const string PlaceholderProjectName = "Project name";
+        public const string PlaceholderCustomer = "Customer";
+        public const string PlaceholderPathToSave = "Path to save";
+        public const string PlaceholderNewProjectName = "Enter the name of the new project";
+        public const string PlaceholderRename = "New name";
     }
 }

@@ -83,7 +83,7 @@ namespace Folders_Max_WinForm
                 if (!File.Exists(copyPath))
                 {
                     File.Copy(targetPath, copyPath);
-                    log.Files.Add(new FileMoveInfo { Source = targetPath, Destination = copyPath });
+                    log.Files.Add(new FileMoveInfo { Source = targetPath, Destination = copyPath, IsCopy = true });
                 }
             }
         }
