@@ -75,6 +75,7 @@ partial class Form1
         myStrFld_04 = new ToolTip(components);
         copyFldStr_01 = new ToolTip(components);
         copyFldStr_02 = new ToolTip(components);
+        loadToPsAndSaveFiles = new CheckBox();
         ((System.ComponentModel.ISupportInitialize)numericUpDownCounterStart).BeginInit();
         ((System.ComponentModel.ISupportInitialize)numericUpDownCounterStep).BeginInit();
         ((System.ComponentModel.ISupportInitialize)numericUpDownCounterDigits).BeginInit();
@@ -411,6 +412,7 @@ partial class Form1
         // groupBox2
         // 
         groupBox2.BackColor = Color.Transparent;
+        groupBox2.Controls.Add(loadToPsAndSaveFiles);
         groupBox2.Controls.Add(ButtonLoadToPhotoshop);
         groupBox2.ForeColor = SystemColors.ButtonFace;
         groupBox2.Location = new Point(314, 10);
@@ -452,6 +454,16 @@ partial class Form1
         // myStrFld_04
         // 
         myStrFld_04.AutomaticDelay = 1500;
+        // 
+        // loadToPsAndSaveFiles
+        // 
+        loadToPsAndSaveFiles.AutoSize = true;
+        loadToPsAndSaveFiles.Location = new Point(10, 65);
+        loadToPsAndSaveFiles.Name = "loadToPsAndSaveFiles";
+        loadToPsAndSaveFiles.Size = new Size(154, 19);
+        loadToPsAndSaveFiles.TabIndex = 1;
+        loadToPsAndSaveFiles.Text = "Load to ps and save files";
+        loadToPsAndSaveFiles.UseVisualStyleBackColor = true;
         // 
         // Form1
         // 
@@ -496,6 +508,7 @@ partial class Form1
         groupBox4.ResumeLayout(false);
         groupBox4.PerformLayout();
         groupBox2.ResumeLayout(false);
+        groupBox2.PerformLayout();
         ResumeLayout(false);
         PerformLayout();
     }
@@ -581,4 +594,5 @@ partial class Form1
     private TextBox textBoxRename;
     private Button buttonRenameFiles;
     private Button ButtonLoadToPhotoshop;
+    private CheckBox loadToPsAndSaveFiles;
 }

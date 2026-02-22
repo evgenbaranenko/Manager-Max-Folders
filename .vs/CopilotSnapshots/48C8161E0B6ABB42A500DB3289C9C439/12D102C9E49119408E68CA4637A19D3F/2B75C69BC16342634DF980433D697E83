@@ -1,0 +1,122 @@
+﻿using System;
+using System.Diagnostics;
+using System.IO;
+
+namespace Folders_Max_WinForm
+{
+    public static class PhotoshopLoader
+    {
+        public static void LoadFolderIntoStack(string folderPath)
+        {
+            if (!Directory.Exists(folderPath))
+                throw new Exception(MessageText.FolderNotFound);
+
+            string photoshopPath = GetPhotoshopPath();
+
+            if (string.IsNullOrWhiteSpace(photoshopPath) || !File.Exists(photoshopPath))
+                throw new Exception(MessageText.PhotoshopNotFound);
+
+            string jsxScript = GenerateJsx(folderPath);
+            string jsx = $@"
+var folder = new Folder(""{folderPath.Replace("\\", "/")}""");
+var files = folder.getFiles(/\.(jpg|png|tif|tiff|exr)$/i);
+
+if(files.length > 0)
+{
+    files.sort();
+    var baseDoc = app.open(files[0]);
+    for(var i=1;i<files.length;i++)
+    {
+        var temp = app.open(files[i]);
+        temp.activeLayer.duplicate(baseDoc);
+        temp.close(SaveOptions.DONOTSAVECHANGES);
+    }
+
+    var saveFile = new File(""{outputPsdPath.Replace("\\", "/")}""");
+    var psdOptions = new PhotoshopSaveOptions();
+    baseDoc.saveAs(saveFile, psdOptions, true);
+    baseDoc.close(SaveOptions.DONOTSAVECHANGES);
+}
+";
+
+            string tempPath = Path.Combine(Path.GetTempPath(), "loadToStack.jsx");
+            File.WriteAllText(tempPath, jsxScript);
+
+            Process.Start(new ProcessStartInfo
+            {
+                FileName = photoshopPath,
+                Arguments = $"-r \"{tempPath}\"",
+                UseShellExecute = true
+            });
+        }
+
+        private static string GenerateJsx(string folderPath)
+        {
+            // Build a JSX script that loads all images from a folder into one document as layers
+            string folderForJs = folderPath.Replace("\\", "/");
+            return $@"var folder = new Folder(\"{folderForJs}\"); 
+var files = folder.getFiles(/\.(jpg|png|tif|tiff|exr)$/i);
+
+if(files.length > 0) {{
+    files.sort();
+    var baseDoc = app.open(files[0]);
+    for(var i=1; i<files.length; i++) {{
+        var tempDoc = app.open(files[i]);
+        try {{ tempDoc.activeLayer.duplicate(baseDoc); }} catch(e) {{}}
+        tempDoc.close(SaveOptions.DONOTSAVECHANGES);
+    }}
+}}
+";
+        }
+
+        private static string GetPhotoshopPath()
+        {
+            var settings = SettingsManager.Load();
+            if (!string.IsNullOrWhiteSpace(settings.PhotoshopPath) && File.Exists(settings.PhotoshopPath))
+                return settings.PhotoshopPath;
+            return string.Empty;
+        }
+
+        public static void CreatePsdFromFolder(string folderPath, string outputPsdPath)
+        {
+            if (!Directory.Exists(folderPath))
+                throw new Exception(MessageText.FolderNotFound);
+
+            string photoshopPath = GetPhotoshopPath();
+            if (string.IsNullOrWhiteSpace(photoshopPath) || !File.Exists(photoshopPath))
+                throw new Exception(MessageText.PhotoshopNotFound);
+
+            string folderForJs = folderPath.Replace("\\", "/");
+            string outForJs = outputPsdPath.Replace("\\", "/");
+
+            string jsx = $@"var folder = new Folder(\"{folderForJs}\"); 
+var files = folder.getFiles(/\.(jpg|png|tif|tiff|exr)$/i);
+
+if(files.length > 0) {{
+    files.sort();
+    var baseDoc = app.open(files[0]);
+    for(var i=1;i<files.length;i++) {{
+        var temp = app.open(files[i]);
+        try {{ temp.activeLayer.duplicate(baseDoc); }} catch(e) {{}}
+        temp.close(SaveOptions.DONOTSAVECHANGES);
+    }}
+
+    var saveFile = new File(\"{outForJs}\"); 
+    var psdOptions = new PhotoshopSaveOptions();
+    baseDoc.saveAs(saveFile, psdOptions, true);
+    baseDoc.close(SaveOptions.DONOTSAVECHANGES);
+}}
+";
+
+            string tempPath = Path.Combine(Path.GetTempPath(), "create_psd_" + Guid.NewGuid().ToString() + ".jsx");
+            File.WriteAllText(tempPath, jsx);
+
+            Process.Start(new ProcessStartInfo
+            {
+                FileName = photoshopPath,
+                Arguments = $"-r \"{tempPath}\"",
+                UseShellExecute = true
+            });
+        }
+    }
+}

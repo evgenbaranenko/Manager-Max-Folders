@@ -11,8 +11,7 @@ namespace Folders_Max_WinForm
             string sourceFolder,
             string destinationFolder,
             bool addDate,
-            bool addNumber,
-            bool createPhotoshop = false)
+            bool addNumber)
         {
             if (!Directory.Exists(sourceFolder))
                 throw new DirectoryNotFoundException(MessageText.FolderNotFound);
@@ -30,43 +29,6 @@ namespace Folders_Max_WinForm
             foreach (var file in files)
             {
                 ProcessFile(file, rootFolder, log);
-            }
-
-            // Optionally create PSD files per camera
-            if (createPhotoshop)
-            {
-                try
-                {
-                    var psFolder = Path.Combine(rootFolder, "Photoshop");
-                    EnsureDirectoryExists(psFolder);
-                    try { log.CreatedDirectories.Add(psFolder); } catch { }
-
-                    var subdirs = Directory.GetDirectories(rootFolder);
-                    foreach (var sub in subdirs)
-                    {
-                        var name = Path.GetFileName(sub);
-                        if (string.Equals(name, "LightMixs", StringComparison.OrdinalIgnoreCase))
-                            continue;
-                        if (string.Equals(name, "Photoshop", StringComparison.OrdinalIgnoreCase))
-                            continue;
-
-                        var outPsd = Path.Combine(psFolder, name + ".psd");
-                        try
-                        {
-                            PhotoshopLoader.CreatePsdFromFolder(sub, outPsd);
-                            // record created PSD so Undo can remove it
-                            try { log.Files.Add(new FileMoveInfo { Source = string.Empty, Destination = outPsd, IsCopy = true }); } catch { }
-                        }
-                        catch
-                        {
-                            // ignore per-folder errors
-                        }
-                    }
-                }
-                catch
-                {
-                    // ignore overall errors
-                }
             }
 
             BatchHistoryManager.SaveOperation(log, rootFolder);

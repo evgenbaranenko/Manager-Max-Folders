@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Text;
 
 namespace Folders_Max_WinForm
 {
@@ -19,9 +17,30 @@ namespace Folders_Max_WinForm
                 throw new Exception(MessageText.PhotoshopNotFound);
 
             string jsxScript = GenerateJsx(folderPath);
+            string jsx = $@"
+var folder = new Folder(""{folderPath.Replace("\\", "/")}"");
+var files = folder.getFiles(/\.(jpg|png|tif|tiff|exr)$/i);
+
+if(files.length > 0)
+{{
+    files.sort();
+    var baseDoc = app.open(files[0]);
+    for(var i=1;i<files.length;i++)
+    {{
+        var temp = app.open(files[i]);
+        temp.activeLayer.duplicate(baseDoc);
+        temp.close(SaveOptions.DONOTSAVECHANGES);
+    }}
+
+    var saveFile = new File(""{outputPsdPath.Replace("\\", "/")}"");
+    var psdOptions = new PhotoshopSaveOptions();
+    baseDoc.saveAs(saveFile, psdOptions, true);
+    baseDoc.close(SaveOptions.DONOTSAVECHANGES);
+}}
+";
 
             string tempPath = Path.Combine(Path.GetTempPath(), "loadToStack.jsx");
-            File.WriteAllText(tempPath, jsxScript, Encoding.UTF8);
+            File.WriteAllText(tempPath, jsxScript);
 
             Process.Start(new ProcessStartInfo
             {
@@ -33,24 +52,24 @@ namespace Folders_Max_WinForm
 
         private static string GenerateJsx(string folderPath)
         {
-            var folderForJs = folderPath.Replace("\\", "/");
-            var lines = new[]
-            {
-                $"var folder = new Folder(\"{folderForJs}\");",
-                "var files = folder.getFiles(/\\.(jpg|png|tif|tiff|exr)$/i);",
-                "if(files.length > 0) {",
-                "    files.sort();",
-                "    var baseDoc = app.open(files[0]);",
-                "    for(var i=1; i<files.length; i++) {",
-                "        var tempDoc = app.open(files[i]);",
-                "        try { tempDoc.activeLayer.duplicate(baseDoc); } catch(e) {}",
-                "        tempDoc.close(SaveOptions.DONOTSAVECHANGES);",
-                "    }",
-                "}",                
+            return $@"
+var folder = new Folder(""{folderPath.Replace("\\", "/")}"");
+var files = folder.getFiles(/\.(jpg|png|tif|tiff|exr)$/i);
 
-            };
+if(files.length > 0)
+{{
+    files.sort(); // 🔥 сортировка по имени
 
-            return string.Join("\n", lines);
+    var baseDoc = app.open(files[0]); // 🔥 первый файл как основа
+
+    for(var i=1; i<files.length; i++)
+    {{
+        var tempDoc = app.open(files[i]);
+        tempDoc.activeLayer.duplicate(baseDoc);
+        tempDoc.close(SaveOptions.DONOTSAVECHANGES);
+    }}
+}}
+";
         }
 
         private static string GetPhotoshopPath()
@@ -58,7 +77,6 @@ namespace Folders_Max_WinForm
             var settings = SettingsManager.Load();
             if (!string.IsNullOrWhiteSpace(settings.PhotoshopPath) && File.Exists(settings.PhotoshopPath))
                 return settings.PhotoshopPath;
-
             return string.Empty;
         }
 
@@ -71,33 +89,24 @@ namespace Folders_Max_WinForm
             if (string.IsNullOrWhiteSpace(photoshopPath) || !File.Exists(photoshopPath))
                 throw new Exception(MessageText.PhotoshopNotFound);
 
-            var folderForJs = folderPath.Replace("\\", "/");
-            var outForJs = outputPsdPath.Replace("\\", "/");
-
-            var lines = new[]
-            {
-                $"var folder = new Folder(\"{folderForJs}\");",
-                "var files = folder.getFiles(/\\.(jpg|png|tif|tiff|exr)$/i);",
-                "if(files.length > 0) {",
-                "    files.sort();",
-                "    var baseDoc = app.open(files[0]);",
-                "    for(var i=1;i<files.length;i++) {",
-                "        var temp = app.open(files[i]);",
-                "        try { temp.activeLayer.duplicate(baseDoc); } catch(e) {}",
-                "        temp.close(SaveOptions.DONOTSAVECHANGES);",
-                "    }",
-                $"    var saveFile = new File(\"{outForJs}\");",
-                "    var psdOptions = new PhotoshopSaveOptions();",
-                "    baseDoc.saveAs(saveFile, psdOptions, true);",
-                "    baseDoc.close(SaveOptions.DONOTSAVECHANGES);",
-                "}",
-
-            };
-
-            string jsx = string.Join("\n", lines);
+            string jsx = $@"var folder = new Folder(""{folderPath.Replace("\\", "/")}"");
+var files = folder.getFiles(/\.(jpg|png|tif|tiff|exr)$/i);
+if(files.length > 0) {{
+    files.sort();
+    var baseDoc = app.open(files[0]);
+    for(var i=1;i<files.length;i++) {{
+        var temp = app.open(files[i]);
+        temp.activeLayer.duplicate(baseDoc);
+        temp.close(SaveOptions.DONOTSAVECHANGES);
+    }}
+    var saveFile = new File(""{outputPsdPath.Replace("\\", "/")}"");
+    var psdOptions = new PhotoshopSaveOptions();
+    baseDoc.saveAs(saveFile, psdOptions, true);
+    baseDoc.close(SaveOptions.DONOTSAVECHANGES);
+}}";
 
             string tempPath = Path.Combine(Path.GetTempPath(), "create_psd_" + Guid.NewGuid().ToString() + ".jsx");
-            File.WriteAllText(tempPath, jsx, Encoding.UTF8);
+            File.WriteAllText(tempPath, jsx);
 
             Process.Start(new ProcessStartInfo
             {

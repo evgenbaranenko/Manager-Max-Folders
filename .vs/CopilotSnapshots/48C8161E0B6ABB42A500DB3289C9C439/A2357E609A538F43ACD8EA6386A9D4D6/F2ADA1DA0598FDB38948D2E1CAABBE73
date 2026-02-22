@@ -54,8 +54,6 @@ namespace Folders_Max_WinForm
                         try
                         {
                             PhotoshopLoader.CreatePsdFromFolder(sub, outPsd);
-                            // record created PSD so Undo can remove it
-                            try { log.Files.Add(new FileMoveInfo { Source = string.Empty, Destination = outPsd, IsCopy = true }); } catch { }
                         }
                         catch
                         {
