@@ -7,6 +7,24 @@ namespace Folders_Max_WinForm
             InitializeComponent();
         }
 
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+
+            var settings = SettingsManager.Load();
+            if (!string.IsNullOrWhiteSpace(settings.PhotoshopPath) && File.Exists(settings.PhotoshopPath))
+                textBoxPath.Text = settings.PhotoshopPath;
+        }
+
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            base.OnFormClosing(e);
+
+            var settings = SettingsManager.Load();
+            settings.PhotoshopPath = textBoxPath.Text.Trim();
+            SettingsManager.Save(settings);
+        }
+
         private bool TryResolveDestination(string sourcePath, out string destinationPath)
         {
             destinationPath = null;
@@ -42,16 +60,65 @@ namespace Folders_Max_WinForm
             MessageBox.Show(MessageText.SortingCompleted);
         }
 
+        private void ButtonLoadToPhotoshop_Click(object sender, EventArgs e)
+        {
+            if (InputPath(out var folderPath)) return;
+
+            try
+            {
+                var settings = SettingsManager.Load();
+                if (string.IsNullOrWhiteSpace(settings.PhotoshopPath) || !File.Exists(settings.PhotoshopPath))
+                {
+                    var ask = MessageBox.Show(MessageText.PromptSpecifyPhotoshop, MessageText.ChoosePhotoshopExecutableTitle, MessageBoxButtons.OKCancel);
+                    if (ask == DialogResult.OK)
+                    {
+                        using (OpenFileDialog dlg = new OpenFileDialog())
+                        {
+                            dlg.Filter = "Photoshop executable|Photoshop.exe|All files|*.*";
+                            dlg.Title = MessageText.ChoosePhotoshopExecutableTitle;
+                            if (dlg.ShowDialog() == DialogResult.OK)
+                            {
+                                settings.PhotoshopPath = dlg.FileName;
+                                SettingsManager.Save(settings);
+                            }
+                            else
+                            {
+                                return; // user canceled selection
+                            }
+                        }
+                    }
+                    else
+                    {
+                        return;
+                    }
+                }
+
+                PhotoshopLoader.LoadFolderIntoStack(folderPath);
+                MessageBox.Show(MessageText.PhotoshopLaunched);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+
         private void ButtonChoosePath_Click(object sender, EventArgs e)
         {
-            using (FolderBrowserDialog dialog = new FolderBrowserDialog())
+            // Select Photoshop executable
+            using (OpenFileDialog dialog = new OpenFileDialog())
             {
-                dialog.Description = MessageText.ChooseFolderToCreateStructure;
-                dialog.ShowNewFolderButton = true;
+                dialog.Filter = "Photoshop executable|Photoshop.exe|All files|*.*";
+                dialog.Title = MessageText.ChoosePhotoshopExecutableTitle;
 
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
-                    textBoxPath.Text = dialog.SelectedPath;
+                    textBoxPath.Text = dialog.FileName;
+
+                    // Save immediately
+                    var settings = SettingsManager.Load();
+                    settings.PhotoshopPath = dialog.FileName;
+                    SettingsManager.Save(settings);
                 }
             }
         }
@@ -337,6 +404,7 @@ namespace Folders_Max_WinForm
                 }
             }
         }
+
         private void ButtonRenameFiles_Click(object sender, EventArgs e)
         {
             if (InputPath(out var folderPath)) return;

@@ -12,6 +12,12 @@ obj/
 *.user
 *.suo
 
+# User files
+*.user
+*.suo
+*.log
+
+
 # Build results
 *.exe
 *.dll

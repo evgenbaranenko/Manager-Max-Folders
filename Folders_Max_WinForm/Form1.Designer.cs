@@ -65,6 +65,7 @@ partial class Form1
         buttonRenameFiles = new Button();
         textBoxRename = new TextBox();
         groupBox2 = new GroupBox();
+        ButtonLoadToPhotoshop = new Button();
         organizeCoronaMap_01 = new ToolTip(components);
         organizeCoronaMap_03 = new ToolTip(components);
         organizeCoronaMap_02 = new ToolTip(components);
@@ -74,13 +75,66 @@ partial class Form1
         myStrFld_04 = new ToolTip(components);
         copyFldStr_01 = new ToolTip(components);
         copyFldStr_02 = new ToolTip(components);
-        ((System.ComponentModel.ISupportInitialize)bindingSource1).BeginInit();
-        ((System.ComponentModel.ISupportInitialize)bindingSource2).BeginInit();
-        groupBox4.SuspendLayout();
         ((System.ComponentModel.ISupportInitialize)numericUpDownCounterStart).BeginInit();
         ((System.ComponentModel.ISupportInitialize)numericUpDownCounterStep).BeginInit();
         ((System.ComponentModel.ISupportInitialize)numericUpDownCounterDigits).BeginInit();
+        ((System.ComponentModel.ISupportInitialize)bindingSource1).BeginInit();
+        ((System.ComponentModel.ISupportInitialize)bindingSource2).BeginInit();
+        groupBox4.SuspendLayout();
+        groupBox2.SuspendLayout();
         SuspendLayout();
+        // 
+        // labelCounterStart
+        // 
+        labelCounterStart.Location = new Point(175, 19);
+        labelCounterStart.Name = "labelCounterStart";
+        labelCounterStart.Size = new Size(40, 23);
+        labelCounterStart.TabIndex = 2;
+        labelCounterStart.Text = "Start:";
+        // 
+        // numericUpDownCounterStart
+        // 
+        numericUpDownCounterStart.Location = new Point(215, 19);
+        numericUpDownCounterStart.Maximum = new decimal(new int[] { 1000000, 0, 0, 0 });
+        numericUpDownCounterStart.Name = "numericUpDownCounterStart";
+        numericUpDownCounterStart.Size = new Size(60, 23);
+        numericUpDownCounterStart.TabIndex = 3;
+        // 
+        // labelCounterStep
+        // 
+        labelCounterStep.Location = new Point(175, 45);
+        labelCounterStep.Name = "labelCounterStep";
+        labelCounterStep.Size = new Size(40, 23);
+        labelCounterStep.TabIndex = 4;
+        labelCounterStep.Text = "Step:";
+        // 
+        // numericUpDownCounterStep
+        // 
+        numericUpDownCounterStep.Location = new Point(215, 45);
+        numericUpDownCounterStep.Maximum = new decimal(new int[] { 1000000, 0, 0, 0 });
+        numericUpDownCounterStep.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+        numericUpDownCounterStep.Name = "numericUpDownCounterStep";
+        numericUpDownCounterStep.Size = new Size(60, 23);
+        numericUpDownCounterStep.TabIndex = 5;
+        numericUpDownCounterStep.Value = new decimal(new int[] { 1, 0, 0, 0 });
+        // 
+        // labelCounterDigits
+        // 
+        labelCounterDigits.Location = new Point(175, 71);
+        labelCounterDigits.Name = "labelCounterDigits";
+        labelCounterDigits.Size = new Size(40, 23);
+        labelCounterDigits.TabIndex = 6;
+        labelCounterDigits.Text = "Digits:";
+        // 
+        // numericUpDownCounterDigits
+        // 
+        numericUpDownCounterDigits.Location = new Point(215, 71);
+        numericUpDownCounterDigits.Maximum = new decimal(new int[] { 10, 0, 0, 0 });
+        numericUpDownCounterDigits.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+        numericUpDownCounterDigits.Name = "numericUpDownCounterDigits";
+        numericUpDownCounterDigits.Size = new Size(60, 23);
+        numericUpDownCounterDigits.TabIndex = 7;
+        numericUpDownCounterDigits.Value = new decimal(new int[] { 2, 0, 0, 0 });
         // 
         // button3dsMaxStructureFolders
         // 
@@ -100,7 +154,7 @@ partial class Form1
         textBoxPath.BackColor = SystemColors.ButtonFace;
         textBoxPath.Location = new Point(14, 246);
         textBoxPath.Name = "textBoxPath";
-        textBoxPath.PlaceholderText = MessageText.PlaceholderPath;
+        textBoxPath.PlaceholderText = "Path";
         textBoxPath.Size = new Size(565, 23);
         textBoxPath.TabIndex = 1;
         textBoxPath.TextAlign = HorizontalAlignment.Center;
@@ -129,7 +183,7 @@ partial class Form1
         textBoxProjectName.BackColor = SystemColors.ButtonFace;
         textBoxProjectName.Location = new Point(161, 30);
         textBoxProjectName.Name = "textBoxProjectName";
-        textBoxProjectName.PlaceholderText = MessageText.PlaceholderProjectName;
+        textBoxProjectName.PlaceholderText = "Project name";
         textBoxProjectName.Size = new Size(143, 23);
         textBoxProjectName.TabIndex = 3;
         textBoxProjectName.TextAlign = HorizontalAlignment.Center;
@@ -170,7 +224,7 @@ partial class Form1
         textBoxClient.BackColor = SystemColors.ButtonFace;
         textBoxClient.Location = new Point(14, 30);
         textBoxClient.Name = "textBoxClient";
-        textBoxClient.PlaceholderText = MessageText.PlaceholderCustomer;
+        textBoxClient.PlaceholderText = "Customer";
         textBoxClient.Size = new Size(141, 23);
         textBoxClient.TabIndex = 6;
         textBoxClient.TextAlign = HorizontalAlignment.Center;
@@ -237,7 +291,7 @@ partial class Form1
         buttonUndoLast.Name = "buttonUndoLast";
         buttonUndoLast.Size = new Size(290, 30);
         buttonUndoLast.TabIndex = 13;
-        buttonUndoLast.Text = "Undo last sort operation";
+        buttonUndoLast.Text = "UNDO";
         organizeCoronaMap_02.SetToolTip(buttonUndoLast, "Возвращает все отсортированные файлы в исходную папку");
         buttonUndoLast.UseVisualStyleBackColor = false;
         buttonUndoLast.Click += ButtonUndoLast_Click;
@@ -246,7 +300,7 @@ partial class Form1
         // 
         textBoxDestinationPath.Location = new Point(14, 275);
         textBoxDestinationPath.Name = "textBoxDestinationPath";
-        textBoxDestinationPath.PlaceholderText = MessageText.PlaceholderPathToSave;
+        textBoxDestinationPath.PlaceholderText = "Path to save";
         textBoxDestinationPath.Size = new Size(565, 23);
         textBoxDestinationPath.TabIndex = 17;
         textBoxDestinationPath.TextAlign = HorizontalAlignment.Center;
@@ -278,7 +332,7 @@ partial class Form1
         // 
         textBoxNewProjectName.Location = new Point(14, 156);
         textBoxNewProjectName.Name = "textBoxNewProjectName";
-        textBoxNewProjectName.PlaceholderText = MessageText.PlaceholderNewProjectName;
+        textBoxNewProjectName.PlaceholderText = "Enter the name of the new project";
         textBoxNewProjectName.Size = new Size(290, 23);
         textBoxNewProjectName.TabIndex = 20;
         textBoxNewProjectName.TextAlign = HorizontalAlignment.Center;
@@ -350,55 +404,14 @@ partial class Form1
         // 
         textBoxRename.Location = new Point(6, 19);
         textBoxRename.Name = "textBoxRename";
-        textBoxRename.PlaceholderText = MessageText.PlaceholderRename;
+        textBoxRename.PlaceholderText = "New name";
         textBoxRename.Size = new Size(161, 23);
         textBoxRename.TabIndex = 0;
-        // 
-        // labelCounterStart
-        // 
-        labelCounterStart.Location = new Point(175, 19);
-        labelCounterStart.Size = new Size(40, 23);
-        labelCounterStart.Text = "Start:";
-        // 
-        // numericUpDownCounterStart
-        // 
-        numericUpDownCounterStart.Location = new Point(215, 19);
-        numericUpDownCounterStart.Size = new Size(60, 23);
-        numericUpDownCounterStart.Minimum = 0;
-        numericUpDownCounterStart.Maximum = 1000000;
-        numericUpDownCounterStart.Value = 0;
-        // 
-        // labelCounterStep
-        // 
-        labelCounterStep.Location = new Point(175, 45);
-        labelCounterStep.Size = new Size(40, 23);
-        labelCounterStep.Text = "Step:";
-        // 
-        // numericUpDownCounterStep
-        // 
-        numericUpDownCounterStep.Location = new Point(215, 45);
-        numericUpDownCounterStep.Size = new Size(60, 23);
-        numericUpDownCounterStep.Minimum = 1;
-        numericUpDownCounterStep.Maximum = 1000000;
-        numericUpDownCounterStep.Value = 1;
-        // 
-        // labelCounterDigits
-        // 
-        labelCounterDigits.Location = new Point(175, 71);
-        labelCounterDigits.Size = new Size(40, 23);
-        labelCounterDigits.Text = "Digits:";
-        // 
-        // numericUpDownCounterDigits
-        // 
-        numericUpDownCounterDigits.Location = new Point(215, 71);
-        numericUpDownCounterDigits.Size = new Size(60, 23);
-        numericUpDownCounterDigits.Minimum = 1;
-        numericUpDownCounterDigits.Maximum = 10;
-        numericUpDownCounterDigits.Value = 2;
         // 
         // groupBox2
         // 
         groupBox2.BackColor = Color.Transparent;
+        groupBox2.Controls.Add(ButtonLoadToPhotoshop);
         groupBox2.ForeColor = SystemColors.ButtonFace;
         groupBox2.Location = new Point(314, 10);
         groupBox2.Name = "groupBox2";
@@ -406,6 +419,17 @@ partial class Form1
         groupBox2.TabIndex = 26;
         groupBox2.TabStop = false;
         groupBox2.Text = "ORGANIZE CORONA MAPS";
+        // 
+        // ButtonLoadToPhotoshop
+        // 
+        ButtonLoadToPhotoshop.ForeColor = SystemColors.ActiveCaptionText;
+        ButtonLoadToPhotoshop.Location = new Point(7, 82);
+        ButtonLoadToPhotoshop.Name = "ButtonLoadToPhotoshop";
+        ButtonLoadToPhotoshop.Size = new Size(133, 32);
+        ButtonLoadToPhotoshop.TabIndex = 0;
+        ButtonLoadToPhotoshop.Text = "Load to Photoshop";
+        ButtonLoadToPhotoshop.UseVisualStyleBackColor = true;
+        ButtonLoadToPhotoshop.Click += ButtonLoadToPhotoshop_Click;
         // 
         // organizeCoronaMap_01
         // 
@@ -464,13 +488,14 @@ partial class Form1
         Name = "Form1";
         StartPosition = FormStartPosition.CenterScreen;
         Load += Form1_Load;
-        ((System.ComponentModel.ISupportInitialize)bindingSource1).EndInit();
-        ((System.ComponentModel.ISupportInitialize)bindingSource2).EndInit();
         ((System.ComponentModel.ISupportInitialize)numericUpDownCounterStart).EndInit();
         ((System.ComponentModel.ISupportInitialize)numericUpDownCounterStep).EndInit();
         ((System.ComponentModel.ISupportInitialize)numericUpDownCounterDigits).EndInit();
+        ((System.ComponentModel.ISupportInitialize)bindingSource1).EndInit();
+        ((System.ComponentModel.ISupportInitialize)bindingSource2).EndInit();
         groupBox4.ResumeLayout(false);
         groupBox4.PerformLayout();
+        groupBox2.ResumeLayout(false);
         ResumeLayout(false);
         PerformLayout();
     }
@@ -555,4 +580,5 @@ partial class Form1
 
     private TextBox textBoxRename;
     private Button buttonRenameFiles;
+    private Button ButtonLoadToPhotoshop;
 }

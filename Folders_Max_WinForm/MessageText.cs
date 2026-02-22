@@ -12,6 +12,7 @@ namespace Folders_Max_WinForm
         public const string SortingCompleted = "Sorting completed!";
 
         public const string ChooseFolderToCreateStructure = "Choose the folder to create the structure";
+        public const string ChoosePhotoshopExecutableTitle = "Select Photoshop executable";
 
         public const string ChooseTemplateFolderPrompt = "Choose the template folder! \nYou need to provide the path in \"Path\"";
         public const string ChooseDestinationFolderPrompt = "Choose the destination folder! \nYou need to provide the path in \"Path to save\"";
@@ -76,5 +77,8 @@ namespace Folders_Max_WinForm
         public const string PlaceholderPathToSave = "Path to save";
         public const string PlaceholderNewProjectName = "Enter the name of the new project";
         public const string PlaceholderRename = "New name";
+        public const string PhotoshopNotFound = "Photoshop not found. Please set the path to Photoshop in the application settings.";
+        public const string PromptSpecifyPhotoshop = "Please specify the path to Photoshop.";
+        public const string PhotoshopLaunched = "Photoshop launched!";
     }
 }
