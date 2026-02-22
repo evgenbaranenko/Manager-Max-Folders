@@ -14,10 +14,6 @@ namespace Folders_Max_WinForm
 
         /// <summary>Список перемещённых файлов и их целевых путей.</summary>
         public List<FileMoveInfo> Files { get; set; } = new();
-        /// <summary>
-        /// Список созданных директорий в рамках операции — будут удаляться при откате.
-        /// </summary>
-        public List<string> CreatedDirectories { get; set; } = new();
     }
 
     /// <summary>

@@ -147,7 +147,7 @@ partial class Form1
         // 
         checkBoxAddDate.BackColor = Color.DarkGray;
         checkBoxAddDate.ForeColor = SystemColors.ControlText;
-        checkBoxAddDate.Location = new Point(130, 307);
+        checkBoxAddDate.Location = new Point(130, 309);
         checkBoxAddDate.Name = "checkBoxAddDate";
         checkBoxAddDate.Size = new Size(52, 20);
         checkBoxAddDate.TabIndex = 5;
@@ -188,7 +188,7 @@ partial class Form1
         // checkBoxCreateShortcut
         // 
         checkBoxCreateShortcut.ForeColor = SystemColors.ControlText;
-        checkBoxCreateShortcut.Location = new Point(205, 307);
+        checkBoxCreateShortcut.Location = new Point(205, 309);
         checkBoxCreateShortcut.Name = "checkBoxCreateShortcut";
         checkBoxCreateShortcut.Size = new Size(100, 20);
         checkBoxCreateShortcut.TabIndex = 9;
@@ -224,9 +224,9 @@ partial class Form1
         // buttonUndoLast
         // 
         buttonUndoLast.BackColor = Color.DarkGray;
-        buttonUndoLast.Location = new Point(319, 80);
+        buttonUndoLast.Location = new Point(321, 304);
         buttonUndoLast.Name = "buttonUndoLast";
-        buttonUndoLast.Size = new Size(290, 25);
+        buttonUndoLast.Size = new Size(290, 30);
         buttonUndoLast.TabIndex = 13;
         buttonUndoLast.Text = "Undo last sort operation";
         organizeCoronaMap_02.SetToolTip(buttonUndoLast, "Возвращает все отсортированные файлы в исходную папку");
@@ -277,7 +277,7 @@ partial class Form1
         // 
         // checkBoxAddNumber
         // 
-        checkBoxAddNumber.Location = new Point(16, 309);
+        checkBoxAddNumber.Location = new Point(16, 311);
         checkBoxAddNumber.Name = "checkBoxAddNumber";
         checkBoxAddNumber.Size = new Size(97, 16);
         checkBoxAddNumber.TabIndex = 21;
@@ -377,7 +377,7 @@ partial class Form1
         AutoScaleMode = AutoScaleMode.Font;
         BackColor = Color.DarkGray;
         BackgroundImageLayout = ImageLayout.Center;
-        ClientSize = new Size(627, 334);
+        ClientSize = new Size(627, 340);
         Controls.Add(textBoxProjectName);
         Controls.Add(textBoxClient);
         Controls.Add(checkBoxAddNumber);

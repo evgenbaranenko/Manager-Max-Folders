@@ -85,7 +85,7 @@ namespace Folders_Max_WinForm
                 }
 
                 // Удаляем явно созданные директории, если они были указаны в логе.
-                if (last.CreatedDirectories != null && last.CreatedDirectories.Count > 0)
+                if (last.CreatedDirectories != null)
                 {
                     // Удаляем в обратном порядке, чтобы сначала удалить вложенные папки
                     for (int i = last.CreatedDirectories.Count - 1; i >= 0; i--)

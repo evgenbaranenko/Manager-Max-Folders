@@ -1,4 +1,4 @@
-namespace Folders_Max_WinForm
+﻿namespace Folders_Max_WinForm
 {
     public partial class Form1 : Form
     {
@@ -291,11 +291,6 @@ namespace Folders_Max_WinForm
                     finalName
                 );
 
-                // Записываем операцию в историю, чтобы её можно было отменить
-                var opLog = new BatchOperationLog { OriginalFolder = templatePath };
-                opLog.CreatedDirectories.Add(newProjectPath);
-                BatchHistoryManager.SaveOperation(opLog, newProjectPath);
-
                 if (checkBoxCreateShortcut.Checked)
                 {
                     CreateDesktopShortcut(newProjectPath);
@@ -343,8 +338,6 @@ namespace Folders_Max_WinForm
 
             int counter = 1;
 
-            var opLog = new BatchOperationLog { OriginalFolder = folderPath };
-
             foreach (var file in files)
             {
                 string extension = Path.GetExtension(file);
@@ -361,11 +354,8 @@ namespace Folders_Max_WinForm
                 }
 
                 File.Move(file, newPath);
-                opLog.Files.Add(new FileMoveInfo { Source = file, Destination = newPath });
                 counter++;
             }
-
-            BatchHistoryManager.SaveOperation(opLog, folderPath);
 
             MessageBox.Show(MessageText.FilesRenamedSuccessfully);
         }
