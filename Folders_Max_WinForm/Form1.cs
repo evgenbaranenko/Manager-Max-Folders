@@ -17,7 +17,7 @@ namespace Folders_Max_WinForm
 
                 if (!Directory.Exists(destinationPath))
                 {
-                    MessageBox.Show("Путь назначения не существует.");
+                    MessageBox.Show(MessageText.PathDestinationNotExist);
                     return false;
                 }
 
@@ -27,7 +27,7 @@ namespace Folders_Max_WinForm
             destinationPath = Directory.GetParent(sourcePath)?.FullName;
             if (destinationPath == null)
             {
-                MessageBox.Show("Невозможно определить родительскую папку.");
+                MessageBox.Show(MessageText.UnableToDetermineParentFolder);
                 return false;
             }
 
@@ -39,14 +39,14 @@ namespace Folders_Max_WinForm
             if (checkBoxCreateShortcut.Checked)
                 CreateDesktopShortcut(createdFolder);
 
-            MessageBox.Show("Сортировка выполнена!");
+            MessageBox.Show(MessageText.SortingCompleted);
         }
 
         private void ButtonChoosePath_Click(object sender, EventArgs e)
         {
             using (FolderBrowserDialog dialog = new FolderBrowserDialog())
             {
-                dialog.Description = "Выберите папку, где создать структуру";
+                dialog.Description = MessageText.ChooseFolderToCreateStructure;
                 dialog.ShowNewFolderButton = true;
 
                 if (dialog.ShowDialog() == DialogResult.OK)
@@ -99,11 +99,11 @@ namespace Folders_Max_WinForm
 
             if (!isNewProject && !wasUpdated)
             {
-                MessageBox.Show("VIZ структура уже полностью создана.");
+                MessageBox.Show(MessageText.VizStructureAlreadyExists);
                 return;
             }
 
-            MessageBox.Show("VIZ структура создана / обновлена успешно!");
+            MessageBox.Show(MessageText.ProjectStructureUpdatedCreated);
 
             if (checkBoxCreateShortcut.Checked)
             {
@@ -119,7 +119,7 @@ namespace Folders_Max_WinForm
 
             if (!checkBoxArchitecture.Checked && !checkBoxDesign.Checked)
             {
-                MessageBox.Show("Выберите тип проекта!", "Ошибка");
+                MessageBox.Show(MessageText.SelectProjectType, MessageText.ErrorTitle);
                 return;
             }
 
@@ -163,11 +163,11 @@ namespace Folders_Max_WinForm
 
             if (!isNewProject && !wasUpdated)
             {
-                MessageBox.Show("Этот проект уже существует и структура полностью создана.");
+                MessageBox.Show(MessageText.ProjectAlreadyExistsStructureComplete);
                 return;
             }
 
-            MessageBox.Show("Структура проекта обновлена / создана успешно!");
+            MessageBox.Show(MessageText.ProjectStructureUpdatedCreated);
 
             if (checkBoxCreateShortcut.Checked)
             {
@@ -242,20 +242,20 @@ namespace Folders_Max_WinForm
 
             if (string.IsNullOrWhiteSpace(templatePath))
             {
-                MessageBox.Show("Выберите папку шаблона! \nНужно указать путь в \"Path\"");
+                MessageBox.Show(MessageText.ChooseTemplateFolderPrompt);
                 return;
             }
 
             if (string.IsNullOrWhiteSpace(destinationPath))
             {
-                MessageBox.Show("Выберите папку назначения! \nНужно указать путь в \"Path to save\"");
+                MessageBox.Show(MessageText.ChooseDestinationFolderPrompt);
                 return;
             }
 
 
             if (string.IsNullOrWhiteSpace(newProjectName))
             {
-                MessageBox.Show("Введите название проекта.");
+                MessageBox.Show(MessageText.EnterProjectName);
                 return;
             }
 
@@ -263,7 +263,7 @@ namespace Folders_Max_WinForm
             {
                 if (newProjectName.Contains(c))
                 {
-                    MessageBox.Show("Название содержит недопустимые символы.");
+                    MessageBox.Show(MessageText.NameContainsInvalidChars);
                     return;
                 }
             }
@@ -289,7 +289,7 @@ namespace Folders_Max_WinForm
                     CreateDesktopShortcut(newProjectPath);
                 }
 
-                MessageBox.Show("Структура успешно скопирована!");
+                MessageBox.Show(MessageText.StructureCopiedSuccessfully);
             }
             catch (Exception ex)
             {
@@ -317,7 +317,7 @@ namespace Folders_Max_WinForm
 
             if (string.IsNullOrWhiteSpace(newName))
             {
-                MessageBox.Show("Введите новое имя файла!", "Ошибка");
+                MessageBox.Show(MessageText.EnterNewFileName, MessageText.ErrorTitle);
                 return;
             }
 
@@ -325,7 +325,7 @@ namespace Folders_Max_WinForm
 
             if (files.Length == 0)
             {
-                MessageBox.Show("В папке нет файлов.");
+                MessageBox.Show(MessageText.NoFilesInFolder);
                 return;
             }
 
@@ -350,7 +350,7 @@ namespace Folders_Max_WinForm
                 counter++;
             }
 
-            MessageBox.Show("Файлы успешно переименованы!");
+            MessageBox.Show(MessageText.FilesRenamedSuccessfully);
         }
 
         private bool GetWorkingPath(out string path)
@@ -362,7 +362,7 @@ namespace Folders_Max_WinForm
             {
                 if (!Directory.Exists(destination))
                 {
-                    MessageBox.Show("Указанный путь назначения не существует.");
+                    MessageBox.Show(MessageText.DestinationPathDoesNotExist);
                     path = null;
                     return false;
                 }
@@ -375,7 +375,7 @@ namespace Folders_Max_WinForm
             {
                 if (!Directory.Exists(source))
                 {
-                    MessageBox.Show("Указанный путь не существует.");
+                    MessageBox.Show(MessageText.PathDoesNotExist);
                     path = null;
                     return false;
                 }
@@ -384,7 +384,7 @@ namespace Folders_Max_WinForm
                 return true;
             }
 
-            MessageBox.Show("Выберите путь! \nНужно указать путь в \"Path\"");
+            MessageBox.Show(MessageText.ChoosePathPrompt);
             path = null;
             return false;
         }

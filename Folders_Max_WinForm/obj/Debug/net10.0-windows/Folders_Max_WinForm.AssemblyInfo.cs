@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Folders_Max_WinForm")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7a554135e7f9b5236b669f8c52d3e4f840347cea")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+123249b4635bcdc2a0c653e3c8e9608ab425152f")]
 [assembly: System.Reflection.AssemblyProductAttribute("Folders_Max_WinForm")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Folders_Max_WinForm")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
