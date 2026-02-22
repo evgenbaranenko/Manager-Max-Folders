@@ -14,11 +14,11 @@ namespace Folders_Max_WinForm
             bool addNumber)
         {
             if (!Directory.Exists(sourceFolder))
-                throw new DirectoryNotFoundException("Папка не существует");
+                throw new DirectoryNotFoundException(MessageText.FolderNotFound);
 
             var files = Directory.GetFiles(sourceFolder, "*.*", SearchOption.TopDirectoryOnly);
             if (files.Length == 0)
-                throw new InvalidOperationException("В папке нет файлов для сортировки.");
+                throw new InvalidOperationException(MessageText.NoFilesToSortInFolder);
 
             var rootFolder = CreateRootFolder(destinationFolder, sourceFolder, addDate, addNumber);
 
