@@ -14,56 +14,105 @@ namespace Folders_Max_WinForm
         private static readonly string HistoryFile =
             Path.Combine(AppFolder, "operations.json");
 
+        private static readonly object FileLock = new object();
+
         public static void SaveOperation(BatchOperationLog log, string sortedRootFolder)
         {
-            if (!Directory.Exists(AppFolder))
-                Directory.CreateDirectory(AppFolder);
+            if (log == null)
+                throw new ArgumentNullException(nameof(log));
 
-            var operations = LoadAll();
+            Directory.CreateDirectory(AppFolder);
 
-            log.SortedRootFolder = sortedRootFolder;
+            lock (FileLock)
+            {
+                var operations = LoadAll();
 
-            operations.Add(log);
+                log.SortedRootFolder = sortedRootFolder;
+                operations.Add(log);
 
-            var json = JsonSerializer.Serialize(operations);
-            File.WriteAllText(HistoryFile, json);
+                var options = new JsonSerializerOptions { WriteIndented = true };
+                var json = JsonSerializer.Serialize(operations, options);
+
+                // Write atomically
+                var tempFile = HistoryFile + ".tmp";
+                File.WriteAllText(tempFile, json);
+                File.Copy(tempFile, HistoryFile, true);
+                File.Delete(tempFile);
+            }
         }
 
         public static void UndoLast()
         {
-            var operations = LoadAll();
-
-            if (operations.Count == 0)
-                throw new Exception("Нет операций для отмены.");
-
-            var last = operations[^1];
-
-            foreach (var file in last.Files)
+            lock (FileLock)
             {
-                if (File.Exists(file.Destination))
+                var operations = LoadAll();
+
+                if (operations.Count == 0)
+                    throw new InvalidOperationException("Нет операций для отмены.");
+
+                var last = operations[^1];
+
+                // Перемещаем файлы обратно в исходные позиции
+                foreach (var file in last.Files)
                 {
-                    File.Move(file.Destination, file.Source);
+                    try
+                    {
+                        if (File.Exists(file.Destination))
+                        {
+                            var destDir = Path.GetDirectoryName(file.Source);
+                            if (!string.IsNullOrEmpty(destDir) && !Directory.Exists(destDir))
+                                Directory.CreateDirectory(destDir);
+
+                            File.Move(file.Destination, file.Source);
+                        }
+                    }
+                    catch
+                    {
+                        // Игнорируем отдельные ошибки перемещения, продолжая откат других файлов
+                    }
                 }
+
+                try
+                {
+                    if (!string.IsNullOrWhiteSpace(last.SortedRootFolder) && Directory.Exists(last.SortedRootFolder))
+                        Directory.Delete(last.SortedRootFolder, true);
+                }
+                catch
+                {
+                    // Игнорируем ошибки удаления папки
+                }
+
+                operations.RemoveAt(operations.Count - 1);
+
+                var options = new JsonSerializerOptions { WriteIndented = true };
+                var json = JsonSerializer.Serialize(operations, options);
+
+                var tempFile = HistoryFile + ".tmp";
+                File.WriteAllText(tempFile, json);
+                File.Copy(tempFile, HistoryFile, true);
+                File.Delete(tempFile);
             }
-
-            if (Directory.Exists(last.SortedRootFolder))
-                Directory.Delete(last.SortedRootFolder, true);
-
-            operations.RemoveAt(operations.Count - 1);
-
-            var json = JsonSerializer.Serialize(operations);
-            File.WriteAllText(HistoryFile, json);
         }
 
         private static List<BatchOperationLog> LoadAll()
         {
-            if (!File.Exists(HistoryFile))
+            try
+            {
+                if (!File.Exists(HistoryFile))
+                    return new List<BatchOperationLog>();
+
+                var json = File.ReadAllText(HistoryFile);
+                if (string.IsNullOrWhiteSpace(json))
+                    return new List<BatchOperationLog>();
+
+                return JsonSerializer.Deserialize<List<BatchOperationLog>>(json)
+                       ?? new List<BatchOperationLog>();
+            }
+            catch
+            {
+                // Если файл повреждён или произошла ошибка чтения/десериализации — возвращаем пустой список
                 return new List<BatchOperationLog>();
-
-            var json = File.ReadAllText(HistoryFile);
-
-            return JsonSerializer.Deserialize<List<BatchOperationLog>>(json)
-                   ?? new List<BatchOperationLog>();
+            }
         }
     }
 }
