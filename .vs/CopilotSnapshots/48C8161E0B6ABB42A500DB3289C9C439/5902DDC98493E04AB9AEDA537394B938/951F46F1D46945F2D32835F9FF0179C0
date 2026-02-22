@@ -1,4 +1,4 @@
-namespace Folders_Max_WinForm
+﻿namespace Folders_Max_WinForm
 {
     public partial class Form1 : Form
     {
@@ -78,8 +78,6 @@ namespace Folders_Max_WinForm
             string projectFolder;
             bool isNewProject = false;
 
-            var opLog = new BatchOperationLog { OriginalFolder = basePath };
-
             if (existingProject != null)
             {
                 projectFolder = existingProject;
@@ -94,19 +92,16 @@ namespace Folders_Max_WinForm
                 );
                 projectFolder = Path.Combine(basePath, finalName);
                 CreateDirectory(projectFolder);
-                opLog.CreatedDirectories.Add(projectFolder);
                 isNewProject = true;
             }
 
-            bool wasUpdated = Create3dsMaxStructureFolders(projectFolder, opLog);
+            bool wasUpdated = Create3dsMaxStructureFolders(projectFolder);
 
             if (!isNewProject && !wasUpdated)
             {
                 MessageBox.Show(MessageText.VizStructureAlreadyExists);
                 return;
             }
-
-            BatchHistoryManager.SaveOperation(opLog, projectFolder);
 
             MessageBox.Show(MessageText.ProjectStructureUpdatedCreated);
 
@@ -144,35 +139,33 @@ namespace Folders_Max_WinForm
             string projectFolder;
             bool isNewProject = false;
 
-            var opLog = new BatchOperationLog { OriginalFolder = basePath };
-
             if (existingProject != null)
             {
                 projectFolder = existingProject;
             }
             else
             {
+                // int nextNumber = GetNextProjectNumber(basePath);
+                // string finalName = $"{nextNumber:D2}_{nameWithoutNumber}";
                 string finalName = NameGenerator.GenerateFinalName(
                     basePath,
                     nameWithoutNumber,
                     checkBoxAddNumber.Checked,
                     checkBoxAddDate.Checked
                 );
+                //string projectFolder = Path.Combine(basePath, finalName);
                 projectFolder = Path.Combine(basePath, finalName);
                 CreateDirectory(projectFolder);
-                opLog.CreatedDirectories.Add(projectFolder);
                 isNewProject = true;
             }
 
-            bool wasUpdated = CreateFullProjectStructure(projectFolder, opLog);
+            bool wasUpdated = CreateFullProjectStructure(projectFolder);
 
             if (!isNewProject && !wasUpdated)
             {
                 MessageBox.Show(MessageText.ProjectAlreadyExistsStructureComplete);
                 return;
             }
-
-            BatchHistoryManager.SaveOperation(opLog, projectFolder);
 
             MessageBox.Show(MessageText.ProjectStructureUpdatedCreated);
 
@@ -291,11 +284,6 @@ namespace Folders_Max_WinForm
                     finalName
                 );
 
-                // Записываем операцию в историю, чтобы её можно было отменить
-                var opLog = new BatchOperationLog { OriginalFolder = templatePath };
-                opLog.CreatedDirectories.Add(newProjectPath);
-                BatchHistoryManager.SaveOperation(opLog, newProjectPath);
-
                 if (checkBoxCreateShortcut.Checked)
                 {
                     CreateDesktopShortcut(newProjectPath);
@@ -343,8 +331,6 @@ namespace Folders_Max_WinForm
 
             int counter = 1;
 
-            var opLog = new BatchOperationLog { OriginalFolder = folderPath };
-
             foreach (var file in files)
             {
                 string extension = Path.GetExtension(file);
@@ -361,11 +347,8 @@ namespace Folders_Max_WinForm
                 }
 
                 File.Move(file, newPath);
-                opLog.Files.Add(new FileMoveInfo { Source = file, Destination = newPath });
                 counter++;
             }
-
-            BatchHistoryManager.SaveOperation(opLog, folderPath);
 
             MessageBox.Show(MessageText.FilesRenamedSuccessfully);
         }
@@ -440,25 +423,25 @@ namespace Folders_Max_WinForm
             return null;
         }
 
-        private bool CreateFullProjectStructure(string basePath, BatchOperationLog? log = null)
+        private bool CreateFullProjectStructure(string basePath)
         {
             bool createdSomething = false;
 
-            createdSomething |= SafeCreate(Path.Combine(basePath, "00_Договор"), log);
-            createdSomething |= SafeCreate(Path.Combine(basePath, "01_Референсы"), log);
+            createdSomething |= SafeCreate(Path.Combine(basePath, "00_Договор"));
+            createdSomething |= SafeCreate(Path.Combine(basePath, "01_Референсы"));
 
             string sourceInfo = Path.Combine(basePath, "02_Исходная_информация");
-            createdSomething |= SafeCreate(sourceInfo, log);
-            createdSomething |= SafeCreate(Path.Combine(sourceInfo, "01_Исходные_данные_(тех.документация)"), log);
-            createdSomething |= SafeCreate(Path.Combine(sourceInfo, "02_Пожелания_заказчика"), log);
-            createdSomething |= SafeCreate(Path.Combine(sourceInfo, "03_Доп.информация"), log);
-            createdSomething |= SafeCreate(Path.Combine(sourceInfo, "04_Фото"), log);
+            createdSomething |= SafeCreate(sourceInfo);
+            createdSomething |= SafeCreate(Path.Combine(sourceInfo, "01_Исходные_данные_(тех.документация)"));
+            createdSomething |= SafeCreate(Path.Combine(sourceInfo, "02_Пожелания_заказчика"));
+            createdSomething |= SafeCreate(Path.Combine(sourceInfo, "03_Доп.информация"));
+            createdSomething |= SafeCreate(Path.Combine(sourceInfo, "04_Фото"));
 
             string projectFolder = Path.Combine(basePath, "03_Проектирование");
             string issueFolder = Path.Combine(basePath, "04_Выдача");
 
-            createdSomething |= SafeCreate(projectFolder, log);
-            createdSomething |= SafeCreate(issueFolder, log);
+            createdSomething |= SafeCreate(projectFolder);
+            createdSomething |= SafeCreate(issueFolder);
 
             var sections = new List<string>();
 
@@ -478,27 +461,23 @@ namespace Folders_Max_WinForm
 
             foreach (var section in sections)
             {
-                createdSomething |= SafeCreate(Path.Combine(projectFolder, section), log);
-                createdSomething |= SafeCreate(Path.Combine(issueFolder, section), log);
+                createdSomething |= SafeCreate(Path.Combine(projectFolder, section));
+                createdSomething |= SafeCreate(Path.Combine(issueFolder, section));
             }
 
             string supervision = Path.Combine(basePath, "05_Авторский_надзор");
-            createdSomething |= SafeCreate(supervision, log);
-            createdSomething |= SafeCreate(Path.Combine(supervision, "01_Фото"), log);
+            createdSomething |= SafeCreate(supervision);
+            createdSomething |= SafeCreate(Path.Combine(supervision, "01_Фото"));
 
             return createdSomething;
         }
 
-        private bool SafeCreate(string path, BatchOperationLog? log = null)
+        private bool SafeCreate(string path)
         {
             if (Directory.Exists(path))
                 return false;
 
             Directory.CreateDirectory(path);
-            if (log != null)
-            {
-                try { log.CreatedDirectories.Add(path); } catch { }
-            }
             return true;
         }
 
@@ -547,12 +526,12 @@ namespace Folders_Max_WinForm
             return false;
         }
 
-        private bool Create3dsMaxStructureFolders(string basePath, BatchOperationLog? log = null)
+        private bool Create3dsMaxStructureFolders(string basePath)
         {
             bool createdSomething = false;
 
             string mainFolder = Path.Combine(basePath, "03_3dsMax");
-            createdSomething |= SafeCreate(mainFolder, log);
+            createdSomething |= SafeCreate(mainFolder);
 
             string[] subFolders =
             {
@@ -568,12 +547,12 @@ namespace Folders_Max_WinForm
 
             foreach (var sub in subFolders)
             {
-                createdSomething |= SafeCreate(Path.Combine(mainFolder, sub), log);
+                createdSomething |= SafeCreate(Path.Combine(mainFolder, sub));
             }
 
-            createdSomething |= SafeCreate(Path.Combine(basePath, "02_IN"), log);
-            createdSomething |= SafeCreate(Path.Combine(basePath, "04_OUT"), log);
-            createdSomething |= SafeCreate(Path.Combine(basePath, "01_Contract"), log);
+            createdSomething |= SafeCreate(Path.Combine(basePath, "02_IN"));
+            createdSomething |= SafeCreate(Path.Combine(basePath, "04_OUT"));
+            createdSomething |= SafeCreate(Path.Combine(basePath, "01_Contract"));
 
             return createdSomething;
         }

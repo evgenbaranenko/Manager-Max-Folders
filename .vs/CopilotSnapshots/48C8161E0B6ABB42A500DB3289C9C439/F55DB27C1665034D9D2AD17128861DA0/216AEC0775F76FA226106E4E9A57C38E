@@ -23,8 +23,6 @@ namespace Folders_Max_WinForm
             var rootFolder = CreateRootFolder(destinationFolder, sourceFolder, addDate, addNumber);
 
             var log = new BatchOperationLog { OriginalFolder = sourceFolder };
-            // Record created root folder so Undo can remove it
-            log.CreatedDirectories.Add(rootFolder);
 
             foreach (var file in files)
             {
