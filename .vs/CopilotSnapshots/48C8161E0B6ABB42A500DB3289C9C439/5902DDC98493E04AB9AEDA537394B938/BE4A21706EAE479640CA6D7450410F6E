@@ -1,0 +1,59 @@
+﻿using System;
+using System.Diagnostics;
+using System.IO;
+
+namespace Folders_Max_WinForm
+{
+    public static class PhotoshopLoader
+    {
+        public static void LoadFolderIntoStack(string folderPath)
+        {
+            if (!Directory.Exists(folderPath))
+                throw new Exception("Папка не существует.");
+
+            string photoshopPath = GetPhotoshopPath();
+
+            if (!File.Exists(photoshopPath))
+                throw new Exception("Photoshop не найден. Проверь путь.");
+
+            string jsxScript = GenerateJsx(folderPath);
+
+            string tempPath = Path.Combine(Path.GetTempPath(), "loadToStack.jsx");
+            File.WriteAllText(tempPath, jsxScript);
+
+            Process.Start(new ProcessStartInfo
+            {
+                FileName = photoshopPath,
+                Arguments = $"-r \"{tempPath}\"",
+                UseShellExecute = true
+            });
+        }
+
+        private static string GenerateJsx(string folderPath)
+        {
+            return $@"
+var folder = new Folder(""{folderPath.Replace("\\", "/")}"");
+var files = folder.getFiles(/\.(jpg|png|tif|tiff|exr)$/i);
+
+if(files.length > 0)
+{{
+    files.sort(); // 🔥 сортировка по имени
+
+    var baseDoc = app.open(files[0]); // 🔥 первый файл как основа
+
+    for(var i=1; i<files.length; i++)
+    {{
+        var tempDoc = app.open(files[i]);
+        tempDoc.activeLayer.duplicate(baseDoc);
+        tempDoc.close(SaveOptions.DONOTSAVECHANGES);
+    }}
+}}
+";
+        }
+
+        private static string GetPhotoshopPath()
+        {
+            return @"C:\Program Files\Adobe\Adobe Photoshop 2025\Photoshop.exe";
+        }
+    }
+}

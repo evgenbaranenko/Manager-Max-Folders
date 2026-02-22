@@ -1,0 +1,174 @@
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Text.Json;
+
+namespace Folders_Max_WinForm
+{
+    public static class BatchHistoryManager
+    {
+        private static readonly string AppFolder =
+            Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
+                "FoldersMaxTool");
+
+        private static readonly string HistoryFile =
+            Path.Combine(AppFolder, "operations.json");
+
+        private static readonly object FileLock = new object();
+
+        private static readonly JsonSerializerOptions JsonOptions = new JsonSerializerOptions { WriteIndented = true };
+
+        /// <summary>
+        /// Сохраняет запись об операции в историю.
+        /// </summary>
+        public static void SaveOperation(BatchOperationLog log, string sortedRootFolder)
+        {
+            if (log == null)
+                throw new ArgumentNullException(nameof(log));
+
+            lock (FileLock)
+            {
+                var operations = LoadAll();
+
+                log.SortedRootFolder = sortedRootFolder;
+                operations.Add(log);
+
+                SaveAll(operations);
+            }
+        }
+
+        /// <summary>
+        /// Возвращает последнюю операцию без удаления её из истории (или null если истории нет).
+        /// </summary>
+        public static BatchOperationLog? PeekLast()
+        {
+            lock (FileLock)
+            {
+                var operations = LoadAll();
+                if (operations.Count == 0) return null;
+                return operations[^1];
+            }
+        }
+
+        /// <summary>
+        /// Отменяет последнюю операцию из истории. Попытки отмены выполняются по файлам по отдельности —
+        /// при ошибке для одного файла процесс продолжается для остальных.
+        /// </summary>
+        public static void UndoLast()
+        {
+            lock (FileLock)
+            {
+                var operations = LoadAll();
+
+                if (operations.Count == 0)
+                    throw new InvalidOperationException("Нет операций для отмены.");
+
+                var last = operations[^1];
+
+                // Перемещаем файлы обратно в исходные позиции.
+                // Важно проходить список в обратном порядке: это гарантирует, что сначала будут обработаны копии
+                // (например LightMix), а затем исходные перемещения — так избегаем восстановления файлов в неправильных местах.
+                for (int i = last.Files.Count - 1; i >= 0; i--)
+                {
+                    var file = last.Files[i];
+                    try
+                    {
+                        if (file.IsCopy)
+                        {
+                            // Если это копия — просто удаляем файл копии
+                            if (File.Exists(file.Destination))
+                                File.Delete(file.Destination);
+                        }
+                        else
+                        {
+                            if (File.Exists(file.Destination))
+                            {
+                                var destDir = Path.GetDirectoryName(file.Source);
+                                if (!string.IsNullOrEmpty(destDir) && !Directory.Exists(destDir))
+                                    Directory.CreateDirectory(destDir);
+
+                                // Попытка перемещения с перезаписью при необходимости
+                                File.Move(file.Destination, file.Source, true);
+                            }
+                        }
+                    }
+                    catch
+                    {
+                        // Игнорируем отдельные ошибки перемещения/удаления, продолжая откат других файлов
+                    }
+                }
+
+                // Удаляем явно созданные директории, если они были указаны в логе.
+                if (last.CreatedDirectories != null && last.CreatedDirectories.Count > 0)
+                {
+                    // Удаляем в обратном порядке, чтобы сначала удалить вложенные папки
+                    for (int i = last.CreatedDirectories.Count - 1; i >= 0; i--)
+                    {
+                        try
+                        {
+                            var dir = last.CreatedDirectories[i];
+                            if (!string.IsNullOrWhiteSpace(dir) && Directory.Exists(dir))
+                                Directory.Delete(dir, true);
+                        }
+                        catch
+                        {
+                            // Игнорируем ошибки удаления одной директории
+                        }
+                    }
+                }
+                else
+                {
+                    try
+                    {
+                        if (!string.IsNullOrWhiteSpace(last.SortedRootFolder) && Directory.Exists(last.SortedRootFolder))
+                            Directory.Delete(last.SortedRootFolder, true);
+                    }
+                    catch
+                    {
+                        // Игнорируем ошибки удаления папки
+                    }
+                }
+
+                operations.RemoveAt(operations.Count - 1);
+
+                SaveAll(operations);
+            }
+        }
+
+        private static List<BatchOperationLog> LoadAll()
+        {
+            try
+            {
+                if (!File.Exists(HistoryFile))
+                    return new List<BatchOperationLog>();
+
+                var json = File.ReadAllText(HistoryFile);
+                if (string.IsNullOrWhiteSpace(json))
+                    return new List<BatchOperationLog>();
+
+                return JsonSerializer.Deserialize<List<BatchOperationLog>>(json, JsonOptions)
+                       ?? new List<BatchOperationLog>();
+            }
+            catch
+            {
+                // Если файл повреждён или произошла ошибка чтения/десериализации — возвращаем пустой список
+                return new List<BatchOperationLog>();
+            }
+        }
+
+        private static void SaveAll(List<BatchOperationLog> operations)
+        {
+            // Создаём директорию приложения если ещё не создана
+            Directory.CreateDirectory(AppFolder);
+
+            var json = JsonSerializer.Serialize(operations, JsonOptions);
+
+            // Пишем атомарно через временный файл и заменяем целевой
+            var tempFile = HistoryFile + ".tmp";
+            File.WriteAllText(tempFile, json);
+
+            // Попытка переместить временный файл на место с перезаписью
+            File.Move(tempFile, HistoryFile, true);
+        }
+    }
+}

@@ -1,0 +1,52 @@
+﻿namespace Folders_Max_WinForm
+{
+    /// <summary>
+    /// Centralized application text messages for easier editing and localization.
+    /// </summary>
+    public static class MessageText
+    {
+        public const string WelcomeMessage = "Welcome to the Booking app!";
+
+        public const string PathDestinationNotExist = "Путь назначения не существует.";
+        public const string UnableToDetermineParentFolder = "Невозможно определить родительскую папку.";
+        public const string SortingCompleted = "Сортировка выполнена!";
+
+        public const string ChooseFolderToCreateStructure = "Выберите папку, где создать структуру";
+
+        public const string ChooseTemplateFolderPrompt = "Выберите папку шаблона! \nНужно указать путь в \"Path\"";
+        public const string ChooseDestinationFolderPrompt = "Выберите папку назначения! \nНужно указать путь в \"Path to save\"";
+
+        public const string EnterProjectName = "Введите название проекта.";
+        public const string NameContainsInvalidChars = "Название содержит недопустимые символы.";
+        public const string InvalidProjectNameChars = "Название проекта содержит недопустимые символы!";
+
+        public const string StructureCopiedSuccessfully = "Структура успешно скопирована!";
+        public const string ChooseDestinationDialogDescription = "Выберите папку назначения";
+
+        public const string EnterNewFileName = "Введите новое имя файла!";
+        public const string ErrorTitle = "Ошибка";
+        public const string NoFilesInFolder = "В папке нет файлов.";
+        public const string FilesRenamedSuccessfully = "Файлы успешно переименованы!";
+
+        public const string DestinationPathDoesNotExist = "Указанный путь назначения не существует.";
+        public const string PathDoesNotExist = "Указанный путь не существует.";
+        public const string ChoosePathPrompt = "Выберите путь! \nНужно указать путь в \"Path\"";
+
+        public const string SelectProjectType = "Выберите тип проекта!";
+
+        public const string VizStructureAlreadyExists = "VIZ структура уже полностью создана.";
+        public const string ProjectAlreadyExistsStructureComplete = "Этот проект уже существует и структура полностью создана.";
+        public const string ProjectStructureUpdatedCreated = "Структура проекта обновлена / создана успешно!";
+
+        public const string LastOperationUndone = "Последняя операция отменена!";
+        public const string NoOperationsToUndo = "Нет операций для отмены.";
+
+        public const string TemplateFolderNotFound = "Папка шаблона не существует.";
+        public const string DestinationFolderNotFound = "Папка назначения не существует.";
+        public const string FolderExistsWithName = "Папка с таким именем уже существует.";
+        public const string CannotCopyIntoSameFolder = "Нельзя копировать структуру в ту же самую папку.";
+        public const string CannotCopyInsideItself = "Нельзя сохранять структуру внутрь самой себя.";
+
+        public const string TryAgain = "Пожалуйста, попробуйте ещё раз.";
+    }
+}

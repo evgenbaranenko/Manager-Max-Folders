@@ -1,0 +1,137 @@
+﻿using System;
+using System.IO;
+using System.Linq;
+using System.Text.RegularExpressions;
+
+namespace Folders_Max_WinForm
+{
+    public class CoronaBatchOrganizerMapsByMaps
+    {
+        public static string Organize(
+            string sourceFolder,
+            string destinationFolder,
+            bool addDate,
+            bool addNumber)
+        {
+            if (!Directory.Exists(sourceFolder))
+                throw new DirectoryNotFoundException(MessageText.FolderNotFound);
+
+            var files = Directory.GetFiles(sourceFolder, "*.*", SearchOption.TopDirectoryOnly);
+            if (files.Length == 0)
+                throw new InvalidOperationException(MessageText.NoFilesToSortInFolder);
+
+            var rootFolder = CreateRootFolder(destinationFolder, sourceFolder, addDate, addNumber);
+
+            var log = new BatchOperationLog { OriginalFolder = sourceFolder };
+            // Record created root folder so Undo can remove it
+            log.CreatedDirectories.Add(rootFolder);
+
+            foreach (var file in files)
+            {
+                ProcessFile(file, rootFolder, log);
+            }
+
+            BatchHistoryManager.SaveOperation(log, rootFolder);
+
+            return rootFolder;
+        }
+
+        // ------------------------------------------------------------
+        // 🔥 УНИВЕРСАЛЬНОЕ ОПРЕДЕЛЕНИЕ ПАПКИ
+        // ------------------------------------------------------------
+        private static string GetFolderKey(string fileName)
+        {
+            var nameWithoutExt = Path.GetFileNameWithoutExtension(fileName);
+
+            // 1) SCV_010  (без хвоста)
+            if (Regex.IsMatch(nameWithoutExt, @"^SCV_\d{3}$"))
+                return "0000";
+
+            // 2) SCV_010_ЧтоТо
+            var scvMatch = Regex.Match(nameWithoutExt, @"^SCV_\d{3}_(.*)");
+            if (scvMatch.Success)
+                return CleanNamePart(scvMatch.Groups[1].Value);
+
+            // 3) Новая система 01_CMasking_ID0000
+            if (nameWithoutExt.Length > 3 && int.TryParse(nameWithoutExt.Substring(0, 2), out _) && nameWithoutExt[2] == '_')
+                return CleanNamePart(nameWithoutExt.Substring(3));
+
+            // 4) Только цифры
+            if (Regex.IsMatch(nameWithoutExt, @"^\d+$"))
+                return "0000";
+
+            return null;
+        }
+
+        private static string CleanNamePart(string namePart)
+        {
+            if (string.IsNullOrWhiteSpace(namePart))
+                return null;
+
+            // Удаляем цифры в конце
+            namePart = Regex.Replace(namePart, @"\d+$", "");
+
+            // Глубокая очистка
+            namePart = namePart.Trim();
+            namePart = namePart.Trim('_', '-', ' ');
+            namePart = Regex.Replace(namePart, @"_{2,}", "_");
+            namePart = Regex.Replace(namePart, @"\s{2,}", " ");
+
+            return string.IsNullOrWhiteSpace(namePart) ? MessageText.DefaultFolderKey : namePart;
+        }
+
+        private static void ProcessFile(string filePath, string rootFolder, BatchOperationLog log)
+        {
+            var fileName = Path.GetFileName(filePath);
+            var folderKey = GetFolderKey(fileName);
+            if (folderKey == null)
+                return;
+
+            var targetFolder = Path.Combine(rootFolder, folderKey);
+            EnsureDirectoryExists(targetFolder);
+
+            var targetPath = Path.Combine(targetFolder, fileName);
+            if (File.Exists(targetPath))
+                return;
+
+            File.Move(filePath, targetPath);
+            log.Files.Add(new FileMoveInfo { Source = filePath, Destination = targetPath });
+        }
+
+        private static void EnsureDirectoryExists(string path)
+        {
+            if (!Directory.Exists(path))
+                Directory.CreateDirectory(path);
+        }
+
+
+
+        // ------------------------------------------------------------
+        private static string CreateRootFolder(
+            string destinationFolder,
+            string sourceFolder,
+            bool addDate,
+            bool addNumber)
+        {
+            destinationFolder = Path.GetFullPath(destinationFolder);
+            sourceFolder = Path.GetFullPath(sourceFolder);
+
+            string sourceFolderName = new DirectoryInfo(sourceFolder).Name;
+
+            string baseName = $"{sourceFolderName} - Maps By Maps";
+
+            string folderName = NameGenerator.GenerateFinalName(
+                destinationFolder,
+                baseName,
+                addNumber,
+                addDate
+            );
+
+            string fullPath = Path.Combine(destinationFolder, folderName);
+
+            Directory.CreateDirectory(fullPath);
+
+            return fullPath;
+        }
+    }
+}
