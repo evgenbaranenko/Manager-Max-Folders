@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\evgen\\Desktop\\FPM\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{18DBB283-8C5E-4D59-9D26-2E10D58CAFEA}|Folders_Max_WinForm\\Folders_Max_WinForm.csproj|c:\\users\\evgen\\desktop\\fpm\\folders_max_winform\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{18DBB283-8C5E-4D59-9D26-2E10D58CAFEA}|Folders_Max_WinForm\\Folders_Max_WinForm.csproj|solutionrelative:folders_max_winform\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{18DBB283-8C5E-4D59-9D26-2E10D58CAFEA}|Folders_Max_WinForm\\Folders_Max_WinForm.csproj|c:\\users\\evgen\\desktop\\fpm\\folders_max_winform\\photoshoploader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{18DBB283-8C5E-4D59-9D26-2E10D58CAFEA}|Folders_Max_WinForm\\Folders_Max_WinForm.csproj|solutionrelative:folders_max_winform\\photoshoploader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{18DBB283-8C5E-4D59-9D26-2E10D58CAFEA}|Folders_Max_WinForm\\Folders_Max_WinForm.csproj|c:\\users\\evgen\\desktop\\fpm\\folders_max_winform\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{18DBB283-8C5E-4D59-9D26-2E10D58CAFEA}|Folders_Max_WinForm\\Folders_Max_WinForm.csproj|solutionrelative:folders_max_winform\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{18DBB283-8C5E-4D59-9D26-2E10D58CAFEA}|Folders_Max_WinForm\\Folders_Max_WinForm.csproj|c:\\users\\evgen\\desktop\\fpm\\folders_max_winform\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -76,18 +76,17 @@
               "RelativeToolTip": "Folders_Max_WinForm\\SettingsManager.cs",
               "ViewState": "AgIAAAgAAAAAAAAAAAAQwBYAAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-22T21:45:03.232Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-22T21:45:03.232Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "PhotoshopLoader.cs",
               "DocumentMoniker": "C:\\Users\\evgen\\Desktop\\FPM\\Folders_Max_WinForm\\PhotoshopLoader.cs",
               "RelativeDocumentMoniker": "Folders_Max_WinForm\\PhotoshopLoader.cs",
               "ToolTip": "C:\\Users\\evgen\\Desktop\\FPM\\Folders_Max_WinForm\\PhotoshopLoader.cs",
               "RelativeToolTip": "Folders_Max_WinForm\\PhotoshopLoader.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAuAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACAAAAA8AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-02-22T21:12:44.569Z",
               "EditorCaption": ""
@@ -115,8 +114,7 @@
               "RelativeToolTip": "Folders_Max_WinForm\\Program.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-22T20:32:51.753Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-22T20:32:51.753Z"
             },
             {
               "$type": "Document",
@@ -128,8 +126,7 @@
               "RelativeToolTip": "Folders_Max_WinForm\\ProjectTemplateCopier.cs",
               "ViewState": "AgIAACQAAAAAAAAAAAAAAA4AAAAGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-22T14:51:34.469Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-22T14:51:34.469Z"
             },
             {
               "$type": "Document",
@@ -155,7 +152,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Form1.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
               "DocumentMoniker": "C:\\Users\\evgen\\Desktop\\FPM\\Folders_Max_WinForm\\Form1.cs",
               "RelativeDocumentMoniker": "Folders_Max_WinForm\\Form1.cs",

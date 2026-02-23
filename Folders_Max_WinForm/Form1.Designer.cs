@@ -503,6 +503,7 @@ partial class Form1
         Location = new Point(15, 15);
         Name = "Form1";
         StartPosition = FormStartPosition.CenterScreen;
+        Text = "Folder manager ARCH/VIZ 2.0";
         Load += Form1_Load;
         ((System.ComponentModel.ISupportInitialize)numericUpDownCounterStart).EndInit();
         ((System.ComponentModel.ISupportInitialize)numericUpDownCounterStep).EndInit();
