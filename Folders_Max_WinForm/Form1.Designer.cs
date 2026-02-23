@@ -65,6 +65,7 @@ partial class Form1
         buttonRenameFiles = new Button();
         textBoxRename = new TextBox();
         groupBox2 = new GroupBox();
+        loadToPsAndSaveFiles = new CheckBox();
         ButtonLoadToPhotoshop = new Button();
         organizeCoronaMap_01 = new ToolTip(components);
         organizeCoronaMap_03 = new ToolTip(components);
@@ -75,7 +76,7 @@ partial class Form1
         myStrFld_04 = new ToolTip(components);
         copyFldStr_01 = new ToolTip(components);
         copyFldStr_02 = new ToolTip(components);
-        loadToPsAndSaveFiles = new CheckBox();
+        LoadToPhotoshop = new ToolTip(components);
         ((System.ComponentModel.ISupportInitialize)numericUpDownCounterStart).BeginInit();
         ((System.ComponentModel.ISupportInitialize)numericUpDownCounterStep).BeginInit();
         ((System.ComponentModel.ISupportInitialize)numericUpDownCounterDigits).BeginInit();
@@ -388,6 +389,7 @@ partial class Form1
         groupBox4.TabIndex = 28;
         groupBox4.TabStop = false;
         groupBox4.Text = "RENAMING FILES";
+        LoadToPhotoshop.SetToolTip(groupBox4, resources.GetString("groupBox4.ToolTip"));
         // 
         // buttonRenameFiles
         // 
@@ -422,15 +424,27 @@ partial class Form1
         groupBox2.TabStop = false;
         groupBox2.Text = "ORGANIZE CORONA MAPS";
         // 
+        // loadToPsAndSaveFiles
+        // 
+        loadToPsAndSaveFiles.AutoSize = true;
+        loadToPsAndSaveFiles.Location = new Point(8, 64);
+        loadToPsAndSaveFiles.Name = "loadToPsAndSaveFiles";
+        loadToPsAndSaveFiles.Size = new Size(155, 19);
+        loadToPsAndSaveFiles.TabIndex = 1;
+        loadToPsAndSaveFiles.Text = "Load to PS and save files";
+        loadToPsAndSaveFiles.UseVisualStyleBackColor = true;
+        // 
         // ButtonLoadToPhotoshop
         // 
+        ButtonLoadToPhotoshop.BackColor = Color.DarkGray;
         ButtonLoadToPhotoshop.ForeColor = SystemColors.ActiveCaptionText;
         ButtonLoadToPhotoshop.Location = new Point(7, 82);
         ButtonLoadToPhotoshop.Name = "ButtonLoadToPhotoshop";
         ButtonLoadToPhotoshop.Size = new Size(133, 32);
         ButtonLoadToPhotoshop.TabIndex = 0;
         ButtonLoadToPhotoshop.Text = "Load to Photoshop";
-        ButtonLoadToPhotoshop.UseVisualStyleBackColor = true;
+        LoadToPhotoshop.SetToolTip(ButtonLoadToPhotoshop, resources.GetString("ButtonLoadToPhotoshop.ToolTip"));
+        ButtonLoadToPhotoshop.UseVisualStyleBackColor = false;
         ButtonLoadToPhotoshop.Click += ButtonLoadToPhotoshop_Click;
         // 
         // organizeCoronaMap_01
@@ -454,16 +468,6 @@ partial class Form1
         // myStrFld_04
         // 
         myStrFld_04.AutomaticDelay = 1500;
-        // 
-        // loadToPsAndSaveFiles
-        // 
-        loadToPsAndSaveFiles.AutoSize = true;
-        loadToPsAndSaveFiles.Location = new Point(10, 65);
-        loadToPsAndSaveFiles.Name = "loadToPsAndSaveFiles";
-        loadToPsAndSaveFiles.Size = new Size(154, 19);
-        loadToPsAndSaveFiles.TabIndex = 1;
-        loadToPsAndSaveFiles.Text = "Load to ps and save files";
-        loadToPsAndSaveFiles.UseVisualStyleBackColor = true;
         // 
         // Form1
         // 
@@ -595,4 +599,5 @@ partial class Form1
     private Button buttonRenameFiles;
     private Button ButtonLoadToPhotoshop;
     private CheckBox loadToPsAndSaveFiles;
+    private ToolTip LoadToPhotoshop;
 }
